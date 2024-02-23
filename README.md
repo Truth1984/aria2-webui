@@ -1,4 +1,4 @@
-# WebUI-Aria2
+# Aria2-webui
 
 The aim for this project is to create the worlds best and hottest interface to interact with aria2. aria2 is the worlds best file downloader, but sometimes the command line brings more power than necessary. The project was initially created as part of the GSOC scheme, however it has rapidly grown and changed with tremendous support and feedback from the aria2 community.
 
@@ -32,7 +32,9 @@ Well, you need aria2. And a web browser (if that even counts!)
 
 # Configure and Endpoint
 
-init bash
+create conf directory and put aria2.conf inside, and modify aria2.conf
+
+from official [Aria2 Manual](https://aria2.github.io/manual/en/html/aria2c.html)
 
 `mkdir conf && touch conf/aria2.conf`
 
