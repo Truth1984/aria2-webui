@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  aria2w:
+    container_name: aria2w
+    build: .
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    environment:
+      - TZ=Asia/Shanghai
+    volumes:
+      - .:/app
+    restart: always
+
+  aria2:
+    image: truth1984/aria2
+    container_name: aria2
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    environment:
+      - TZ=Asia/Shanghai
+    command: aria2c --enable-rpc --rpc-listen-all
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-aria
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/aria2.conf
+    ports:
+      - 8000:8000
+    restart: unless-stopped
