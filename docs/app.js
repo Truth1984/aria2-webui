@@ -39,11 +39,7 @@
       if ((1 & t && (e = r(e)), 8 & t)) return e;
       if (4 & t && "object" == typeof e && e && e.__esModule) return e;
       var n = Object.create(null);
-      if (
-        (r.r(n),
-        Object.defineProperty(n, "default", { enumerable: !0, value: e }),
-        2 & t && "string" != typeof e)
-      )
+      if ((r.r(n), Object.defineProperty(n, "default", { enumerable: !0, value: e }), 2 & t && "string" != typeof e))
         for (var a in e)
           r.d(
             n,
@@ -100,9 +96,9 @@
           },
           log: function(e) {
             this.addAlert(e, "info");
-          }
+          },
         };
-      }
+      },
     ]).name;
   },
   function(e, t, n) {
@@ -117,7 +113,7 @@
             indexOf: function(e) {
               return e.charCodeAt(0);
             },
-            charAt: String.fromCharCode
+            charAt: String.fromCharCode,
           };
         function a(e, t, n, a, o, i) {
           var r,
@@ -133,8 +129,7 @@
               if ((s = n.indexOf(e.charAt(r))) <= -1 || s >= o) throw new RangeError();
               (p *= o), (c += s);
             }
-            for (; u >= i; )
-              (u /= i), p > 1 && ((l = c), (c %= u), (d += a.charAt((l - c) / u)), (p /= i));
+            for (; u >= i; ) (u /= i), p > 1 && ((l = c), (c %= u), (d += a.charAt((l - c) / u)), (p /= i));
           }
           return d;
         }
@@ -152,7 +147,7 @@
           }),
           e
         );
-      }
+      },
     ]).name;
   },
   function(e, t, n) {
@@ -162,10 +157,7 @@
     t.a = o.a
       .module("webui.services.configuration", [])
       .constant("$name", "Aria2 WebUI")
-      .constant(
-        "$titlePattern",
-        "active: {active} - waiting: {waiting} - stopped: {stopped} — {name}"
-      )
+      .constant("$titlePattern", "active: {active} - waiting: {waiting} - stopped: {stopped} — {name}")
       .constant("$pageSize", 11)
       .constant("$authconf", {
         host: location.protocol.startsWith("http") ? location.hostname : "localhost",
@@ -173,27 +165,15 @@
         port: 6800,
         encrypt: !1,
         auth: {},
-        directURL: ""
+        directURL: "",
       })
       .constant("$enable", {
         torrent: !0,
         metalink: !0,
-        sidebar: { show: !0, stats: !0, filters: !0, starredProps: !0 }
+        sidebar: { show: !0, stats: !0, filters: !0, starredProps: !0 },
       })
-      .constant("$starredProps", [
-        "dir",
-        "conf-path",
-        "auto-file-renaming",
-        "max-connection-per-server"
-      ])
-      .constant("$downloadProps", [
-        "header",
-        "http-user",
-        "http-passwd",
-        "pause",
-        "dir",
-        "max-connection-per-server"
-      ])
+      .constant("$starredProps", ["dir", "conf-path", "auto-file-renaming", "max-connection-per-server"])
+      .constant("$downloadProps", ["header", "http-user", "http-passwd", "pause", "dir", "max-connection-per-server"])
       .constant("$globalTimeout", 1e3).name;
   },
   function(e, t, n) {
@@ -289,7 +269,7 @@
         "webui.services.rpc.syscall",
         "webui.services.configuration",
         "webui.services.alerts",
-        "webui.services.utils"
+        "webui.services.utils",
       ])
       .factory("$rpc", [
         "$syscall",
@@ -310,8 +290,7 @@
             m = a.getCookie("aria2conf");
           m && u.unshift(m),
             r.search().host &&
-              (u.unshift(r.search()),
-              (u[0].auth = { token: u[0].token, user: u[0].username, pass: u[0].password })),
+              (u.unshift(r.search()), (u[0].auth = { token: u[0].token, user: u[0].username, pass: u[0].password })),
             -1 != ["http", "https"].indexOf(r.protocol()) &&
               "localhost" != r.host() &&
               u.push(
@@ -320,7 +299,7 @@
                   host: r.host(),
                   port: r.port(),
                   path: "/jsonrpc",
-                  encrypt: "https" == r.protocol()
+                  encrypt: "https" == r.protocol(),
                 },
                 { host: r.host(), port: r.port(), path: s.path, encrypt: "https" == r.protocol() }
               );
@@ -332,9 +311,7 @@
               })).slice();
               if (o.length) {
                 if ("initializing" == e.state)
-                  return (
-                    console.log("Syscall is initializing, waiting"), void (h = setTimeout(v, t))
-                  );
+                  return console.log("Syscall is initializing, waiting"), void (h = setTimeout(v, t));
                 if (g && u.length)
                   return (
                     (g = !1),
@@ -375,9 +352,7 @@
                     u.length &&
                       (c
                         ? n.addAlert(
-                            l("translate")(
-                              "Successfully connected to Aria2 through its remote RPC …"
-                            ),
+                            l("translate")("Successfully connected to Aria2 through its remote RPC …"),
                             "success"
                           )
                         : n.addAlert(
@@ -407,9 +382,7 @@
                     -1 != e && u.splice(e, 1),
                       u.length
                         ? (n.log(
-                            l("translate")(
-                              "The last connection attempt was unsuccessful. Trying another configuration"
-                            )
+                            l("translate")("The last connection attempt was unsuccessful. Trying another configuration")
                           ),
                           (h = setTimeout(v, 0)))
                         : (n.addAlert(
@@ -422,7 +395,7 @@
                             "error"
                           ),
                           (h = setTimeout(v, t)));
-                  }
+                  },
                 });
               } else h = setTimeout(v, t);
             };
@@ -430,12 +403,7 @@
             (h = setTimeout(v, t)),
             {
               configure: function(e) {
-                n.addAlert(
-                  l("translate")(
-                    "Trying to connect to aria2 using the new connection configuration"
-                  ),
-                  "info"
-                ),
+                n.addAlert(l("translate")("Trying to connect to aria2 using the new connection configuration"), "info"),
                   (u = e instanceof Array ? e : [e]),
                   h && (clearTimeout(h), (h = setTimeout(v, 0)));
               },
@@ -462,10 +430,10 @@
               },
               forceUpdate: function() {
                 h ? (clearTimeout(h), (h = setTimeout(v, 0))) : (f = !0);
-              }
+              },
             }
           );
-        }
+        },
       ]).name;
   },
   function(e, t, n) {
@@ -473,11 +441,7 @@
     var a = n(0),
       o = n.n(a);
     t.a = o.a
-      .module("webui.services.rpc.helpers", [
-        "webui.services.deps",
-        "webui.services.rpc",
-        "webui.services.alerts"
-      ])
+      .module("webui.services.rpc.helpers", ["webui.services.deps", "webui.services.rpc", "webui.services.alerts"])
       .factory("$rpchelpers", [
         "$_",
         "$rpc",
@@ -520,10 +484,10 @@
                   t.once("addMetalink", [e, a], o, !0);
                 }),
                   t.forceUpdate();
-              }
+              },
             }
           );
-        }
+        },
       ]).name;
   },
   function(e, t, n) {
@@ -552,19 +516,14 @@
                 success: function(e) {
                   return (l.avgTimeout = 2e3 + 3 * (new Date() - s)), i(e);
                 },
-                error: r
+                error: r,
               });
             },
             invoke: function(t) {
               var n = this,
                 a = n.serverConf.encrypt ? "https" : "http";
               n.ariaRequest(
-                a +
-                  "://" +
-                  n.serverConf.host +
-                  ":" +
-                  n.serverConf.port +
-                  (n.serverConf.path || "/jsonrpc"),
+                a + "://" + n.serverConf.host + ":" + n.serverConf.port + (n.serverConf.path || "/jsonrpc"),
                 t.name,
                 t.params,
                 t.success,
@@ -592,9 +551,9 @@
                     }, n.avgTimeout);
                 }
               );
-            }
+            },
           };
-        }
+        },
       ]).name;
   },
   function(e, t, n) {
@@ -606,7 +565,7 @@
         "webui.services.deps",
         "webui.services.utils",
         "webui.services.base64",
-        "webui.services.alerts"
+        "webui.services.alerts",
       ])
       .factory("$sockcall", [
         "$_",
@@ -641,34 +600,28 @@
             },
             onmessage: function(e) {
               for (var n = t.parse(e.data), a = r.handles.length - 1; a >= 0; a--)
-                if (r.handles[a].id === n.id)
-                  return r.handles[a].success(n), void r.handles.splice(a, 1);
+                if (r.handles[a].id === n.id) return r.handles[a].success(n), void r.handles.splice(a, 1);
             },
             invoke: function(e) {
               var n = {
                 jsonrpc: 2,
                 id: a.uuid(),
                 method: e.name,
-                params: e.params && e.params.length ? e.params : void 0
+                params: e.params && e.params.length ? e.params : void 0,
               };
               n.params && !n.params.length && (n.params = void 0),
                 r.handles.push({
                   success: e.success || o.a.noop,
                   error: e.error || o.a.noop,
-                  id: n.id
+                  id: n.id,
                 }),
                 r.sock.send(t.stringify(n));
             },
             init: function(e, t) {
               if (
-                ((r.initialized = !1),
-                r.onready && (r.onready(), (r.onready = null)),
-                "undefined" == typeof WebSocket)
+                ((r.initialized = !1), r.onready && (r.onready(), (r.onready = null)), "undefined" == typeof WebSocket)
               )
-                return (
-                  i.addAlert("Web sockets are not supported! Falling back to JSONP.", "info"),
-                  void t()
-                );
+                return i.addAlert("Web sockets are not supported! Falling back to JSONP.", "info"), void t();
               (r.conf = e || r.conf),
                 (r.scheme = r.conf.encrypt ? "wss" : "ws"),
                 r.sock &&
@@ -701,10 +654,10 @@
                   i.addAlert("Web sockets not working due to " + e.message, "info"),
                   t();
               }
-            }
+            },
           };
           return r;
-        }
+        },
       ]).name;
   },
   function(e, t, n) {
@@ -716,7 +669,7 @@
         "webui.services.rpc.jsoncall",
         "webui.services.rpc.sockcall",
         "webui.services.utils",
-        "webui.services.alerts"
+        "webui.services.alerts",
       ])
       .factory("$syscall", [
         "$log",
@@ -727,9 +680,7 @@
           return {
             state: "none",
             init: function(e) {
-              console.log("Syscall is initializing to", e),
-                (this.state = "initializing"),
-                t.init(e);
+              console.log("Syscall is initializing to", e), (this.state = "initializing"), t.init(e);
               var a = this;
               n.init(e, function() {
                 console.log("Syscall is ready"), (a.state = "ready");
@@ -741,9 +692,9 @@
                 (e.error = e.error || o.a.noop),
                 n.initialized ? n.invoke(e) : t.invoke(e)
               );
-            }
+            },
           };
-        }
+        },
       ]).name;
   },
   function(e, t, n) {
@@ -756,7 +707,7 @@
         "all-proxy": {
           val: "",
           desc:
-            'Use this proxy server for all   protocols. To erase previously defined proxy, use "". You can override this setting and specify a proxy server for a particular protocol using http-proxy, https-proxy and ftp-proxy options. This affects all URIs. The format of PROXY is [http://][USER:PASSWORD@]HOST[:PORT].'
+            'Use this proxy server for all   protocols. To erase previously defined proxy, use "". You can override this setting and specify a proxy server for a particular protocol using http-proxy, https-proxy and ftp-proxy options. This affects all URIs. The format of PROXY is [http://][USER:PASSWORD@]HOST[:PORT].',
         },
         "all-proxy-passwd": { val: "", desc: "Set password for all-proxy option." },
         "all-proxy-user": { val: "", desc: "Set user for all-proxy option." },
@@ -764,332 +715,330 @@
           val: !1,
           options: ["true", "false"],
           desc:
-            "Restart download from scratch if the corresponding control file doesn't exist. See also auto-file-renaming option. Default: false"
+            "Restart download from scratch if the corresponding control file doesn't exist. See also auto-file-renaming option. Default: false",
         },
         "allow-piece-length-change": {
           val: !1,
           options: ["true", "false"],
           desc:
-            "If false is given, aria2 aborts download when a piece length is different from one in a control file. If true is given, you can proceed but some download progress will be lost. Default: false"
+            "If false is given, aria2 aborts download when a piece length is different from one in a control file. If true is given, you can proceed but some download progress will be lost. Default: false",
         },
         "always-resume": {
           val: !0,
           options: ["true", "false"],
           desc:
-            "Always resume download. If true is given, aria2 always tries to resume download and if resume is not possible, aborts download. If false is given, when all given URIs do not support resume or aria2 encounters N URIs which does not support resume (N is the value specified using --max-resume-failure-tries option), aria2 downloads file from scratch. See --max-resume-failure-tries option. Default: true"
+            "Always resume download. If true is given, aria2 always tries to resume download and if resume is not possible, aborts download. If false is given, when all given URIs do not support resume or aria2 encounters N URIs which does not support resume (N is the value specified using --max-resume-failure-tries option), aria2 downloads file from scratch. See --max-resume-failure-tries option. Default: true",
         },
         "async-dns": {
           val: !0,
           options: ["true", "false"],
-          desc: "Enable asynchronous DNS. Default: true"
+          desc: "Enable asynchronous DNS. Default: true",
         },
         "auto-file-renaming": {
           val: !0,
           options: ["true", "false"],
           desc:
-            "Rename file name if the same file already exists. This option works only in HTTP(S)/FTP download. The new file name has a dot and a number(1..9999) appended. Default: true"
+            "Rename file name if the same file already exists. This option works only in HTTP(S)/FTP download. The new file name has a dot and a number(1..9999) appended. Default: true",
         },
         "bt-detach-seed-only": {
           desc:
             "Exclude seed only downloads when counting concurrent active downloads (See -j option). This means that if -j3 is given and this option is turned on and 3 downloads are active and one of those enters seed mode, then it is excluded from active download count (thus it becomes 2), and the next download waiting in queue gets started. But be aware that seeding item is still recognized as active download in RPC method. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "bt-enable-hook-after-hash-check": {
           desc:
             "Allow hook command invocation after hash check (see -V option) in BitTorrent download. By default, when hash check succeeds, the command given by --on-bt-download-complete is executed. To disable this action, give false to this option. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "bt-enable-lpd": {
           desc:
             "Enable Local Peer Discovery. If a private flag is set in a torrent, aria2 doesn't use this feature for that download even if true is given. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "bt-exclude-tracker": {
           val: "",
           desc:
-            "Comma separated list of BitTorrent tracker's announce URI to remove. You can use special value * which matches all URIs, thus removes all announce URIs. When specifying * in shell command-line, don't forget to escape or quote it. See also --bt-tracker option."
+            "Comma separated list of BitTorrent tracker's announce URI to remove. You can use special value * which matches all URIs, thus removes all announce URIs. When specifying * in shell command-line, don't forget to escape or quote it. See also --bt-tracker option.",
         },
         "bt-external-ip": {
           val: "",
           desc:
-            "Specify the external IP address to report to a BitTorrent tracker. Although this function is named external, it can accept any kind of IP addresses. IPADDRESS must be a numeric IP address."
+            "Specify the external IP address to report to a BitTorrent tracker. Although this function is named external, it can accept any kind of IP addresses. IPADDRESS must be a numeric IP address.",
         },
         "bt-force-encryption": {
           desc:
             "Requires BitTorrent message payload encryption with arc4. This is a shorthand of --bt-require-crypto --bt-min-crypto-level=arc4. This option does not change the option value of those options. If true is given, deny legacy BitTorrent handshake and only use Obfuscation handshake and always encrypt message payload. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "bt-hash-check-seed": {
           desc:
             "If true is given, after hash check using --check-integrity option and file is complete, continue to seed file. If you want to check file and download it only when it is damaged or incomplete, set this option to false. This option has effect only on BitTorrent download. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "bt-max-open-files": {
           val: 100,
-          desc: "Specify maximum number of files to open in each BitTorrent download. Default: 100"
+          desc: "Specify maximum number of files to open in each BitTorrent download. Default: 100",
         },
         "bt-max-peers": {
           val: 55,
           desc:
-            "Specify the maximum number of peers per torrent. 0 means unlimited. See also bt-request-peer-speed-limit option. Default: 55"
+            "Specify the maximum number of peers per torrent. 0 means unlimited. See also bt-request-peer-speed-limit option. Default: 55",
         },
         "bt-metadata-only": {
           desc:
             "Download metadata only. The file(s) described in metadata will not be downloaded. This option has effect only when BitTorrent Magnet URI is used. See also --bt-save-metadata option. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "bt-min-crypto-level": {
           desc:
             "Set minimum level of encryption method. If several encryption methods are provided by a peer, aria2 chooses the lowest one which satisfies the given level. Default: plain",
           val: "plain",
-          options: ["plain", "arc4"]
+          options: ["plain", "arc4"],
         },
         "bt-prioritize-piece": {
           val: "",
           desc:
-            "Try to download first and last pieces of each file first. This is useful for previewing files. The argument can contain 2 keywords: head and tail. To include both keywords, they must be separated by comma. These keywords can take one parameter, SIZE. For example, if head=<SIZE> is specified, pieces in the range of first SIZE bytes of each file get higher priority. tail=<SIZE> means the range of last SIZE bytes of each file. SIZE can include K or M (1K = 1024, 1M = 1024K). If SIZE is omitted, SIZE=1M is used."
+            "Try to download first and last pieces of each file first. This is useful for previewing files. The argument can contain 2 keywords: head and tail. To include both keywords, they must be separated by comma. These keywords can take one parameter, SIZE. For example, if head=<SIZE> is specified, pieces in the range of first SIZE bytes of each file get higher priority. tail=<SIZE> means the range of last SIZE bytes of each file. SIZE can include K or M (1K = 1024, 1M = 1024K). If SIZE is omitted, SIZE=1M is used.",
         },
         "bt-request-peer-speed-limit": {
           val: "50K",
           desc:
-            "If the whole download speed of every torrent is lower than SPEED, aria2 temporarily increases the number of peers to try for more download speed. Configuring this option with your preferred download speed can increase your download speed in some cases. You can append K or M (1K = 1024, 1M = 1024K). Default: 50K"
+            "If the whole download speed of every torrent is lower than SPEED, aria2 temporarily increases the number of peers to try for more download speed. Configuring this option with your preferred download speed can increase your download speed in some cases. You can append K or M (1K = 1024, 1M = 1024K). Default: 50K",
         },
         "bt-require-crypto": {
           desc:
             "If true is given, aria2 doesn't accept and establish connection with legacy BitTorrent handshake(19BitTorrent protocol). Thus aria2 always uses Obfuscation handshake. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "bt-save-metadata": {
           desc:
             "Save metadata as .torrent file. This option has effect only when BitTorrent Magnet URI is used. The filename is hex encoded info hash with suffix .torrent. The directory to be saved is the same directory where download file is saved. If the same file already exists, metadata is not saved. See also --bt-metadata-only option. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "bt-seed-unverified": {
           desc: "Seed previously downloaded files without verifying piece hashes. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "bt-stop-timeout": {
           val: 0,
           desc:
-            "Stop BitTorrent download if download speed is 0 in consecutive SEC seconds. If 0 is given, this feature is disabled. Default: 0"
+            "Stop BitTorrent download if download speed is 0 in consecutive SEC seconds. If 0 is given, this feature is disabled. Default: 0",
         },
         "bt-tracker": {
           val: "",
           desc:
-            "Comma separated list of additional BitTorrent tracker's announce URI. These URIs are not affected by --bt-exclude-tracker option because they are added after URIs in --bt-exclude-tracker option are removed."
+            "Comma separated list of additional BitTorrent tracker's announce URI. These URIs are not affected by --bt-exclude-tracker option because they are added after URIs in --bt-exclude-tracker option are removed.",
         },
         "bt-tracker-connect-timeout": {
           val: 60,
           desc:
-            "Set the connect timeout in seconds to establish connection to tracker. After the connection is established, this option makes no effect and --bt-tracker-timeout option is used instead. Default: 60"
+            "Set the connect timeout in seconds to establish connection to tracker. After the connection is established, this option makes no effect and --bt-tracker-timeout option is used instead. Default: 60",
         },
         "bt-tracker-interval": {
           val: 0,
           desc:
-            "Set the interval in seconds between tracker requests. This completely overrides interval value and aria2 just uses this value and ignores the min interval and interval value in the response of tracker. If 0 is set, aria2 determines interval based on the response of tracker and the download progress. Default: 0"
+            "Set the interval in seconds between tracker requests. This completely overrides interval value and aria2 just uses this value and ignores the min interval and interval value in the response of tracker. If 0 is set, aria2 determines interval based on the response of tracker and the download progress. Default: 0",
         },
         "bt-tracker-timeout": { val: 60, desc: "Set timeout in seconds. Default: 60" },
         "bt-remove-unselected-file": {
           desc:
             "Removes the unselected files when download is completed in BitTorrent. To select files, use --select-file option. If it is not used, all files are assumed to be selected. Please use this option with care because it will actually remove files from your disk. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "check-certificate": {
-          desc:
-            "Verify the peer using certificates specified in --ca-certificate option. Default: true",
+          desc: "Verify the peer using certificates specified in --ca-certificate option. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "check-integrity": {
           desc:
             "Check file integrity by validating piece hashes or a hash of entire file. This option has effect only in BitTorrent, Metalink downloads with checksums or HTTP(S)/FTP downloads with --checksum option. If piece hashes are provided, this option can detect damaged portions of a file and re-download them. If a hash of entire file is provided, hash check is only done when file has been already download. This is determined by file length. If hash check fails, file is re-downloaded from scratch. If both piece hashes and a hash of entire file are provided, only piece hashes are used. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "conditional-get": {
           desc:
             "Download file only when the local file is older than remote file. This function only works with HTTP(S) downloads only. It does not work if file size is specified in Metalink. It also ignores Content-Disposition header. If a control file exists, this option will be ignored. This function uses If-Modified-Since header to get only newer file conditionally. When getting modification time of local file, it uses user supplied filename(see --out option) or filename part in URI if --out is not specified. To overwrite existing file, --allow-overwrite is required. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "connect-timeout": {
           val: 60,
           desc:
-            "Set the connect timeout in seconds to establish connection to HTTP/FTP/proxy server. After the connection is established, this option makes no effect and --timeout option is used instead. Default: 60"
+            "Set the connect timeout in seconds to establish connection to HTTP/FTP/proxy server. After the connection is established, this option makes no effect and --timeout option is used instead. Default: 60",
         },
         continue: {
           desc:
             "Continue downloading a partially downloaded file. Use this option to resume a download started by a web browser or another program which downloads files sequentially from the beginning. Currently this option is only applicable to HTTP(S)/FTP downloads.",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         daemon: {
           desc:
             "Run as daemon. The current working directory will be changed to / and standard input, standard output and standard error will be redirected to /dev/null. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "deferred-input": {
           desc:
             "If true is given, aria2 does not read all URIs and options from file specified by --input-file option at startup, but it reads one by one when it needs later. This may reduce memory usage if input file contains a lot of URIs to download. If false is given, aria2 reads all URIs and options at startup. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         dir: { val: "", desc: "The directory to store the downloaded file." },
         "disable-ipv6": {
           desc:
             "Disable IPv6. This is useful if you have to use broken DNS and want to avoid terribly slow AAAA record lookup. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "dry-run": {
           desc:
             "If true is given, aria2 just checks whether the remote file is available and doesn't download data. This option has effect on HTTP/FTP download. BitTorrent downloads are canceled if true is specified. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "enable-async-dns6": {
           desc:
             "Enable IPv6 name resolution in asynchronous DNS resolver. This option will be ignored when --async-dns=false. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "enable-color": {
           desc: "Enable color output for a terminal. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "enable-dht": {
           desc:
             "Enable IPv4 DHT functionality. It also enables UDP tracker support. If a private flag is set in a torrent, aria2 doesn’t use DHT for that download even if true is given. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "enable-dht6": {
           desc:
             "Enable IPv6 DHT functionality. If a private flag is set in a torrent, aria2 doesn’t use DHT for that download even if true is given. Use --dht-listen-port option to specify port number to listen on. See also --dht-listen-addr6 option.",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "enable-http-keep-alive": {
           desc: "Enable HTTP/1.1 persistent connection. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "enable-http-pipelining": {
           desc: "Enable HTTP/1.1 pipelining. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "enable-peer-exchange": {
           desc:
             "Enable Peer Exchange extension. If a private flag is set in a torrent, this feature is disabled for that download even if true is given. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "enable-mmap": {
           desc:
             "Map files into memory. This option may not work if the file space is not pre-allocated. See --file-allocation. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "enable-rpc": {
           desc:
             "Enable JSON-RPC/XML-RPC server. It is strongly recommended to set secret authorization token using --rpc-secret option. See also --rpc-listen-port option. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "file-allocation": {
           desc:
             "Specify file allocation method. none doesn't pre-allocate file space. prealloc pre-allocates file space before download begins. This may take some time depending on the size of the file. If you are using newer file systems such as ext4 (with extents support), btrfs, xfs or NTFS(MinGW build only), falloc is your best choice. It allocates large(few GiB) files almost instantly. Don't use falloc with legacy file systems such as ext3 and FAT32 because it takes almost same time as prealloc and it blocks aria2 entirely until allocation finishes. falloc may not be available if your system doesn't have posix_fallocate(3) function. Possible Values: none, prealloc, falloc Default: prealloc",
           val: void 0,
-          options: ["none", "prealloc", "falloc", "trunc"]
+          options: ["none", "prealloc", "falloc", "trunc"],
         },
         "follow-metalink": {
           desc:
             "If true or mem is specified, when a file whose suffix is .meta4 or .metalink or content type of application/metalink4+xml or application/metalink+xml is downloaded, aria2 parses it as a metalink file and downloads files mentioned in it. If mem is specified, a metalink file is not written to the disk, but is just kept in memory. If false is specified, the action mentioned above is not taken. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "follow-torrent": {
           desc:
             "If true or mem is specified, when a file whose suffix is .torrent or content type is application/x-bittorrent is downloaded, aria2 parses it as a torrent file and downloads files mentioned in it. If mem is specified, a torrent file is not written to the disk, but is just kept in memory. If false is specified, the action mentioned above is not taken. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "force-save": {
           desc:
             "Save download with --save-session option even if the download is completed or removed. This option also saves control file in that situations. This may be useful to save BitTorrent seeding which is recognized as completed state. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "ftp-passwd": {
           val: "ARIA2USER@",
           desc:
-            "Set FTP password. This affects all URIs. If user name is embedded but password is missing in URI, aria2 tries to resolve password using .netrc. If password is found in .netrc, then use it as password. If not, use the password specified in this option. Default: ARIA2USER@"
+            "Set FTP password. This affects all URIs. If user name is embedded but password is missing in URI, aria2 tries to resolve password using .netrc. If password is found in .netrc, then use it as password. If not, use the password specified in this option. Default: ARIA2USER@",
         },
         "ftp-pasv": {
-          desc:
-            "Use the passive mode in FTP. If false is given, the active mode will be used. Default: true",
+          desc: "Use the passive mode in FTP. If false is given, the active mode will be used. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "ftp-proxy": {
           val: "",
           desc:
-            'Use this proxy server for FTP. To erase previously defined proxy, use "". See also --all-proxy option. This affects all URIs. The format of PROXY is [http://][USER:PASSWORD@]HOST[:PORT].'
+            'Use this proxy server for FTP. To erase previously defined proxy, use "". See also --all-proxy option. This affects all URIs. The format of PROXY is [http://][USER:PASSWORD@]HOST[:PORT].',
         },
         "ftp-proxy-passwd": { val: "", desc: "Set password for --ftp-proxy option." },
         "ftp-proxy-user": { val: "", desc: "Set user for --ftp-proxy option." },
         "ftp-reuse-connection": {
           desc: "Reuse connection in FTP. Default: true.",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "ftp-type": {
           desc: "Set FTP transfer type. TYPE is either binary or ascii. Default: binary",
           val: "binary",
-          options: ["binary", "ascii"]
+          options: ["binary", "ascii"],
         },
         "ftp-user": {
           val: "anonymous",
-          desc: "Set FTP user. This affects all URIs. Default: anonymous"
+          desc: "Set FTP user. This affects all URIs. Default: anonymous",
         },
         header: { val: "", desc: "Append HEADER to HTTP request header.", multiline: !0 },
         "http-accept-gzip": {
           desc:
             "Send Accept: deflate, gzip request header and inflate response if remote server responds with Content-Encoding: gzip or Content-Encoding: deflate. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "http-auth-challenge": {
           desc:
             "Send HTTP authorization header only when it is requested by the server. If false is set, then authorization header is always sent to the server. There is an exception: if username and password are embedded in URI, authorization header is always sent to the server regardless of this option. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "http-no-cache": {
           desc:
             "Send Cache-Control: no-cache and Pragma: no-cache header to avoid cached content. If false is given, these headers are not sent and you can add Cache-Control header with a directive you like using --header option. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "http-user": { val: "", desc: "Set HTTP username." },
         "http-passwd": { val: "", desc: "Set HTTP password." },
         "http-proxy": {
           val: "",
           desc:
-            'Use this proxy server for HTTP. To erase previously defined proxy, use "". See also --all-proxy option. This affects all URIs. The format of PROXY is [http://][USER:PASSWORD@]HOST[:PORT].'
+            'Use this proxy server for HTTP. To erase previously defined proxy, use "". See also --all-proxy option. This affects all URIs. The format of PROXY is [http://][USER:PASSWORD@]HOST[:PORT].',
         },
         "http-proxy-passwd": { val: "", desc: "Set password for --http-proxy option." },
         "http-proxy-user": { val: "", desc: "Set user for --http-proxy option." },
@@ -1097,316 +1046,307 @@
           desc:
             "Print sizes and speed in human readable format (e.g., 1.2Ki, 3.4Mi) in the console readout. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "index-out": {
           val: void 0,
           desc:
-            "Set file path for file with index=INDEX. You can find the file index using the --show-files option. PATH is a relative path to the path specified in --dir option. You can use this option multiple times. Using this option, you can specify the output filenames of BitTorrent downloads."
+            "Set file path for file with index=INDEX. You can find the file index using the --show-files option. PATH is a relative path to the path specified in --dir option. You can use this option multiple times. Using this option, you can specify the output filenames of BitTorrent downloads.",
         },
         "lowest-speed-limit": {
           val: "0",
           desc:
-            "Close connection if download speed is lower than or equal to this value(bytes per sec). 0 means aria2 does not have a lowest speed limit. You can append K or M (1K = 1024, 1M = 1024K). This option does not affect BitTorrent downloads. Default: 0"
+            "Close connection if download speed is lower than or equal to this value(bytes per sec). 0 means aria2 does not have a lowest speed limit. You can append K or M (1K = 1024, 1M = 1024K). This option does not affect BitTorrent downloads. Default: 0",
         },
         "max-connection-per-server": {
           val: 1,
-          desc: "The maximum number of connections to one server for each download. Default: 1"
+          desc: "The maximum number of connections to one server for each download. Default: 1",
         },
         "max-download-limit": {
           val: "0",
           desc:
-            "Set max download speed per each download in bytes/sec. 0 means unrestricted. You can append K or M (1K = 1024, 1M = 1024K). To limit the overall download speed, use --max-overall-download-limit option. Default: 0"
+            "Set max download speed per each download in bytes/sec. 0 means unrestricted. You can append K or M (1K = 1024, 1M = 1024K). To limit the overall download speed, use --max-overall-download-limit option. Default: 0",
         },
         "max-file-not-found": {
           val: 0,
           desc:
-            'If aria2 receives "file not found" status from the remote HTTP/FTP servers NUM times without getting a single byte, then force the download to fail. Specify 0 to disable this option. This options is effective only when using HTTP/FTP servers. Default: 0'
+            'If aria2 receives "file not found" status from the remote HTTP/FTP servers NUM times without getting a single byte, then force the download to fail. Specify 0 to disable this option. This options is effective only when using HTTP/FTP servers. Default: 0',
         },
         "max-resume-failure-tries": {
           val: 0,
           desc:
-            "When used with --always-resume=false, aria2 downloads file from scratch when aria2 detects N number of URIs that does not support resume. If N is 0, aria2 downloads file from scratch when all given URIs do not support resume. See --always-resume option. Default: 0"
+            "When used with --always-resume=false, aria2 downloads file from scratch when aria2 detects N number of URIs that does not support resume. If N is 0, aria2 downloads file from scratch when all given URIs do not support resume. See --always-resume option. Default: 0",
         },
         "max-tries": {
           val: 0,
-          desc: "Set number of tries. 0 means unlimited. See also --retry-wait. Default: 5"
+          desc: "Set number of tries. 0 means unlimited. See also --retry-wait. Default: 5",
         },
         "max-upload-limit": {
           val: "0",
           desc:
-            "Set max upload speed per each torrent in bytes/sec. 0 means unrestricted. You can append K or M (1K = 1024, 1M = 1024K). To limit the overall upload speed, use --max-overall-upload-limit option. Default: 0"
+            "Set max upload speed per each torrent in bytes/sec. 0 means unrestricted. You can append K or M (1K = 1024, 1M = 1024K). To limit the overall upload speed, use --max-overall-upload-limit option. Default: 0",
         },
         "metalink-enable-unique-protocol": {
           desc:
             "If true is given and several protocols are available for a mirror in a metalink file, aria2 uses one of them. Use --metalink-preferred-protocol option to specify the preference of protocol. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "metalink-language": { val: "", desc: "The language of the file to download." },
         "metalink-location": {
           val: "",
           desc:
-            "The location of the preferred server. A comma-delimited list of locations is acceptable, for example, jp,us."
+            "The location of the preferred server. A comma-delimited list of locations is acceptable, for example, jp,us.",
         },
         "metalink-os": { val: "", desc: "The operating system of the file to download." },
         "metalink-version": { val: "", desc: "The version of the file to download." },
         "min-split-size": {
           val: "20M",
           desc:
-            "aria2 does not split less than 2*SIZE byte range. For example, let's consider downloading 20MiB file. If SIZE is 10M, aria2 can split file into 2 range [0-10MiB) and [10MiB-20MiB) and download it using 2 sources(if --split >= 2, of course). If SIZE is 15M, since 2*15M > 20MiB, aria2 does not split file and download it using 1 source. You can append K or M (1K = 1024, 1M = 1024K). Possible Values: 1M -1024M Default: 20M"
+            "aria2 does not split less than 2*SIZE byte range. For example, let's consider downloading 20MiB file. If SIZE is 10M, aria2 can split file into 2 range [0-10MiB) and [10MiB-20MiB) and download it using 2 sources(if --split >= 2, of course). If SIZE is 15M, since 2*15M > 20MiB, aria2 does not split file and download it using 1 source. You can append K or M (1K = 1024, 1M = 1024K). Possible Values: 1M -1024M Default: 20M",
         },
         "no-conf": {
           desc: "Disable loading aria2.conf file.",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "no-file-allocation-limit": {
           val: "5M",
           desc:
-            "No file allocation is made for files whose size is smaller than SIZE. You can append K or M (1K = 1024, 1M = 1024K). Default: 5M"
+            "No file allocation is made for files whose size is smaller than SIZE. You can append K or M (1K = 1024, 1M = 1024K). Default: 5M",
         },
         "no-netrc": {
           desc:
             "Disables netrc support. netrc support is enabled by default.Note netrc file is only read at the startup if --no-netrc is false. So if --no-netrc is true at the startup, no netrc is available throughout the session. You cannot get netrc enabled even if you change this setting.",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "no-proxy": {
           val: "",
           desc:
-            "Specify comma separated hostnames, domains and network address with or without CIDR block where proxy should not be used."
+            "Specify comma separated hostnames, domains and network address with or without CIDR block where proxy should not be used.",
         },
         out: {
           val: "",
-          desc:
-            "The file name of the downloaded file. When --force-sequential option is used, this option is ignored."
+          desc: "The file name of the downloaded file. When --force-sequential option is used, this option is ignored.",
         },
         "parameterized-uri": {
           desc:
             "Enable parameterized URI support. You can specify set of parts: http://{sv1,sv2,sv3}/foo.iso. Also you can specify numeric sequences with step counter: http://host/image[000-100:2].img. A step counter can be omitted. If all URIs do not point to the same file, such as the second example above, -Z option is required. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "pause-metadata": {
           desc:
             "Pause downloads created as a result of metadata download. There are 3 types of metadata downloads in aria2: (1) downloading .torrent file. (2) downloading torrent metadata using magnet link. (3) downloading metalink file. These metadata downloads will generate downloads using their metadata. This option pauses these subsequent downloads. This option is effective only when --enable-rpc=true is given. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "proxy-method": {
           desc:
             "Set the method to use in proxy request. METHOD is either get or tunnel. HTTPS downloads always use tunnel regardless of this option. Default: get",
           val: "get",
-          options: ["get", "tunnel"]
+          options: ["get", "tunnel"],
         },
         quiet: {
           desc: "Make aria2 quiet (no console output). Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "realtime-chunk-checksum": {
           desc:
             "Validate chunk of data by calculating checksum while downloading a file if chunk checksums are provided. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         referer: { val: "", desc: "Set Referer. This affects all URIs." },
         "remote-time": {
           desc:
             "Retrieve timestamp of the remote file from the remote HTTP/FTP server and if it is available, apply it to the local file. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "remove-control-file": {
           desc:
             "Remove control file before download. Using with --allow-overwrite=true, download always starts from scratch. This will be useful for users behind proxy server which disables resume.",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "reuse-uri": {
           desc: "Reuse already used URIs if no unused URIs are left. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "seed-ratio": {
           val: 0,
           desc:
-            "Specify share ratio. Seed completed torrents until share ratio reaches RATIO. You are strongly encouraged to specify equals or more than 1.0 here. Specify 0.0 if you intend to do seeding regardless of share ratio. If --seed-time option is specified along with this option, seeding ends when at least one of the conditions is satisfied. Default: 1.0"
+            "Specify share ratio. Seed completed torrents until share ratio reaches RATIO. You are strongly encouraged to specify equals or more than 1.0 here. Specify 0.0 if you intend to do seeding regardless of share ratio. If --seed-time option is specified along with this option, seeding ends when at least one of the conditions is satisfied. Default: 1.0",
         },
         "seed-time": {
           val: 0,
           desc:
-            "Specify seeding time in minutes. Also see the --seed-ratio option. Note Specifying --seed-time=0 disables seeding after download completed."
+            "Specify seeding time in minutes. Also see the --seed-ratio option. Note Specifying --seed-time=0 disables seeding after download completed.",
         },
         "select-file": {
           val: "",
           desc:
-            "Set file to download by specifying its index. You can find the file index using the --show-files option. Multiple indexes can be specified by using ,, for example: 3,6. You can also use - to specify a range: 1-5. , and - can be used together: 1-5,8,9. When used with the -M option, index may vary depending on the query ."
+            "Set file to download by specifying its index. You can find the file index using the --show-files option. Multiple indexes can be specified by using ,, for example: 3,6. You can also use - to specify a range: 1-5. , and - can be used together: 1-5,8,9. When used with the -M option, index may vary depending on the query .",
         },
         split: {
           val: 5,
           desc:
-            "Download a file using N connections. If more than N URIs are given, first N URIs are used and remaining URIs are used for backup. If less than N URIs are given, those URIs are used more than once so that N connections total are made simultaneously. The number of connections to the same host is restricted by --max-connection-per-server option. See also --min-split-size option. Default: 5"
+            "Download a file using N connections. If more than N URIs are given, first N URIs are used and remaining URIs are used for backup. If less than N URIs are given, those URIs are used more than once so that N connections total are made simultaneously. The number of connections to the same host is restricted by --max-connection-per-server option. See also --min-split-size option. Default: 5",
         },
         timeout: { val: 60, desc: "Set timeout in seconds. Default: 60" },
         "use-head": {
           desc: "Use HEAD method for the first request to the HTTP server. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "user-agent": {
           val: "aria2/$VERSION",
           desc:
-            "Set user agent for HTTP(S) downloads. Default: aria2/$VERSION, $VERSION is replaced by package version."
+            "Set user agent for HTTP(S) downloads. Default: aria2/$VERSION, $VERSION is replaced by package version.",
         },
         "retry-wait": {
           val: 0,
           desc:
-            "Set the seconds to wait between retries. With SEC > 0, aria2 will retry download when the HTTP server returns 503 response. Default: 0."
+            "Set the seconds to wait between retries. With SEC > 0, aria2 will retry download when the HTTP server returns 503 response. Default: 0.",
         },
         "metalink-base-uri": {
           val: "",
           desc:
-            "Specify base URI to resolve relative URI in metalink:url and metalink:metaurl element in a metalink file stored in local disk. If URI points to a directory, URI must end with /."
+            "Specify base URI to resolve relative URI in metalink:url and metalink:metaurl element in a metalink file stored in local disk. If URI points to a directory, URI must end with /.",
         },
         pause: {
           desc:
             "Pause download after added. This option is effective only when --enable-rpc=true is given. Default: false",
           val: "false",
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "rpc-allow-origin-all": {
-          desc:
-            "Add Access-Control-Allow-Origin header field with value * to the RPC response. Default: false",
+          desc: "Add Access-Control-Allow-Origin header field with value * to the RPC response. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "rpc-listen-all": {
           desc:
             "Listen incoming JSON-RPC/XML-RPC requests on all network interfaces. If false is given, listen only on local loopback interface. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "rpc-secure": {
           desc:
             "RPC transport will be encrypted by SSL/TLS. The RPC clients must use https scheme to access the server. For WebSocket client, use wss scheme. Use --rpc-certificate and --rpc-private-key options to specify the server certificate and private key.",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "stream-piece-selector": {
           desc:
             "Specify piece selection algorithm used in HTTP/FTP download. Piece means fixed length segment which is downloaded in parallel in segmented download. If default is given, aria2 selects piece so that it reduces the number of establishing connection. This is reasonable default behaviour because establishing connection is an expensive operation. If inorder is given, aria2 selects piece which has minimum index. Index=0 means first of the file. This will be useful to view movie while downloading it. --enable-http-pipelining option may be useful to reduce reconnection overhead. Please note that aria2 honors --min-split-size option, so it will be necessary to specify a reasonable value to --min-split-size option. If geom is given, at the beginning aria2 selects piece which has minimum index like inorder, but it exponentially increasingly keeps space from previously selected piece. This will reduce the number of establishing connection and at the same time it will download the beginning part of the file first. This will be useful to view movie while downloading it. Default: default",
           val: "default",
-          options: ["default", "inorder", "geom"]
+          options: ["default", "inorder", "geom"],
         },
         "show-console-readout": {
           desc: "Show console readout. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "show-files": {
           desc:
             "Print file listing of “.torrent”, “.meta4” and “.metalink” file and exit. In case of “.torrent” file, additional information (infohash, piece length, etc) is also printed.",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "truncate-console-readout": {
           desc: "Truncate console readout to fit in a single line. Default: true",
           val: !0,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         "hash-check-only": {
           desc:
             "If true is given, after hash check using --check-integrity option, abort download whether or not download is complete. Default: false",
           val: !1,
-          options: ["true", "false"]
+          options: ["true", "false"],
         },
         checksum: {
           val: void 0,
           desc:
-            "Set checksum. TYPE is hash type. The supported hash type is listed in Hash Algorithms in aria2c -v. DIGEST is hex digest. For example, setting sha-1 digest looks like this: sha-1=0192ba11326fe2298c8cb4de616f4d4140213838 This option applies only to HTTP(S)/FTP downloads."
+            "Set checksum. TYPE is hash type. The supported hash type is listed in Hash Algorithms in aria2c -v. DIGEST is hex digest. For example, setting sha-1 digest looks like this: sha-1=0192ba11326fe2298c8cb4de616f4d4140213838 This option applies only to HTTP(S)/FTP downloads.",
         },
         "piece-length": {
           val: "1M",
           desc:
-            "Set a piece length for HTTP/FTP downloads. This is the boundary when aria2 splits a file. All splits occur at multiple of this length. This option will be ignored in BitTorrent downloads. It will be also ignored if Metalink file contains piece hashes. Default: 1M"
+            "Set a piece length for HTTP/FTP downloads. This is the boundary when aria2 splits a file. All splits occur at multiple of this length. This option will be ignored in BitTorrent downloads. It will be also ignored if Metalink file contains piece hashes. Default: 1M",
         },
         "uri-selector": {
           desc:
             "Specify URI selection algorithm. The possible values are inorder, feedback and adaptive. If inorder is given, URI is tried in the order appeared in the URI list. If feedback is given, aria2 uses download speed observed in the previous downloads and choose fastest server in the URI list. This also effectively skips dead mirrors. The observed download speed is a part of performance profile of servers mentioned in --server-stat-of and --server-stat-if options. If adaptive is given, selects one of the best mirrors for the first and reserved connections. For supplementary ones, it returns mirrors which has not been tested yet, and if each of them has already been tested, returns mirrors which has to be tested again. Otherwise, it doesn't select anymore mirrors. Like feedback, it uses a performance profile of servers. Default: feedback",
           val: "feedback",
-          options: ["inorder", "feedback", "adaptive"]
-        }
+          options: ["inorder", "feedback", "adaptive"],
+        },
       })
       .value("$globalSettings", {
         "download-result": {
           desc:
             "This option changes the way Download Results is formatted. If OPT is default, print GID, status, average download speed and path/URI. If multiple files are involved, path/URI of first requested file is printed and remaining ones are omitted. If OPT is full, print GID, status, average download speed, percentage of progress and path/URI. The percentage of progress and path/URI are printed for each requested file in each row. Default: default",
           val: "default",
-          options: ["default", "full"]
+          options: ["default", "full"],
         },
         log: {
           val: "",
           desc:
-            'The file name of the log file. If - is specified, log is written to stdout. If empty string("") is specified, log is not written to file.'
+            'The file name of the log file. If - is specified, log is written to stdout. If empty string("") is specified, log is not written to file.',
         },
         "log-level": {
-          desc:
-            "Set log level to output. LEVEL is either debug, info, notice, warn or error. Default: debug.",
+          desc: "Set log level to output. LEVEL is either debug, info, notice, warn or error. Default: debug.",
           val: "debug",
-          options: ["debug", "info", "notice", "warn", "error"]
+          options: ["debug", "info", "notice", "warn", "error"],
         },
         "max-concurrent-downloads": {
           val: 5,
           desc:
-            "Set maximum number of parallel downloads for every static (HTTP/FTP) URI, torrent and metalink. See also --split option. Default: 5"
+            "Set maximum number of parallel downloads for every static (HTTP/FTP) URI, torrent and metalink. See also --split option. Default: 5",
         },
         "max-download-result": {
           val: 1e3,
           desc:
-            "Set maximum number of download result kept in memory. The download results are completed/error/removed downloads. The download results are stored in FIFO queue and it can store at most NUM download results. When queue is full and new download result is created, oldest download result is removed from the front of the queue and new one is pushed to the back. Setting big number in this option may result high memory consumption after thousands of downloads. Specifying 0 means no download result is kept. Default: 1000"
+            "Set maximum number of download result kept in memory. The download results are completed/error/removed downloads. The download results are stored in FIFO queue and it can store at most NUM download results. When queue is full and new download result is created, oldest download result is removed from the front of the queue and new one is pushed to the back. Setting big number in this option may result high memory consumption after thousands of downloads. Specifying 0 means no download result is kept. Default: 1000",
         },
         "max-overall-download-limit": {
           val: "0",
           desc:
-            "Set max overall download speed in bytes/sec. 0 means unrestricted. You can append K or M (1K = 1024, 1M = 1024K). To limit the download speed per download, use --max-download-limit option. Default: 0."
+            "Set max overall download speed in bytes/sec. 0 means unrestricted. You can append K or M (1K = 1024, 1M = 1024K). To limit the download speed per download, use --max-download-limit option. Default: 0.",
         },
         "max-overall-upload-limit": {
           val: "0",
           desc:
-            "Set max overall upload speed in bytes/sec. 0 means unrestricted. You can append K or M (1K = 1024, 1M = 1024K). To limit the upload speed per torrent, use --max-upload-limit option. Default: 0."
+            "Set max overall upload speed in bytes/sec. 0 means unrestricted. You can append K or M (1K = 1024, 1M = 1024K). To limit the upload speed per torrent, use --max-upload-limit option. Default: 0.",
         },
         "save-cookies": {
           val: "",
           desc:
-            "Save Cookies to FILE in Mozilla/Firefox(1.x/2.x)/ Netscape format. If FILE already exists, it is overwritten. Session Cookies are also saved and their expiry values are treated as 0. Possible Values: /path/to/file."
+            "Save Cookies to FILE in Mozilla/Firefox(1.x/2.x)/ Netscape format. If FILE already exists, it is overwritten. Session Cookies are also saved and their expiry values are treated as 0. Possible Values: /path/to/file.",
         },
         "save-session": {
           val: "",
           desc:
-            "Save error/unfinished downloads to FILE on exit. You can pass this output file to aria2c with --input-file option on restart."
+            "Save error/unfinished downloads to FILE on exit. You can pass this output file to aria2c with --input-file option on restart.",
         },
         "server-stat-of": {
           val: "",
           desc:
-            "Specify the filename to which performance profile of the servers is saved. You can load saved data using --server-stat-if option. See Server Performance Profile subsection below for file format."
-        }
+            "Specify the filename to which performance profile of the servers is saved. You can load saved data using --server-stat-if option. See Server Performance Profile subsection below for file format.",
+        },
       })
       .value("$globalExclude", ["checksum", "index-out", "out", "pause", "select-file"])
-      .value("$waitingExclude", [
-        "dry-run",
-        "metalink-base-uri",
-        "parameterized-uri",
-        "pause",
-        "piece-length"
-      ])
+      .value("$waitingExclude", ["dry-run", "metalink-base-uri", "parameterized-uri", "pause", "piece-length"])
       .value("$activeInclude", [
         "bt-max-peers",
         "bt-request-peer-speed-limit",
         "bt-remove-unselected-file",
         "max-download-limit",
-        "max-upload-limit"
+        "max-upload-limit",
       ]).name;
   },
   function(e, t, n) {
@@ -1416,19 +1356,13 @@
     t.a = o.a
       .module("webui.services.settings.filters", [])
       .value("$globalsettingsexclude", ["checksum", "index-out", "out", "pause", "select-file"])
-      .value("$waitingsettingsexclude", [
-        "dry-run",
-        "metalink-base-uri",
-        "parameterized-uri",
-        "pause",
-        "piece-length"
-      ])
+      .value("$waitingsettingsexclude", ["dry-run", "metalink-base-uri", "parameterized-uri", "pause", "piece-length"])
       .value("$activesettingsfilter", [
         "bt-max-peers",
         "bt-request-peer-speed-limit",
         "bt-remove-unselected-file",
         "max-download-limit",
-        "max-upload-limit"
+        "max-upload-limit",
       ]).name;
   },
   function(e, t, n) {
@@ -1445,7 +1379,7 @@
           if (!e[t]) return !1;
           var a = Array.prototype.slice.call(arguments, 1);
           return e[t].apply({}, a);
-        }
+        },
       };
     }).name;
   },
@@ -1462,8 +1396,7 @@
             var e = new Uint8Array(16),
               t = function() {
                 for (var t, n = 0; n < 16; n++)
-                  n % 3 || (t = (4294967296 * Math.random()) | 0),
-                    (e[n] = (t >>> ((3 & n) << 3)) & 255);
+                  n % 3 || (t = (4294967296 * Math.random()) | 0), (e[n] = (t >>> ((3 & n) << 3)) & 255);
                 return e;
               };
             return window.crypto && crypto.getRandomValues
@@ -1573,18 +1506,16 @@
                     d && 0;
                     var u = !!d;
                     if (
-                      (a >= 1 && n[a - 1].show == u
-                        ? (n[a - 1].ratio += i)
-                        : (n.push({ ratio: i, show: u }), a++),
+                      (a >= 1 && n[a - 1].show == u ? (n[a - 1].ratio += i) : (n.push({ ratio: i, show: u }), a++),
                       ++r == o)
                     )
                       return n;
                   }
               return n;
-            }
+            },
           };
         return o;
-      }
+      },
     ]).name;
   },
   function(e, t, n) {
@@ -1598,14 +1529,14 @@
         "$utils",
         function(e, t) {
           return t.fmtsize;
-        }
+        },
       ])
       .filter("bspeed", [
         "$filter",
         "$utils",
         function(e, t) {
           return t.fmtspeed;
-        }
+        },
       ])
       .filter("time", function() {
         function e(e) {
@@ -1671,113 +1602,101 @@
               }),
             s();
         };
-      }
+      },
     ]).name;
   },
   function(e, t, n) {
     "use strict";
     var a = n(0),
       o = n.n(a);
-    t.a = o.a
-      .module("webui.directives.dgraph", ["webui.filters.bytes", "webui.services.deps"])
-      .directive("dgraph", [
-        "$",
-        "$filter",
-        "$parse",
-        function(e, t, n) {
-          var a = "%H:%M:%S";
-          try {
-            /16/.test(new Date(2e3, 0, 1, 16, 7, 9).toLocaleTimeString()) || (a = "%I:%M:%S %P");
-          } catch (e) {}
-          return function(n, i, r) {
-            var s = !1,
-              l = 180,
-              c = 0,
-              d = 0,
-              u = !1,
-              p = { label: "DOWN", data: [], color: "#00ff00", lines: { show: !0 } },
-              h = { label: "UP", data: [], color: "#0000ff", lines: { show: !0 } };
-            i.height(0.6 * i.width());
-            var f = e.plot(i, [p, h], {
-                legend: {
-                  show: void 0 == r.nolabel,
-                  backgroundOpacity: 0,
-                  margin: [10, 20],
-                  labelFormatter: function(e, n) {
-                    return n.data.length
-                      ? e + " (" + t("bspeed")(n.data[n.data.length - 1][1]) + ")"
-                      : e;
-                  },
-                  position: "sw"
+    t.a = o.a.module("webui.directives.dgraph", ["webui.filters.bytes", "webui.services.deps"]).directive("dgraph", [
+      "$",
+      "$filter",
+      "$parse",
+      function(e, t, n) {
+        var a = "%H:%M:%S";
+        try {
+          /16/.test(new Date(2e3, 0, 1, 16, 7, 9).toLocaleTimeString()) || (a = "%I:%M:%S %P");
+        } catch (e) {}
+        return function(n, i, r) {
+          var s = !1,
+            l = 180,
+            c = 0,
+            d = 0,
+            u = !1,
+            p = { label: "DOWN", data: [], color: "#00ff00", lines: { show: !0 } },
+            h = { label: "UP", data: [], color: "#0000ff", lines: { show: !0 } };
+          i.height(0.6 * i.width());
+          var f = e.plot(i, [p, h], {
+              legend: {
+                show: void 0 == r.nolabel,
+                backgroundOpacity: 0,
+                margin: [10, 20],
+                labelFormatter: function(e, n) {
+                  return n.data.length ? e + " (" + t("bspeed")(n.data[n.data.length - 1][1]) + ")" : e;
                 },
-                xaxis: {
-                  show: !0,
-                  mode: "time",
-                  timeformat: a,
-                  ticks: +r.xticks || 10,
-                  minTickSize: [30, "second"]
+                position: "sw",
+              },
+              xaxis: {
+                show: !0,
+                mode: "time",
+                timeformat: a,
+                ticks: +r.xticks || 10,
+                minTickSize: [30, "second"],
+              },
+              yaxis: {
+                position: "right",
+                ticks: function(e) {
+                  for (
+                    var t = [0],
+                      n = +r.yticks || yticks,
+                      a = 10240 * Math.max(1, Math.ceil(e.max / (10240 * n))),
+                      o = 0;
+                    o < n;
+                    o++
+                  ) {
+                    if (a * o > e.max) break;
+                    t.push(a * o);
+                  }
+                  return t;
                 },
-                yaxis: {
-                  position: "right",
-                  ticks: function(e) {
-                    for (
-                      var t = [0],
-                        n = +r.yticks || yticks,
-                        a = 10240 * Math.max(1, Math.ceil(e.max / (10240 * n))),
-                        o = 0;
-                      o < n;
-                      o++
-                    ) {
-                      if (a * o > e.max) break;
-                      t.push(a * o);
-                    }
-                    return t;
-                  },
-                  tickFormatter: function(e, n) {
-                    return t("bspeed")(e);
-                  },
-                  min: 0
-                }
-              }),
-              m = function() {
-                var e = i.width();
-                0 != e &&
-                  (i.height(0.6 * e), f.setData([p, h]), f.resize(), f.setupGrid(), f.draw());
-              };
-            n.$watch(r.dspeed, function(e) {
-              void 0 !== e && ((u = !0), (c = parseFloat(e) || 0));
+                tickFormatter: function(e, n) {
+                  return t("bspeed")(e);
+                },
+                min: 0,
+              },
             }),
-              n.$watch(r.uspeed, function(e) {
-                void 0 !== e && ((u = !0), (d = parseFloat(e) || 0));
-              }),
-              n.$watch(r.draw, function(e) {
-                s = e;
-              });
-            var g = setInterval(function() {
-              if (u) {
-                var e = new Date();
-                (e = Date.UTC(
-                  e.getFullYear(),
-                  e.getMonth(),
-                  e.getDate(),
-                  e.getHours(),
-                  e.getMinutes(),
-                  e.getSeconds()
-                )),
-                  p.data.length === l && p.data.shift(),
-                  p.data.push([e, c]),
-                  h.data.length === l && h.data.shift(),
-                  h.data.push([e, d]),
-                  s && m();
-              }
-            }, 1e3);
-            o.a.element(window).bind("resize", m),
-              i.bind("$destroy", function() {
-                clearInterval(g);
-              });
-          };
-        }
-      ]).name;
+            m = function() {
+              var e = i.width();
+              0 != e && (i.height(0.6 * e), f.setData([p, h]), f.resize(), f.setupGrid(), f.draw());
+            };
+          n.$watch(r.dspeed, function(e) {
+            void 0 !== e && ((u = !0), (c = parseFloat(e) || 0));
+          }),
+            n.$watch(r.uspeed, function(e) {
+              void 0 !== e && ((u = !0), (d = parseFloat(e) || 0));
+            }),
+            n.$watch(r.draw, function(e) {
+              s = e;
+            });
+          var g = setInterval(function() {
+            if (u) {
+              var e = new Date();
+              (e = Date.UTC(e.getFullYear(), e.getMonth(), e.getDate(), e.getHours(), e.getMinutes(), e.getSeconds())),
+                p.data.length === l && p.data.shift(),
+                p.data.push([e, c]),
+                h.data.length === l && h.data.shift(),
+                h.data.push([e, d]),
+                s && m();
+            }
+          }, 1e3);
+          o.a.element(window).bind("resize", m),
+            i.bind("$destroy", function() {
+              clearInterval(g);
+            });
+        };
+      },
+    ]).name;
   },
   function(e, t, n) {
     "use strict";
@@ -1792,105 +1711,103 @@
             o(t, n[0].files);
           }).filestyle({ placeholder: "No file selected" });
         };
-      }
+      },
     ]).name;
   },
   function(e, t, n) {
     "use strict";
     var a = n(0),
       o = n.n(a);
-    t.a = o.a
-      .module("webui.directives.fileselect", ["webui.services.deps"])
-      .directive("indeterminate", [
-        "$parse",
-        function(e) {
-          return {
-            require: "ngModel",
-            restrict: "A",
-            link: function(t, n, a, o) {
-              var i = e(a.ngModel),
-                r = [],
-                s = 0,
-                l = 0,
-                c = function() {
-                  return i(t);
-                },
-                d = function(e) {
-                  n.prop("indeterminate", e);
-                },
-                u = function(e) {
-                  o.$setViewValue(e), o.$render();
-                },
-                p = function(e) {
-                  return function() {
-                    r.length > 0 && e.apply(this, arguments);
-                  };
-                },
-                h = function(e) {
-                  return function() {
-                    0 === r.length && e.apply(this, arguments);
-                  };
-                },
-                f = function(e) {
-                  return function(t) {
-                    if (t.targetScope !== t.currentScope) return e.apply(this, arguments);
-                  };
+    t.a = o.a.module("webui.directives.fileselect", ["webui.services.deps"]).directive("indeterminate", [
+      "$parse",
+      function(e) {
+        return {
+          require: "ngModel",
+          restrict: "A",
+          link: function(t, n, a, o) {
+            var i = e(a.ngModel),
+              r = [],
+              s = 0,
+              l = 0,
+              c = function() {
+                return i(t);
+              },
+              d = function(e) {
+                n.prop("indeterminate", e);
+              },
+              u = function(e) {
+                o.$setViewValue(e), o.$render();
+              },
+              p = function(e) {
+                return function() {
+                  r.length > 0 && e.apply(this, arguments);
                 };
-              if (
-                (a.indeterminate && e(a.indeterminate).constant && d(t.$eval(a.indeterminate)),
-                a.indeterminate && e(a.indeterminate).constant && !t.$eval(a.indeterminate))
-              )
-                o.$viewChangeListeners.push(
-                  h(function() {
-                    t.$emit("childSelectedChange", c());
-                  })
-                ),
-                  t.$on(
-                    "ParentSelectedChange",
-                    f(
-                      h(function(e, t) {
-                        u(t);
-                      })
-                    )
-                  ),
-                  t.$emit("i'm child input", c),
+              },
+              h = function(e) {
+                return function() {
+                  0 === r.length && e.apply(this, arguments);
+                };
+              },
+              f = function(e) {
+                return function(t) {
+                  if (t.targetScope !== t.currentScope) return e.apply(this, arguments);
+                };
+              };
+            if (
+              (a.indeterminate && e(a.indeterminate).constant && d(t.$eval(a.indeterminate)),
+              a.indeterminate && e(a.indeterminate).constant && !t.$eval(a.indeterminate))
+            )
+              o.$viewChangeListeners.push(
+                h(function() {
                   t.$emit("childSelectedChange", c());
-              else {
+                })
+              ),
                 t.$on(
-                  "i'm child input",
-                  f(function(e, t) {
-                    r.push(t);
-                  })
-                );
-                o.$viewChangeListeners.push(
-                  p(
-                    (function(e) {
-                      return function() {
-                        if (!n.prop("indeterminate")) return e.apply(this, arguments);
-                      };
-                    })(function() {
-                      t.$broadcast("ParentSelectedChange", c());
+                  "ParentSelectedChange",
+                  f(
+                    h(function(e, t) {
+                      u(t);
                     })
                   )
                 ),
-                  t.$on(
-                    "childSelectedChange",
-                    f(
-                      p(function(e, t) {
-                        if (s + l !== r.length) {
-                          (s = 0), (l = 0);
-                          for (var n = 0; n < r.length; n++) r[n]() ? (s += 1) : (l += 1);
-                        } else t ? (s++, l--) : (s--, l++);
-                        var a = 0 === l;
-                        d(a !== s > 0), u(a);
-                      })
-                    )
-                  );
-              }
+                t.$emit("i'm child input", c),
+                t.$emit("childSelectedChange", c());
+            else {
+              t.$on(
+                "i'm child input",
+                f(function(e, t) {
+                  r.push(t);
+                })
+              );
+              o.$viewChangeListeners.push(
+                p(
+                  (function(e) {
+                    return function() {
+                      if (!n.prop("indeterminate")) return e.apply(this, arguments);
+                    };
+                  })(function() {
+                    t.$broadcast("ParentSelectedChange", c());
+                  })
+                )
+              ),
+                t.$on(
+                  "childSelectedChange",
+                  f(
+                    p(function(e, t) {
+                      if (s + l !== r.length) {
+                        (s = 0), (l = 0);
+                        for (var n = 0; n < r.length; n++) r[n]() ? (s += 1) : (l += 1);
+                      } else t ? (s++, l--) : (s--, l++);
+                      var a = 0 === l;
+                      d(a !== s > 0), u(a);
+                    })
+                  )
+                );
             }
-          };
-        }
-      ]).name;
+          },
+        };
+      },
+    ]).name;
   },
   function(e, t, n) {
     "use strict";
@@ -1903,7 +1820,7 @@
           }).bind("keydown keypress", function(t) {
             t.ctrlKey && 13 === t.which && (t.preventDefault(), e.$close());
           });
-        }
+        },
       };
     };
   },
@@ -1929,13 +1846,11 @@
               e.pendingAlerts.push(o),
               setTimeout(function() {
                 var t = e.pendingAlerts.indexOf(o);
-                -1 != t &&
-                  ((e.pendingAlerts[t].expired = !0),
-                  e.pendingAlerts.length > 0 && e.removeAlert(t));
+                -1 != t && ((e.pendingAlerts[t].expired = !0), e.pendingAlerts.length > 0 && e.removeAlert(t));
               }, "error" == a ? 15e3 : 5e3),
               e.$digest();
           });
-      }
+      },
     ]).name;
   },
   function(e, t, n) {
@@ -1952,7 +1867,7 @@
         "webui.services.settings",
         "webui.services.modals",
         "webui.services.configuration",
-        "webui.services.errors"
+        "webui.services.errors",
       ])
       .controller("MainCtrl", [
         "$scope",
@@ -2024,16 +1939,10 @@
             }),
             (e.remove = function(t, n, o) {
               setTimeout(function() {
-                if (
-                  o ||
-                  confirm(
-                    f("translate")("Remove {{name}} and associated meta-data?", { name: t.name })
-                  )
-                ) {
+                if (o || confirm(f("translate")("Remove {{name}} and associated meta-data?", { name: t.name }))) {
                   var i = "remove";
                   "stopped" == e.getType(t) && (i = "removeDownloadResult"),
-                    t.followedFrom &&
-                      (e.remove(t.followedFrom, function() {}, !0), (t.followedFrom = null)),
+                    t.followedFrom && (e.remove(t.followedFrom, function() {}, !0), (t.followedFrom = null)),
                     a.once(i, [t.gid], n);
                   for (var r = [e.active, e.waiting, e.stopped], s = 0; s < r.length; ++s) {
                     var l = r[s],
@@ -2069,8 +1978,7 @@
                     }),
                     (e.stopped = _.filter(g, function(e) {
                       return (
-                        !(e.metadata && e.followedBy && e.followedBy in n) ||
-                        ((n[e.followedBy].followedFrom = e), !1)
+                        !(e.metadata && e.followedBy && e.followedBy in n) || ((n[e.followedBy].followedFrom = e), !1)
                       );
                     }));
                 } else i.mergeMap(t[0], e.stopped, e.getCtx);
@@ -2142,7 +2050,7 @@
                 c: e.filterComplete,
                 e: e.filterError,
                 p: e.filterPaused,
-                r: e.filterRemoved
+                r: e.filterRemoved,
               });
               i.setCookie("aria2filters", t);
             }),
@@ -2262,22 +2170,18 @@
                   e.verifyIntegrityPending && (t.status = "verifyPending"),
                   (t.errorCode = e.errorCode),
                   (t.gid = e.gid),
-                  (t.followedBy =
-                    e.followedBy && 1 == e.followedBy.length ? e.followedBy[0] : null),
+                  (t.followedBy = e.followedBy && 1 == e.followedBy.length ? e.followedBy[0] : null),
                   (t.followedFrom = null),
                   (t.numPieces = e.numPieces),
                   (t.connections = e.connections),
                   void 0 === e.numSeeders
                     ? (t.numSeeders = "")
-                    : ((t.connectionsTitle = "Connections (Seeders)"),
-                      (t.numSeeders = " (" + e.numSeeders + ")")),
+                    : ((t.connectionsTitle = "Connections (Seeders)"), (t.numSeeders = " (" + e.numSeeders + ")")),
                   (t.bitfield = e.bitfield),
                   t.totalLength !== e.totalLength &&
-                    ((t.totalLength = e.totalLength),
-                    (t.fmtTotalLength = i.fmtsize(e.totalLength))),
+                    ((t.totalLength = e.totalLength), (t.fmtTotalLength = i.fmtsize(e.totalLength))),
                   t.completedLength !== e.completedLength &&
-                    ((t.completedLength = e.completedLength),
-                    (t.fmtCompletedLength = i.fmtsize(e.completedLength))),
+                    ((t.completedLength = e.completedLength), (t.fmtCompletedLength = i.fmtsize(e.completedLength))),
                   e.verifiedLength
                     ? t.verifiedLength !== e.verifiedLength && (t.verifiedLength = e.verifiedLength)
                     : delete t.verifiedLength,
@@ -2286,17 +2190,13 @@
                       (t.verifyIntegrityPending = e.verifyIntegrityPending)
                     : delete t.verifyIntegrityPending,
                   t.uploadLength !== e.uploadLength &&
-                    ((t.uploadLength = e.uploadLength),
-                    (t.fmtUploadLength = i.fmtsize(e.uploadLength))),
+                    ((t.uploadLength = e.uploadLength), (t.fmtUploadLength = i.fmtsize(e.uploadLength))),
                   t.pieceLength !== e.pieceLength &&
-                    ((t.pieceLength = e.pieceLength),
-                    (t.fmtPieceLength = i.fmtsize(e.pieceLength))),
+                    ((t.pieceLength = e.pieceLength), (t.fmtPieceLength = i.fmtsize(e.pieceLength))),
                   t.downloadSpeed !== e.downloadSpeed &&
-                    ((t.downloadSpeed = e.downloadSpeed),
-                    (t.fmtDownloadSpeed = i.fmtspeed(e.downloadSpeed))),
+                    ((t.downloadSpeed = e.downloadSpeed), (t.fmtDownloadSpeed = i.fmtspeed(e.downloadSpeed))),
                   t.uploadSpeed !== e.uploadSpeed &&
-                    ((t.uploadSpeed = e.uploadSpeed),
-                    (t.fmtUploadSpeed = i.fmtspeed(e.uploadSpeed))))
+                    ((t.uploadSpeed = e.uploadSpeed), (t.fmtUploadSpeed = i.fmtspeed(e.uploadSpeed))))
                 : ((t = {
                     dir: e.dir,
                     status: e.status,
@@ -2323,13 +2223,11 @@
                     fmtUploadSpeed: i.fmtspeed(e.uploadSpeed),
                     collapsed: !0,
                     animCollapsed: !0,
-                    files: []
+                    files: [],
                   }),
-                  e.verifiedLength &&
-                    ((t.verifiedLength = e.verifiedLength), (t.status = "verifying")),
+                  e.verifiedLength && ((t.verifiedLength = e.verifiedLength), (t.status = "verifying")),
                   e.verifyIntegrityPending &&
-                    ((t.verifyIntegrityPending = e.verifyIntegrityPending),
-                    (t.status = "verifyPending")));
+                    ((t.verifyIntegrityPending = e.verifyIntegrityPending), (t.status = "verifyPending")));
               var a,
                 o = e.files;
               if (o) {
@@ -2343,8 +2241,7 @@
                     (l.fmtLength = i.fmtsize(c.length)),
                     (l.relpath = c.path.replace(m, "/")),
                     l.relpath
-                      ? l.relpath.startsWith("[") ||
-                        (l.relpath = l.relpath.substr(t.dir.length + 1))
+                      ? l.relpath.startsWith("[") || (l.relpath = l.relpath.substr(t.dir.length + 1))
                       : (l.relpath = (c.uris && c.uris[0] && c.uris[0].uri) || "Unknown")),
                     (l.selected = "true" === c.selected);
                 }
@@ -2361,9 +2258,7 @@
               );
             }),
             (e.hasStatus = function e(t, n) {
-              return _.isArray(n)
-                ? 0 != n.length && (e(t, n[0]) || e(t, n.slice(1)))
-                : t.status == n;
+              return _.isArray(n) ? 0 != n.length && (e(t, n[0]) || e(t, n.slice(1))) : t.status == n;
             }),
             (e.getEta = function(e) {
               return (e.totalLength - e.completedLength) / e.downloadSpeed;
@@ -2446,7 +2341,7 @@
             (e.moveUp = function(e) {
               a.once("changePosition", [e.gid, -1, "POS_CUR"]);
             });
-        }
+        },
       ])
       .filter("objFilter", function() {
         return function(e, t) {
@@ -2484,7 +2379,7 @@
         "webui.services.deps",
         "webui.services.modals",
         "webui.services.rpc",
-        "webui.services.configuration"
+        "webui.services.configuration",
       ])
       .controller("ModalCtrl", [
         "$_",
@@ -2510,16 +2405,14 @@
                 (this.inst = n.open({
                   templateUrl: "getUris.html",
                   scope: t,
-                  windowClass: "modal-large"
+                  windowClass: "modal-large",
                 })),
                 this.inst.result.then(
                   function() {
                     if ((delete o.inst, o.cb)) {
                       var e = {};
-                      for (var t in o.settings)
-                        r[t].val != o.settings[t].val && (e[t] = o.settings[t].val);
-                      for (var t in o.fsettings)
-                        r[t].val != o.fsettings[t].val && (e[t] = o.fsettings[t].val);
+                      for (var t in o.settings) r[t].val != o.settings[t].val && (e[t] = o.settings[t].val);
+                      for (var t in o.fsettings) r[t].val != o.fsettings[t].val && (e[t] = o.fsettings[t].val);
                       console.log("sending settings:", e), o.cb(o.parse(), e);
                     }
                   },
@@ -2549,7 +2442,7 @@
                   return e.length;
                 })
                 .value();
-            }
+            },
           }),
             (t.settings = {
               open: function(e, a, o, i) {
@@ -2560,7 +2453,7 @@
                   (this.inst = n.open({
                     templateUrl: "settings.html",
                     scope: t,
-                    windowClass: "modal-large"
+                    windowClass: "modal-large",
                   })),
                   this.inst.result.then(
                     function() {
@@ -2570,7 +2463,7 @@
                       delete r.inst;
                     }
                   );
-              }
+              },
             }),
             (t.selectFiles = {
               open: function(a, o) {
@@ -2594,7 +2487,7 @@
                   (this.inst = n.open({
                     templateUrl: "selectFiles.html",
                     scope: t,
-                    windowClass: "modal-large"
+                    windowClass: "modal-large",
                   })),
                   this.inst.result.then(
                     function() {
@@ -2604,7 +2497,7 @@
                       delete i.inst;
                     }
                   );
-              }
+              },
             }),
             (t.connection = {
               open: function(e, a) {
@@ -2613,7 +2506,7 @@
                   (this.inst = n.open({
                     templateUrl: "connection.html",
                     scope: t,
-                    windowClass: "modal-large"
+                    windowClass: "modal-large",
                   })),
                   this.inst.result.then(
                     function() {
@@ -2623,7 +2516,7 @@
                       delete i.inst;
                     }
                   );
-              }
+              },
             }),
             e.each(["getTorrents", "getMetalinks"], function(a) {
               t[a] = {
@@ -2639,7 +2532,7 @@
                     (this.inst = n.open({
                       templateUrl: a + ".html",
                       scope: t,
-                      windowClass: "modal-large"
+                      windowClass: "modal-large",
                     })),
                     this.inst.result.then(
                       function() {
@@ -2647,10 +2540,8 @@
                           o &&
                             i(l.files, function(e) {
                               var t = {};
-                              for (var n in l.settings)
-                                r[n].val != l.settings[n].val && (t[n] = l.settings[n].val);
-                              for (var n in l.fsettings)
-                                r[n].val != l.fsettings[n].val && (t[n] = l.fsettings[n].val);
+                              for (var n in l.settings) r[n].val != l.settings[n].val && (t[n] = l.settings[n].val);
+                              for (var n in l.fsettings) r[n].val != l.fsettings[n].val && (t[n] = l.fsettings[n].val);
                               console.log("sending settings:", t), o(e, t);
                             });
                       },
@@ -2658,7 +2549,7 @@
                         delete l.inst;
                       }
                     );
-                }
+                },
               };
             }),
             e.each(["about", "server_info"], function(e) {
@@ -2674,7 +2565,7 @@
                         delete a.inst;
                       }
                     );
-                }
+                },
               };
             }),
             o.once("getVersion", [], function(e) {
@@ -2689,7 +2580,7 @@
                 "settings",
                 "connection",
                 "server_info",
-                "about"
+                "about",
               ],
               function(e) {
                 a.register(e, function() {
@@ -2700,7 +2591,7 @@
                 });
               }
             );
-        }
+        },
       ]).name;
   },
   function(e, t, n) {
@@ -2714,7 +2605,7 @@
         "webui.services.rpc",
         "webui.services.rpc.helpers",
         "webui.services.settings",
-        "webui.services.utils"
+        "webui.services.utils",
       ])
       .controller("NavCtrl", [
         "$scope",
@@ -2764,8 +2655,7 @@
                   d = {};
                 for (var u in (_.forEach([o, i], function(e) {
                   for (var t in e)
-                    -1 == r.indexOf(t) &&
-                      ((d[t] = _.cloneDeep(e[t])), (d[t].starred = -1 != a.indexOf(t)));
+                    -1 == r.indexOf(t) && ((d[t] = _.cloneDeep(e[t])), (d[t].starred = -1 != a.indexOf(t)));
                 }),
                 l))
                   u in r ||
@@ -2780,8 +2670,7 @@
                   function(e) {
                     var t = {},
                       a = [];
-                    for (var o in e)
-                      d[o].val != e[o].val && (t[o] = e[o].val), e[o].starred && a.push(o);
+                    for (var o in e) d[o].val != e[o].val && (t[o] = e[o].val), e[o].starred && a.push(o);
                     console.log("saving aria2 settings:", t),
                       console.log("saving aria2 starred:", a),
                       n.once("changeGlobalOption", [t]),
@@ -2802,7 +2691,7 @@
             (e.shutDownServer = function() {
               n.once("shutdown", []);
             });
-        }
+        },
       ]).name;
   },
   function(e, t, n) {
@@ -2815,7 +2704,7 @@
         "webui.services.settings",
         "webui.services.deps",
         "webui.services.rpc",
-        "webui.services.configuration"
+        "webui.services.configuration",
       ])
       .controller("StarredPropsCtrl", [
         "$scope",
@@ -2834,8 +2723,7 @@
               return (e && e.indexOf) || (e = r), e;
             }),
             (e.enabled = function() {
-              for (var t = 0; t < e.properties.length; t++)
-                if (e.properties[t]._val != e.properties[t].val) return !0;
+              for (var t = 0; t < e.properties.length; t++) if (e.properties[t]._val != e.properties[t].val) return !0;
               return !1;
             }),
             (e.save = function() {
@@ -2858,15 +2746,13 @@
                   ((t = t || {}).name = e.name),
                   (t.options = e.options),
                   (t.multiline = e.multiline),
-                  t._val == t.val || t.val == e.val
-                    ? ((t._val = e.val), (t.val = e.val))
-                    : (t._val = e.val),
+                  t._val == t.val || t.val == e.val ? ((t._val = e.val), (t.val = e.val)) : (t._val = e.val),
                   (t.desc = e.desc),
                   t
                 );
               });
             });
-        }
+        },
       ]).name;
   },
   function(e, t, n) {
@@ -2948,7 +2834,7 @@
           R.a,
           D.a,
           "ui.bootstrap",
-          "pascalprecht.translate"
+          "pascalprecht.translate",
         ]);
         function M(e, t) {
           for (var n in t) t.hasOwnProperty(n) && ((e[n] && e[n].length) || (e[n] = t[n]));
@@ -2978,7 +2864,7 @@
               .useSanitizeValueStrategy("escapeParameters")
               .determinePreferredLanguage(),
               t.html5Mode({ enabled: !0, requireBase: !1 });
-          }
+          },
         ]),
           $.directive("textarea", C.a),
           "serviceWorker" in navigator &&
@@ -2986,10 +2872,10 @@
             window.addEventListener("load", () => {
               navigator.serviceWorker
                 .register("service-worker.js")
-                .then(e => {
+                .then((e) => {
                   console.log("SW registered: ", e);
                 })
-                .catch(e => {
+                .catch((e) => {
                   console.log("SW registration failed: ", e);
                 });
             }),
@@ -3001,7 +2887,7 @@
                 writable: !1,
                 value: function(e, t) {
                   return (t = t || 0), this.indexOf(e, t) === t;
-                }
+                },
               }),
               a.a.bootstrap(document, ["webui"]);
           });
@@ -3031,7 +2917,7 @@
       "ui.bootstrap.tabs",
       "ui.bootstrap.timepicker",
       "ui.bootstrap.transition",
-      "ui.bootstrap.typeahead"
+      "ui.bootstrap.typeahead",
     ]),
       angular.module("ui.bootstrap.tpls", [
         "template/accordion/accordion-group.html",
@@ -3063,7 +2949,7 @@
         "template/tabs/tabset.html",
         "template/timepicker/timepicker.html",
         "template/typeahead/typeahead-match.html",
-        "template/typeahead/typeahead-popup.html"
+        "template/typeahead/typeahead-popup.html",
       ]),
       angular.module("ui.bootstrap.collapse", []).directive("collapse", [
         "$animate",
@@ -3098,9 +2984,9 @@
               t.$watch(a.collapse, function(e) {
                 e ? r() : o();
               });
-            }
+            },
           };
-        }
+        },
       ]),
       angular
         .module("ui.bootstrap.accordion", ["ui.bootstrap.collapse"])
@@ -3128,7 +3014,7 @@
                 var t = this.groups.indexOf(e);
                 -1 !== t && this.groups.splice(t, 1);
               });
-          }
+          },
         ])
         .directive("accordion", function() {
           return {
@@ -3139,7 +3025,7 @@
             replace: !1,
             templateUrl: function(e, t) {
               return t.templateUrl || "template/accordion/accordion.html";
-            }
+            },
           };
         })
         .directive("accordionGroup", function() {
@@ -3167,7 +3053,7 @@
                 (e.toggleOpen = function(t) {
                   e.isDisabled || (t && 32 !== t.which) || (e.isOpen = !e.isOpen);
                 });
-            }
+            },
           };
         })
         .directive("accordionHeading", function() {
@@ -3179,7 +3065,7 @@
             require: "^accordionGroup",
             link: function(e, t, n, a, o) {
               a.setHeading(o(e, angular.noop));
-            }
+            },
           };
         })
         .directive("accordionTransclude", function() {
@@ -3194,7 +3080,7 @@
                   e && (t.find("span").html(""), t.find("span").append(e));
                 }
               );
-            }
+            },
           };
         }),
       angular
@@ -3204,7 +3090,7 @@
           "$attrs",
           function(e, t) {
             (e.closeable = !!t.close), (this.close = e.close);
-          }
+          },
         ])
         .directive("alert", function() {
           return {
@@ -3215,7 +3101,7 @@
             },
             transclude: !0,
             replace: !0,
-            scope: { type: "@", close: "&" }
+            scope: { type: "@", close: "&" },
           };
         })
         .directive("dismissOnTimeout", [
@@ -3227,9 +3113,9 @@
                 e(function() {
                   o.close();
                 }, parseInt(a.dismissOnTimeout, 10));
-              }
+              },
             };
-          }
+          },
         ]),
       angular
         .module("ui.bootstrap.bindHtml", [])
@@ -3245,7 +3131,7 @@
                   a.html(e || "");
                 });
             };
-          }
+          },
         ]),
       angular
         .module("ui.bootstrap.buttons", [])
@@ -3253,9 +3139,8 @@
         .controller("ButtonsController", [
           "buttonConfig",
           function(e) {
-            (this.activeClass = e.activeClass || "active"),
-              (this.toggleEvent = e.toggleEvent || "click");
-          }
+            (this.activeClass = e.activeClass || "active"), (this.toggleEvent = e.toggleEvent || "click");
+          },
         ])
         .directive("btnRadio", function() {
           return {
@@ -3278,7 +3163,7 @@
                       });
                   }
                 });
-            }
+            },
           };
         })
         .directive("btnCheckbox", [
@@ -3319,9 +3204,9 @@
                         c.$setViewValue(n.hasClass(l.activeClass) ? r() : i()), c.$render();
                       });
                   });
-              }
+              },
             };
-          }
+          },
         ]),
       angular
         .module("ui.bootstrap.carousel", [])
@@ -3341,9 +3226,7 @@
                   t.$element &&
                   u.slides.length > 1 &&
                   (t.$element.data(f, t.direction),
-                  u.currentSlide &&
-                    u.currentSlide.$element &&
-                    u.currentSlide.$element.data(f, t.direction),
+                  u.currentSlide && u.currentSlide.$element && u.currentSlide.$element.data(f, t.direction),
                   (e.$currentTransition = !0),
                   h
                     ? a.on("addClass", t.$element, function(t, n) {
@@ -3391,9 +3274,7 @@
                 g = !0;
               }),
               (u.getCurrentIndex = function() {
-                return u.currentSlide && angular.isDefined(u.currentSlide.index)
-                  ? +u.currentSlide.index
-                  : m;
+                return u.currentSlide && angular.isDefined(u.currentSlide.index) ? +u.currentSlide.index : m;
               }),
               (e.indexOfSlide = function(e) {
                 return angular.isDefined(e.index) ? +e.index : p.indexOf(e);
@@ -3420,9 +3301,7 @@
               (u.addSlide = function(t, n) {
                 (t.$element = n),
                   p.push(t),
-                  1 === p.length || t.active
-                    ? (u.select(p[p.length - 1]), 1 == p.length && e.play())
-                    : (t.active = !1);
+                  1 === p.length || t.active ? (u.select(p[p.length - 1]), 1 == p.length && e.play()) : (t.active = !1);
               }),
               (u.removeSlide = function(e) {
                 angular.isDefined(e.index) &&
@@ -3431,17 +3310,13 @@
                   });
                 var t = p.indexOf(e);
                 p.splice(t, 1),
-                  p.length > 0 && e.active
-                    ? t >= p.length
-                      ? u.select(p[t - 1])
-                      : u.select(p[t])
-                    : m > t && m--,
+                  p.length > 0 && e.active ? (t >= p.length ? u.select(p[t - 1]) : u.select(p[t])) : m > t && m--,
                   0 === p.length && (u.currentSlide = null);
               }),
               e.$watch("noTransition", function(e) {
                 t.data("uib-noTransition", e);
               });
-          }
+          },
         ])
         .directive("carousel", [
           function() {
@@ -3455,9 +3330,9 @@
               templateUrl: function(e, t) {
                 return t.templateUrl || "template/carousel/carousel.html";
               },
-              scope: { interval: "=", noTransition: "=", noPause: "=", noWrap: "&" }
+              scope: { interval: "=", noTransition: "=", noPause: "=", noWrap: "&" },
             };
-          }
+          },
         ])
         .directive("slide", function() {
           return {
@@ -3477,7 +3352,7 @@
                 e.$watch("active", function(t) {
                   t && a.select(e);
                 });
-            }
+            },
           };
         })
         .animation(".item", [
@@ -3534,10 +3409,10 @@
                     );
                   }
                   s();
-                }
+                },
               }
             );
-          }
+          },
         ]),
       angular.module("ui.bootstrap.dateparser", []).service("dateParser", [
         "$log",
@@ -3566,55 +3441,55 @@
               regex: "\\d{4}",
               apply: function(e) {
                 this.year = +e;
-              }
+              },
             },
             yy: {
               regex: "\\d{2}",
               apply: function(e) {
                 this.year = +e + 2e3;
-              }
+              },
             },
             y: {
               regex: "\\d{1,4}",
               apply: function(e) {
                 this.year = +e;
-              }
+              },
             },
             MMMM: {
               regex: t.DATETIME_FORMATS.MONTH.join("|"),
               apply: function(e) {
                 this.month = t.DATETIME_FORMATS.MONTH.indexOf(e);
-              }
+              },
             },
             MMM: {
               regex: t.DATETIME_FORMATS.SHORTMONTH.join("|"),
               apply: function(e) {
                 this.month = t.DATETIME_FORMATS.SHORTMONTH.indexOf(e);
-              }
+              },
             },
             MM: {
               regex: "0[1-9]|1[0-2]",
               apply: function(e) {
                 this.month = e - 1;
-              }
+              },
             },
             M: {
               regex: "[1-9]|1[0-2]",
               apply: function(e) {
                 this.month = e - 1;
-              }
+              },
             },
             dd: {
               regex: "[0-2][0-9]{1}|3[0-1]{1}",
               apply: function(e) {
                 this.date = +e;
-              }
+              },
             },
             d: {
               regex: "[1-2]?[0-9]{1}|3[0-1]{1}",
               apply: function(e) {
                 this.date = +e;
-              }
+              },
             },
             EEEE: { regex: t.DATETIME_FORMATS.DAY.join("|") },
             EEE: { regex: t.DATETIME_FORMATS.SHORTDAY.join("|") },
@@ -3622,67 +3497,66 @@
               regex: "(?:0|1)[0-9]|2[0-3]",
               apply: function(e) {
                 this.hours = +e;
-              }
+              },
             },
             hh: {
               regex: "0[0-9]|1[0-2]",
               apply: function(e) {
                 this.hours = +e;
-              }
+              },
             },
             H: {
               regex: "1?[0-9]|2[0-3]",
               apply: function(e) {
                 this.hours = +e;
-              }
+              },
             },
             h: {
               regex: "[0-9]|1[0-2]",
               apply: function(e) {
                 this.hours = +e;
-              }
+              },
             },
             mm: {
               regex: "[0-5][0-9]",
               apply: function(e) {
                 this.minutes = +e;
-              }
+              },
             },
             m: {
               regex: "[0-9]|[1-5][0-9]",
               apply: function(e) {
                 this.minutes = +e;
-              }
+              },
             },
             sss: {
               regex: "[0-9][0-9][0-9]",
               apply: function(e) {
                 this.milliseconds = +e;
-              }
+              },
             },
             ss: {
               regex: "[0-5][0-9]",
               apply: function(e) {
                 this.seconds = +e;
-              }
+              },
             },
             s: {
               regex: "[0-9]|[1-5][0-9]",
               apply: function(e) {
                 this.seconds = +e;
-              }
+              },
             },
             a: {
               regex: t.DATETIME_FORMATS.AMPMS.join("|"),
               apply: function(e) {
                 12 === this.hours && (this.hours = 0), "PM" === e && (this.hours += 12);
-              }
-            }
+              },
+            },
           };
           this.parse = function(n, i, r) {
             if (!angular.isString(n) || !i) return n;
-            (i = (i = t.DATETIME_FORMATS[i] || i).replace(o, "\\$&")),
-              this.parsers[i] || (this.parsers[i] = a(i));
+            (i = (i = t.DATETIME_FORMATS[i] || i).replace(o, "\\$&")), this.parsers[i] || (this.parsers[i] = a(i));
             var s = this.parsers[i],
               l = s.regex,
               c = s.map,
@@ -3697,7 +3571,7 @@
                     hours: r.getHours(),
                     minutes: r.getMinutes(),
                     seconds: r.getSeconds(),
-                    milliseconds: r.getMilliseconds()
+                    milliseconds: r.getMilliseconds(),
                   })
                 : (r && e.warn("dateparser:", "baseDate is not a valid date"),
                   (u = {
@@ -3707,7 +3581,7 @@
                     hours: 0,
                     minutes: 0,
                     seconds: 0,
-                    milliseconds: 0
+                    milliseconds: 0,
                   }));
               for (var h = 1, f = d.length; f > h; h++) {
                 var m = c[h - 1];
@@ -3722,20 +3596,12 @@
                       : (3 !== t && 5 !== t && 8 !== t && 10 !== t) || 31 > n)
                   );
                 })(u.year, u.month, u.date) &&
-                  (p = new Date(
-                    u.year,
-                    u.month,
-                    u.date,
-                    u.hours,
-                    u.minutes,
-                    u.seconds,
-                    u.milliseconds || 0
-                  )),
+                  (p = new Date(u.year, u.month, u.date, u.hours, u.minutes, u.seconds, u.milliseconds || 0)),
                 p
               );
             }
           };
-        }
+        },
       ]),
       angular.module("ui.bootstrap.position", []).factory("$position", [
         "$document",
@@ -3745,11 +3611,7 @@
             return (
               "static" ===
               ((function(e, n) {
-                return e.currentStyle
-                  ? e.currentStyle[n]
-                  : t.getComputedStyle
-                    ? t.getComputedStyle(e)[n]
-                    : e.style[n];
+                return e.currentStyle ? e.currentStyle[n] : t.getComputedStyle ? t.getComputedStyle(e)[n] : e.style[n];
               })(e, "position") || "static")
             );
           }
@@ -3770,7 +3632,7 @@
                 width: r.width || t.prop("offsetWidth"),
                 height: r.height || t.prop("offsetHeight"),
                 top: n.top - o.top,
-                left: n.left - o.left
+                left: n.left - o.left,
               };
             },
             offset: function(n) {
@@ -3779,7 +3641,7 @@
                 width: a.width || n.prop("offsetWidth"),
                 height: a.height || n.prop("offsetHeight"),
                 top: a.top + (t.pageYOffset || e[0].documentElement.scrollTop),
-                left: a.left + (t.pageXOffset || e[0].documentElement.scrollLeft)
+                left: a.left + (t.pageXOffset || e[0].documentElement.scrollLeft),
               };
             },
             positionElements: function(e, t, n, a) {
@@ -3790,9 +3652,7 @@
                 l = n.split("-"),
                 c = l[0],
                 d = l[1] || "center";
-              (o = a ? this.offset(e) : this.position(e)),
-                (i = t.prop("offsetWidth")),
-                (r = t.prop("offsetHeight"));
+              (o = a ? this.offset(e) : this.position(e)), (i = t.prop("offsetWidth")), (r = t.prop("offsetHeight"));
               var u = {
                   center: function() {
                     return o.left + o.width / 2 - i / 2;
@@ -3802,7 +3662,7 @@
                   },
                   right: function() {
                     return o.left + o.width;
-                  }
+                  },
                 },
                 p = {
                   center: function() {
@@ -3813,7 +3673,7 @@
                   },
                   bottom: function() {
                     return o.top + o.height;
-                  }
+                  },
                 };
               switch (c) {
                 case "right":
@@ -3829,9 +3689,9 @@
                   s = { top: o.top - r, left: u[d]() };
               }
               return s;
-            }
+            },
           };
-        }
+        },
       ]),
       angular
         .module("ui.bootstrap.datepicker", ["ui.bootstrap.dateparser", "ui.bootstrap.position"])
@@ -3851,7 +3711,7 @@
           yearRange: 20,
           minDate: null,
           maxDate: null,
-          shortcutPropagation: !1
+          shortcutPropagation: !1,
         })
         .controller("DatepickerController", [
           "$scope",
@@ -3877,14 +3737,10 @@
                   "showWeeks",
                   "startingDay",
                   "yearRange",
-                  "shortcutPropagation"
+                  "shortcutPropagation",
                 ],
                 function(n, o) {
-                  l[n] = angular.isDefined(t[n])
-                    ? 6 > o
-                      ? a(t[n])(e.$parent)
-                      : e.$parent.$eval(t[n])
-                    : r[n];
+                  l[n] = angular.isDefined(t[n]) ? (6 > o ? a(t[n])(e.$parent) : e.$parent.$eval(t[n])) : r[n];
                 }
               ),
               angular.forEach(["minDate", "maxDate"], function(a) {
@@ -3899,10 +3755,8 @@
                   ? e.$parent.$watch(n(t[a]), function(n) {
                       (l[a] = angular.isDefined(n) ? n : t[a]),
                         (e[a] = l[a]),
-                        (("minMode" == a &&
-                          l.modes.indexOf(e.datepickerMode) < l.modes.indexOf(l[a])) ||
-                          ("maxMode" == a &&
-                            l.modes.indexOf(e.datepickerMode) > l.modes.indexOf(l[a]))) &&
+                        (("minMode" == a && l.modes.indexOf(e.datepickerMode) < l.modes.indexOf(l[a])) ||
+                          ("maxMode" == a && l.modes.indexOf(e.datepickerMode) > l.modes.indexOf(l[a]))) &&
                           (e.datepickerMode = l[a]);
                     })
                   : ((l[a] = r[a] || null), (e[a] = l[a]));
@@ -3912,9 +3766,7 @@
               angular.isDefined(t.initDate)
                 ? ((this.activeDate = e.$parent.$eval(t.initDate) || new Date()),
                   e.$parent.$watch(t.initDate, function(e) {
-                    e &&
-                      (c.$isEmpty(c.$modelValue) || c.$invalid) &&
-                      ((l.activeDate = e), l.refreshView());
+                    e && (c.$isEmpty(c.$modelValue) || c.$invalid) && ((l.activeDate = e), l.refreshView());
                   }))
                 : (this.activeDate = new Date()),
               (e.isActive = function(t) {
@@ -3952,7 +3804,7 @@
                   selected: n && 0 === this.compare(e, n),
                   disabled: this.isDisabled(e),
                   current: 0 === this.compare(e, new Date()),
-                  customClass: this.customClass(e)
+                  customClass: this.customClass(e),
                 };
               }),
               (this.isDisabled = function(n) {
@@ -3976,12 +3828,8 @@
               (e.select = function(t) {
                 if (e.datepickerMode === l.minMode) {
                   var n = c.$viewValue ? new Date(c.$viewValue) : new Date(0, 0, 0, 0, 0, 0, 0);
-                  n.setFullYear(t.getFullYear(), t.getMonth(), t.getDate()),
-                    c.$setViewValue(n),
-                    c.$render();
-                } else
-                  (l.activeDate = t),
-                    (e.datepickerMode = l.modes[l.modes.indexOf(e.datepickerMode) - 1]);
+                  n.setFullYear(t.getFullYear(), t.getMonth(), t.getDate()), c.$setViewValue(n), c.$render();
+                } else (l.activeDate = t), (e.datepickerMode = l.modes[l.modes.indexOf(e.datepickerMode) - 1]);
               }),
               (e.move = function(e) {
                 var t = l.activeDate.getFullYear() + e * (l.step.years || 0),
@@ -4004,7 +3852,7 @@
                 37: "left",
                 38: "up",
                 39: "right",
-                40: "down"
+                40: "down",
               });
             var d = function() {
               l.element[0].focus();
@@ -4014,9 +3862,7 @@
                 var n = e.keys[t.which];
                 if (n && !t.shiftKey && !t.altKey)
                   if (
-                    (t.preventDefault(),
-                    l.shortcutPropagation || t.stopPropagation(),
-                    "enter" === n || "space" === n)
+                    (t.preventDefault(), l.shortcutPropagation || t.stopPropagation(), "enter" === n || "space" === n)
                   ) {
                     if (l.isDisabled(l.activeDate)) return;
                     e.select(l.activeDate), d();
@@ -4025,7 +3871,7 @@
                       ? (l.handleKeyDown(n, t), l.refreshView())
                       : (e.toggleMode("up" === n ? 1 : -1), d());
               });
-          }
+          },
         ])
         .directive("datepicker", function() {
           return {
@@ -4038,7 +3884,7 @@
               datepickerMode: "=?",
               dateDisabled: "&",
               customClass: "&",
-              shortcutPropagation: "&?"
+              shortcutPropagation: "&?",
             },
             require: ["datepicker", "^ngModel"],
             controller: "DatepickerController",
@@ -4047,7 +3893,7 @@
               var o = a[0],
                 i = a[1];
               o.init(i);
-            }
+            },
           };
         })
         .directive("daypicker", [
@@ -4066,9 +3912,7 @@
                   var t = new Date(e);
                   t.setDate(t.getDate() + 4 - (t.getDay() || 7));
                   var n = t.getTime();
-                  return (
-                    t.setMonth(0), t.setDate(1), Math.floor(Math.round((n - t) / 864e5) / 7) + 1
-                  );
+                  return t.setMonth(0), t.setDate(1), Math.floor(Math.round((n - t) / 864e5) / 7) + 1;
                 }
                 (t.showWeeks = o.showWeeks), (o.step = { months: 1 }), (o.element = n);
                 var s = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -4083,10 +3927,7 @@
                   for (
                     var d = (function(e, t) {
                         for (var n, a = new Array(t), i = new Date(e), r = 0; t > r; )
-                          (n = new Date(i)),
-                            o.fixTimeZone(n),
-                            (a[r++] = n),
-                            i.setDate(i.getDate() + 1);
+                          (n = new Date(i)), o.fixTimeZone(n), (a[r++] = n), i.setDate(i.getDate() + 1);
                         return a;
                       })(c, 42),
                       u = 0;
@@ -4095,19 +3936,15 @@
                   )
                     d[u] = angular.extend(o.createDateObject(d[u], o.formatDay), {
                       secondary: d[u].getMonth() !== a,
-                      uid: t.uniqueId + "-" + u
+                      uid: t.uniqueId + "-" + u,
                     });
                   t.labels = new Array(7);
                   for (var p = 0; 7 > p; p++)
                     t.labels[p] = {
                       abbr: e(d[p].date, o.formatDayHeader),
-                      full: e(d[p].date, "EEEE")
+                      full: e(d[p].date, "EEEE"),
                     };
-                  if (
-                    ((t.title = e(o.activeDate, o.formatDayTitle)),
-                    (t.rows = o.split(d, 7)),
-                    t.showWeeks)
-                  ) {
+                  if (((t.title = e(o.activeDate, o.formatDayTitle)), (t.rows = o.split(d, 7)), t.showWeeks)) {
                     t.weekNumbers = [];
                     for (var h = (11 - o.startingDay) % 7, f = t.rows.length, m = 0; f > m; m++)
                       t.weekNumbers.push(r(t.rows[m][h].date));
@@ -4132,14 +3969,13 @@
                     } else
                       "home" === e
                         ? (n = 1)
-                        : "end" === e &&
-                          (n = i(o.activeDate.getFullYear(), o.activeDate.getMonth()));
+                        : "end" === e && (n = i(o.activeDate.getFullYear(), o.activeDate.getMonth()));
                     o.activeDate.setDate(n);
                   }),
                   o.refreshView();
-              }
+              },
             };
-          }
+          },
         ])
         .directive("monthpicker", [
           "dateFilter",
@@ -4153,23 +3989,16 @@
                 (o.step = { years: 1 }),
                   (o.element = n),
                   (o._refreshView = function() {
-                    for (
-                      var n, a = new Array(12), i = o.activeDate.getFullYear(), r = 0;
-                      12 > r;
-                      r++
-                    )
+                    for (var n, a = new Array(12), i = o.activeDate.getFullYear(), r = 0; 12 > r; r++)
                       (n = new Date(i, r, 1)),
                         o.fixTimeZone(n),
                         (a[r] = angular.extend(o.createDateObject(n, o.formatMonth), {
-                          uid: t.uniqueId + "-" + r
+                          uid: t.uniqueId + "-" + r,
                         }));
                     (t.title = e(o.activeDate, o.formatMonthTitle)), (t.rows = o.split(a, 3));
                   }),
                   (o.compare = function(e, t) {
-                    return (
-                      new Date(e.getFullYear(), e.getMonth()) -
-                      new Date(t.getFullYear(), t.getMonth())
-                    );
+                    return new Date(e.getFullYear(), e.getMonth()) - new Date(t.getFullYear(), t.getMonth());
                   }),
                   (o.handleKeyDown = function(e, t) {
                     var n = o.activeDate.getMonth();
@@ -4184,9 +4013,9 @@
                     o.activeDate.setMonth(n);
                   }),
                   o.refreshView();
-              }
+              },
             };
-          }
+          },
         ])
         .directive("yearpicker", [
           "dateFilter",
@@ -4204,15 +4033,11 @@
                 (a.step = { years: i }),
                   (a.element = t),
                   (a._refreshView = function() {
-                    for (
-                      var t, n = new Array(i), r = 0, s = o(a.activeDate.getFullYear());
-                      i > r;
-                      r++
-                    )
+                    for (var t, n = new Array(i), r = 0, s = o(a.activeDate.getFullYear()); i > r; r++)
                       (t = new Date(s + r, 0, 1)),
                         a.fixTimeZone(t),
                         (n[r] = angular.extend(a.createDateObject(t, a.formatYear), {
-                          uid: e.uniqueId + "-" + r
+                          uid: e.uniqueId + "-" + r,
                         }));
                     (e.title = [n[0].label, n[i - 1].label].join(" - ")), (e.rows = a.split(n, 5));
                   }),
@@ -4237,9 +4062,9 @@
                       a.activeDate.setFullYear(n);
                   }),
                   a.refreshView();
-              }
+              },
             };
-          }
+          },
         ])
         .constant("datepickerPopupConfig", {
           datepickerPopup: "yyyy-MM-dd",
@@ -4248,7 +4073,7 @@
           html5Types: {
             date: "yyyy-MM-dd",
             "datetime-local": "yyyy-MM-ddTHH:mm:ss.sss",
-            month: "yyyy-MM"
+            month: "yyyy-MM",
           },
           currentText: "Today",
           clearText: "Clear",
@@ -4256,7 +4081,7 @@
           closeOnDateSelection: !0,
           appendToBody: !1,
           showButtonBar: !0,
-          onOpenFocus: !0
+          onOpenFocus: !0,
         })
         .directive("datepickerPopup", [
           "$compile",
@@ -4278,7 +4103,7 @@
                 clearText: "@",
                 closeText: "@",
                 dateDisabled: "&",
-                customClass: "&"
+                customClass: "&",
               },
               link: function(c, d, u, p) {
                 function h(e) {
@@ -4293,15 +4118,11 @@
                   g = angular.isDefined(u.datepickerAppendToBody)
                     ? c.$parent.$eval(u.datepickerAppendToBody)
                     : s.appendToBody,
-                  v = angular.isDefined(u.onOpenFocus)
-                    ? c.$parent.$eval(u.onOpenFocus)
-                    : s.onOpenFocus,
+                  v = angular.isDefined(u.onOpenFocus) ? c.$parent.$eval(u.onOpenFocus) : s.onOpenFocus,
                   b = angular.isDefined(u.datepickerPopupTemplateUrl)
                     ? u.datepickerPopupTemplateUrl
                     : s.datepickerPopupTemplateUrl,
-                  w = angular.isDefined(u.datepickerTemplateUrl)
-                    ? u.datepickerTemplateUrl
-                    : s.datepickerTemplateUrl,
+                  w = angular.isDefined(u.datepickerTemplateUrl) ? u.datepickerTemplateUrl : s.datepickerTemplateUrl,
                   y = {};
                 (c.showButtonBar = angular.isDefined(u.showButtonBar)
                   ? c.$parent.$eval(u.showButtonBar)
@@ -4335,48 +4156,34 @@
                   !f)
                 )
                   throw new Error("datepickerPopup must have a date format specified.");
-                if (k && u.datepickerPopup)
-                  throw new Error("HTML5 date input types do not support custom formats.");
+                if (k && u.datepickerPopup) throw new Error("HTML5 date input types do not support custom formats.");
                 var S = angular.element("<div datepicker-popup-wrap><div datepicker></div></div>");
                 S.attr({
                   "ng-model": "date",
                   "ng-change": "dateSelection(date)",
-                  "template-url": b
+                  "template-url": b,
                 });
                 var T = angular.element(S.children()[0]);
                 if (
                   (T.attr("template-url", w),
-                  k &&
-                    "month" === u.type &&
-                    (T.attr("datepicker-mode", '"month"'), T.attr("min-mode", "month")),
+                  k && "month" === u.type && (T.attr("datepicker-mode", '"month"'), T.attr("min-mode", "month")),
                   u.datepickerOptions)
                 ) {
                   var C = c.$parent.$eval(u.datepickerOptions);
-                  C &&
-                    C.initDate &&
-                    ((c.initDate = C.initDate), T.attr("init-date", "initDate"), delete C.initDate),
+                  C && C.initDate && ((c.initDate = C.initDate), T.attr("init-date", "initDate"), delete C.initDate),
                     angular.forEach(C, function(e, t) {
                       T.attr(h(t), e);
                     });
                 }
                 (c.watchData = {}),
                   angular.forEach(
-                    [
-                      "minMode",
-                      "maxMode",
-                      "minDate",
-                      "maxDate",
-                      "datepickerMode",
-                      "initDate",
-                      "shortcutPropagation"
-                    ],
+                    ["minMode", "maxMode", "minDate", "maxDate", "datepickerMode", "initDate", "shortcutPropagation"],
                     function(e) {
                       if (u[e]) {
                         var n = t(u[e]);
                         if (
                           (c.$parent.$watch(n, function(t) {
-                            (c.watchData[e] = t),
-                              ("minDate" === e || "maxDate" === e) && (y[e] = new Date(t));
+                            (c.watchData[e] = t), ("minDate" === e || "maxDate" === e) && (y[e] = new Date(t));
                           }),
                           T.attr(h(e), "watchData." + e),
                           "datepickerMode" === e)
@@ -4389,11 +4196,9 @@
                       }
                     }
                   ),
-                  u.dateDisabled &&
-                    T.attr("date-disabled", "dateDisabled({ date: date, mode: mode })"),
+                  u.dateDisabled && T.attr("date-disabled", "dateDisabled({ date: date, mode: mode })"),
                   u.showWeeks && T.attr("show-weeks", u.showWeeks),
-                  u.customClass &&
-                    T.attr("custom-class", "customClass({ date: date, mode: mode })"),
+                  u.customClass && T.attr("custom-class", "customClass({ date: date, mode: mode })"),
                   k
                     ? p.$formatters.push(function(e) {
                         return (c.date = e), e;
@@ -4476,11 +4281,7 @@
                     if ("today" === e) {
                       var t = new Date();
                       angular.isDate(c.date)
-                        ? (e = new Date(c.date)).setFullYear(
-                            t.getFullYear(),
-                            t.getMonth(),
-                            t.getDate()
-                          )
+                        ? (e = new Date(c.date)).setFullYear(t.getFullYear(), t.getMonth(), t.getDate())
                         : (e = new Date(t.setHours(0, 0, 0, 0)));
                     }
                     c.dateSelection(e);
@@ -4501,9 +4302,9 @@
                       d.unbind("keydown", A),
                       n.unbind("click", P);
                   });
-              }
+              },
             };
-          }
+          },
         ])
         .directive("datepickerPopupWrap", function() {
           return {
@@ -4512,7 +4313,7 @@
             transclude: !0,
             templateUrl: function(e, t) {
               return t.templateUrl || "template/datepicker/popup.html";
-            }
+            },
           };
         }),
       angular
@@ -4524,9 +4325,7 @@
           function(e, t) {
             var n = null;
             (this.open = function(t) {
-              n || (e.bind("click", a), e.bind("keydown", o)),
-                n && n !== t && (n.isOpen = !1),
-                (n = t);
+              n || (e.bind("click", a), e.bind("keydown", o)), n && n !== t && (n.isOpen = !1), (n = t);
             }),
               (this.close = function(t) {
                 n === t && ((n = null), e.unbind("click", a), e.unbind("keydown", o));
@@ -4549,7 +4348,7 @@
                     n.isOpen &&
                     (e.preventDefault(), e.stopPropagation(), n.focusDropdownEntry(e.which));
               };
-          }
+          },
         ])
         .controller("DropdownController", [
           "$scope",
@@ -4620,10 +4419,7 @@
                 switch (e) {
                   case 40:
                     angular.isNumber(p.selectedOption)
-                      ? (p.selectedOption =
-                          p.selectedOption === t.length - 1
-                            ? p.selectedOption
-                            : p.selectedOption + 1)
+                      ? (p.selectedOption = p.selectedOption === t.length - 1 ? p.selectedOption : p.selectedOption + 1)
                       : (p.selectedOption = 0);
                     break;
                   case 38:
@@ -4645,8 +4441,7 @@
                     s = { top: a.top + "px", display: t ? "block" : "none" };
                   p.dropdownMenu.hasClass("dropdown-menu-right")
                     ? ((s.left = "auto"),
-                      (s.right =
-                        window.innerWidth - (a.left + p.$element.prop("offsetWidth")) + "px"))
+                      (s.right = window.innerWidth - (a.left + p.$element.prop("offsetWidth")) + "px"))
                     : ((s.left = a.left + "px"), (s.right = "auto")),
                     p.dropdownMenu.css(s);
                 }
@@ -4684,14 +4479,14 @@
               h.$destroy();
             });
             h.$on("$destroy", y);
-          }
+          },
         ])
         .directive("dropdown", function() {
           return {
             controller: "DropdownController",
             link: function(e, t, n, a) {
               a.init(t), t.addClass("dropdown");
-            }
+            },
           };
         })
         .directive("dropdownMenu", function() {
@@ -4703,7 +4498,7 @@
                 var o = n.templateUrl;
                 o && (a.dropdownMenuTemplateUrl = o), a.dropdownMenu || (a.dropdownMenu = t);
               }
-            }
+            },
           };
         })
         .directive("keyboardNav", function() {
@@ -4719,9 +4514,7 @@
                     case 40:
                       angular.isNumber(a.selectedOption)
                         ? (a.selectedOption =
-                            a.selectedOption === t.length - 1
-                              ? a.selectedOption
-                              : a.selectedOption + 1)
+                            a.selectedOption === t.length - 1 ? a.selectedOption : a.selectedOption + 1)
                         : (a.selectedOption = 0);
                       break;
                     case 38:
@@ -4732,7 +4525,7 @@
                   t[a.selectedOption].focus();
                 }
               });
-            }
+            },
           };
         })
         .directive("dropdownToggle", function() {
@@ -4758,7 +4551,7 @@
                     t.unbind("click", o);
                   });
               }
-            }
+            },
           };
         }),
       angular
@@ -4794,9 +4587,9 @@
                 },
                 length: function() {
                   return e.length;
-                }
+                },
               };
-            }
+            },
           };
         })
         .factory("$$multiMap", function() {
@@ -4827,9 +4620,9 @@
                     var o = a.indexOf(n);
                     -1 !== o && a.splice(o, 1), a.length || delete e[t];
                   }
-                }
+                },
               };
-            }
+            },
           };
         })
         .directive("modalBackdrop", [
@@ -4858,10 +4651,10 @@
                 templateUrl: "template/modal/backdrop.html",
                 compile: function(e, t) {
                   return e.addClass(t.backdropClass), a;
-                }
+                },
               }
             );
-          }
+          },
         ])
         .directive("modalWindow", [
           "$modalStack",
@@ -4889,9 +4682,7 @@
                         n.value.backdrop &&
                         "static" !== n.value.backdrop &&
                         t.target === t.currentTarget &&
-                        (t.preventDefault(),
-                        t.stopPropagation(),
-                        e.dismiss(n.key, "backdrop click"));
+                        (t.preventDefault(), t.stopPropagation(), e.dismiss(n.key, "backdrop click"));
                     }),
                     (a.$isRendered = !0);
                   var s = t.defer();
@@ -4901,9 +4692,7 @@
                     s.promise.then(function() {
                       var s = null;
                       r.modalInClass &&
-                        ((s = o
-                          ? o(i, { addClass: r.modalInClass }).start()
-                          : n.addClass(i, r.modalInClass)),
+                        ((s = o ? o(i, { addClass: r.modalInClass }).start() : n.addClass(i, r.modalInClass)),
                         a.$on(e.NOW_CLOSING_EVENT, function(e, t) {
                           var a = t();
                           o
@@ -4919,19 +4708,19 @@
                       var l = e.getTop();
                       l && e.modalRendered(l.key);
                     });
-                }
+                },
               }
             );
-          }
+          },
         ])
         .directive("modalAnimationClass", [
           function() {
             return {
               compile: function(e, t) {
                 t.modalAnimation && e.addClass(t.modalAnimationClass);
-              }
+              },
             };
-          }
+          },
         ])
         .directive("modalTransclude", function() {
           return {
@@ -4939,7 +4728,7 @@
               o(e.$parent, function(e) {
                 t.empty(), t.append(e);
               });
-            }
+            },
           };
         })
         .factory("$modalStack", [
@@ -4954,8 +4743,7 @@
           "$$stackedMap",
           function(e, t, n, a, o, i, r, s, l) {
             function c() {
-              for (var e = -1, t = b.keys(), n = 0; n < t.length; n++)
-                b.get(t[n]).value.backdrop && (e = n);
+              for (var e = -1, t = b.keys(), n = 0; n < t.length; n++) b.get(t[n]).value.backdrop && (e = n);
               return e;
             }
             function d(e, t) {
@@ -5049,7 +4837,7 @@
                   modalScope: t.scope,
                   backdrop: t.backdrop,
                   keyboard: t.keyboard,
-                  openedClass: t.openedClass
+                  openedClass: t.openedClass,
                 }),
                   w.put(r, e);
                 var s = n.find("body").eq(0),
@@ -5069,7 +4857,7 @@
                     "window-class": t.windowClass,
                     size: t.size,
                     index: b.length() - 1,
-                    animate: "animate"
+                    animate: "animate",
                   })
                   .html(t.content),
                   t.animation && u.attr("modal-animation", "true");
@@ -5135,7 +4923,7 @@
               }),
               y
             );
-          }
+          },
         ])
         .provider("$modal", function() {
           var e = {
@@ -5185,7 +4973,7 @@
                         },
                         dismiss: function(e) {
                           return r.dismiss(p, e);
-                        }
+                        },
                       };
                     if (
                       (((t = angular.extend({}, e.options, t)).resolve = t.resolve || {}),
@@ -5211,8 +4999,7 @@
                             (a.$close = p.close),
                               (a.$dismiss = p.dismiss),
                               a.$on("$destroy", function() {
-                                a.$$uibDestructionScheduled ||
-                                  a.$dismiss("$uibUnscheduledDestruction");
+                                a.$$uibDestructionScheduled || a.$dismiss("$uibUnscheduledDestruction");
                               });
                             var s,
                               l = {},
@@ -5224,9 +5011,7 @@
                                 l[n] = e[d++];
                               }),
                               (s = i(t.controller, l)),
-                              t.controllerAs &&
-                                (t.bindToController && angular.extend(s, a),
-                                (a[t.controllerAs] = s))),
+                              t.controllerAs && (t.bindToController && angular.extend(s, a), (a[t.controllerAs] = s))),
                               r.open(p, {
                                 scope: a,
                                 deferred: o,
@@ -5239,7 +5024,7 @@
                                 windowClass: t.windowClass,
                                 windowTemplateUrl: t.windowTemplateUrl,
                                 size: t.size,
-                                openedClass: t.openedClass
+                                openedClass: t.openedClass,
                               }),
                               c.resolve(!0);
                           },
@@ -5255,8 +5040,8 @@
                   }),
                   c
                 );
-              }
-            ]
+              },
+            ],
           };
           return e;
         }),
@@ -5312,7 +5097,7 @@
               (e.noNext = function() {
                 return e.page === e.totalPages;
               });
-          }
+          },
         ])
         .constant("paginationConfig", {
           itemsPerPage: 10,
@@ -5322,7 +5107,7 @@
           previousText: "Previous",
           nextText: "Next",
           lastText: "Last",
-          rotate: !0
+          rotate: !0,
         })
         .directive("pagination", [
           "$parse",
@@ -5336,7 +5121,7 @@
                 previousText: "@",
                 nextText: "@",
                 lastText: "@",
-                ngDisabled: "="
+                ngDisabled: "=",
               },
               require: ["pagination", "?ngModel"],
               controller: "PaginationController",
@@ -5377,10 +5162,8 @@
                             i = angular.isDefined(c) && t > c;
                           i &&
                             (d
-                              ? (o = (a = Math.max(e - Math.floor(c / 2), 1)) + c - 1) > t &&
-                                (a = (o = t) - c + 1)
-                              : ((a = (Math.ceil(e / c) - 1) * c + 1),
-                                (o = Math.min(a + c - 1, t))));
+                              ? (o = (a = Math.max(e - Math.floor(c / 2), 1)) + c - 1) > t && (a = (o = t) - c + 1)
+                              : ((a = (Math.ceil(e / c) - 1) * c + 1), (o = Math.min(a + c - 1, t))));
                           for (var s = a; o >= s; s++) {
                             var l = r(s, s, s === e);
                             n.push(l);
@@ -5399,15 +5182,15 @@
                         })(n.page, n.totalPages));
                   };
                 }
-              }
+              },
             };
-          }
+          },
         ])
         .constant("pagerConfig", {
           itemsPerPage: 10,
           previousText: "« Previous",
           nextText: "Next »",
-          align: !0
+          align: !0,
         })
         .directive("pager", [
           "pagerConfig",
@@ -5425,12 +5208,10 @@
               link: function(t, n, a, o) {
                 var i = o[0],
                   r = o[1];
-                r &&
-                  ((t.align = angular.isDefined(a.align) ? t.$parent.$eval(a.align) : e.align),
-                  i.init(r, e));
-              }
+                r && ((t.align = angular.isDefined(a.align) ? t.$parent.$eval(a.align) : e.align), i.init(r, e));
+              },
             };
-          }
+          },
         ]),
       angular
         .module("ui.bootstrap.tooltip", ["ui.bootstrap.position", "ui.bootstrap.bindHtml"])
@@ -5461,7 +5242,7 @@
                       show: n,
                       hide: n.map(function(e) {
                         return t[e] || e;
-                      })
+                      }),
                     };
                   }
                   h = angular.extend({}, e, n, h);
@@ -5480,9 +5261,7 @@
                       "title" +
                       v +
                       '" ' +
-                      (h.useContentExp
-                        ? 'content-exp="contentExp()" '
-                        : 'content="' + g + "content" + v + '" ') +
+                      (h.useContentExp ? 'content-exp="contentExp()" ' : 'content="' + g + "content" + v + '" ') +
                       'placement="' +
                       g +
                       "placement" +
@@ -5555,9 +5334,7 @@
                             D.animation ? T || (T = i(w, 500)) : w();
                         }
                         function w() {
-                          (T = null),
-                            k && (k.remove(), (k = null)),
-                            S && (S.$destroy(), (S = null));
+                          (T = null), k && (k.remove(), (k = null)), S && (S.$destroy(), (S = null));
                         }
                         function y() {
                           var e = o[u + "Placement"];
@@ -5630,9 +5407,7 @@
                               x.show.forEach(function(e, n) {
                                 e === x.hide[n]
                                   ? t[0].addEventListener(e, p)
-                                  : e &&
-                                    (t[0].addEventListener(e, m),
-                                    t[0].addEventListener(x.hide[n], g));
+                                  : e && (t[0].addEventListener(e, m), t[0].addEventListener(x.hide[n], g));
                               });
                         })();
                         var z = e.$eval(o[u + "Animation"]);
@@ -5646,10 +5421,10 @@
                             i.cancel(T), i.cancel(C), i.cancel(P), E(), w(), (D = null);
                           });
                       };
-                    }
+                    },
                   };
                 };
-              }
+              },
             ]);
         })
         .directive("tooltipTemplateTransclude", [
@@ -5696,9 +5471,9 @@
                     : p();
                 }),
                   o.$on("$destroy", p);
-              }
+              },
             };
-          }
+          },
         ])
         .directive("tooltipClasses", function() {
           return {
@@ -5707,7 +5482,7 @@
               e.placement && t.addClass(e.placement),
                 e.popupClass && t.addClass(e.popupClass),
                 e.animation() && t.addClass(n.tooltipAnimationClass);
-            }
+            },
           };
         })
         .directive("tooltipPopup", function() {
@@ -5715,14 +5490,14 @@
             restrict: "EA",
             replace: !0,
             scope: { content: "@", placement: "@", popupClass: "@", animation: "&", isOpen: "&" },
-            templateUrl: "template/tooltip/tooltip-popup.html"
+            templateUrl: "template/tooltip/tooltip-popup.html",
           };
         })
         .directive("tooltip", [
           "$tooltip",
           function(e) {
             return e("tooltip", "tooltip", "mouseenter");
-          }
+          },
         ])
         .directive("tooltipTemplatePopup", function() {
           return {
@@ -5734,16 +5509,16 @@
               popupClass: "@",
               animation: "&",
               isOpen: "&",
-              originScope: "&"
+              originScope: "&",
             },
-            templateUrl: "template/tooltip/tooltip-template-popup.html"
+            templateUrl: "template/tooltip/tooltip-template-popup.html",
           };
         })
         .directive("tooltipTemplate", [
           "$tooltip",
           function(e) {
             return e("tooltipTemplate", "tooltip", "mouseenter", { useContentExp: !0 });
-          }
+          },
         ])
         .directive("tooltipHtmlPopup", function() {
           return {
@@ -5754,23 +5529,23 @@
               placement: "@",
               popupClass: "@",
               animation: "&",
-              isOpen: "&"
+              isOpen: "&",
             },
-            templateUrl: "template/tooltip/tooltip-html-popup.html"
+            templateUrl: "template/tooltip/tooltip-html-popup.html",
           };
         })
         .directive("tooltipHtml", [
           "$tooltip",
           function(e) {
             return e("tooltipHtml", "tooltip", "mouseenter", { useContentExp: !0 });
-          }
+          },
         ])
         .directive("tooltipHtmlUnsafePopup", function() {
           return {
             restrict: "EA",
             replace: !0,
             scope: { content: "@", placement: "@", popupClass: "@", animation: "&", isOpen: "&" },
-            templateUrl: "template/tooltip/tooltip-html-unsafe-popup.html"
+            templateUrl: "template/tooltip/tooltip-html-unsafe-popup.html",
           };
         })
         .value("tooltipHtmlUnsafeSuppressDeprecated", !1)
@@ -5780,13 +5555,10 @@
           "$log",
           function(e, t, n) {
             return (
-              t ||
-                n.warn(
-                  "tooltip-html-unsafe is now deprecated. Use tooltip-html or tooltip-template instead."
-                ),
+              t || n.warn("tooltip-html-unsafe is now deprecated. Use tooltip-html or tooltip-template instead."),
               e("tooltipHtmlUnsafe", "tooltip", "mouseenter")
             );
-          }
+          },
         ]),
       angular
         .module("ui.bootstrap.popover", ["ui.bootstrap.tooltip"])
@@ -5801,16 +5573,16 @@
               popupClass: "@",
               animation: "&",
               isOpen: "&",
-              originScope: "&"
+              originScope: "&",
             },
-            templateUrl: "template/popover/popover-template.html"
+            templateUrl: "template/popover/popover-template.html",
           };
         })
         .directive("popoverTemplate", [
           "$tooltip",
           function(e) {
             return e("popoverTemplate", "popover", "click", { useContentExp: !0 });
-          }
+          },
         ])
         .directive("popoverHtmlPopup", function() {
           return {
@@ -5822,16 +5594,16 @@
               placement: "@",
               popupClass: "@",
               animation: "&",
-              isOpen: "&"
+              isOpen: "&",
             },
-            templateUrl: "template/popover/popover-html.html"
+            templateUrl: "template/popover/popover-html.html",
           };
         })
         .directive("popoverHtml", [
           "$tooltip",
           function(e) {
             return e("popoverHtml", "popover", "click", { useContentExp: !0 });
-          }
+          },
         ])
         .directive("popoverPopup", function() {
           return {
@@ -5843,16 +5615,16 @@
               placement: "@",
               popupClass: "@",
               animation: "&",
-              isOpen: "&"
+              isOpen: "&",
             },
-            templateUrl: "template/popover/popover.html"
+            templateUrl: "template/popover/popover.html",
           };
         })
         .directive("popover", [
           "$tooltip",
           function(e) {
             return e("popover", "popover", "click");
-          }
+          },
         ]),
       angular
         .module("ui.bootstrap.progressbar", [])
@@ -5893,7 +5665,7 @@
                   (t.max = e.max), t.recalculatePercentage();
                 });
               });
-          }
+          },
         ])
         .directive("uibProgress", function() {
           return {
@@ -5903,7 +5675,7 @@
             controller: "ProgressController",
             require: "uibProgress",
             scope: { max: "=?" },
-            templateUrl: "template/progressbar/progress.html"
+            templateUrl: "template/progressbar/progress.html",
           };
         })
         .directive("progress", [
@@ -5920,9 +5692,9 @@
               templateUrl: "template/progressbar/progress.html",
               link: function() {
                 t && e.warn("progress is now deprecated. Use uib-progress instead");
-              }
+              },
             };
-          }
+          },
         ])
         .directive("uibBar", function() {
           return {
@@ -5934,7 +5706,7 @@
             templateUrl: "template/progressbar/bar.html",
             link: function(e, t, n, a) {
               a.addBar(e, t);
-            }
+            },
           };
         })
         .directive("bar", [
@@ -5950,9 +5722,9 @@
               templateUrl: "template/progressbar/bar.html",
               link: function(n, a, o, i) {
                 t && e.warn("bar is now deprecated. Use uib-bar instead"), i.addBar(n, a);
-              }
+              },
             };
-          }
+          },
         ])
         .directive("progressbar", function() {
           return {
@@ -5964,7 +5736,7 @@
             templateUrl: "template/progressbar/progressbar.html",
             link: function(e, t, n, a) {
               a.addBar(e, angular.element(t.children()[0]));
-            }
+            },
           };
         }),
       angular
@@ -5973,7 +5745,7 @@
           max: 5,
           stateOn: null,
           stateOff: null,
-          titles: ["one", "two", "three", "four", "five"]
+          titles: ["one", "two", "three", "four", "five"],
         })
         .controller("RatingController", [
           "$scope",
@@ -5986,12 +5758,8 @@
                 a.$formatters.push(function(e) {
                   return angular.isNumber(e) && e << 0 !== e && (e = Math.round(e)), e;
                 }),
-                (this.stateOn = angular.isDefined(t.stateOn)
-                  ? e.$parent.$eval(t.stateOn)
-                  : n.stateOn),
-                (this.stateOff = angular.isDefined(t.stateOff)
-                  ? e.$parent.$eval(t.stateOff)
-                  : n.stateOff);
+                (this.stateOn = angular.isDefined(t.stateOn) ? e.$parent.$eval(t.stateOn) : n.stateOn),
+                (this.stateOff = angular.isDefined(t.stateOff) ? e.$parent.$eval(t.stateOff) : n.stateOff);
               var i = angular.isDefined(t.titles) ? e.$parent.$eval(t.titles) : n.titles;
               this.titles = angular.isArray(i) && i.length > 0 ? i : n.titles;
               var r = angular.isDefined(t.ratingStates)
@@ -6032,7 +5800,7 @@
               (this.render = function() {
                 e.value = a.$viewValue;
               });
-          }
+          },
         ])
         .directive("rating", function() {
           return {
@@ -6046,7 +5814,7 @@
               var o = a[0],
                 i = a[1];
               o.init(i);
-            }
+            },
           };
         }),
       angular
@@ -6066,11 +5834,7 @@
             }),
               (n.addTab = function(e) {
                 a.push(e),
-                  1 === a.length && !1 !== e.active
-                    ? (e.active = !0)
-                    : e.active
-                      ? n.select(e)
-                      : (e.active = !1);
+                  1 === a.length && !1 !== e.active ? (e.active = !0) : e.active ? n.select(e) : (e.active = !1);
               }),
               (n.removeTab = function(e) {
                 var o = a.indexOf(e);
@@ -6083,7 +5847,7 @@
               e.$on("$destroy", function() {
                 t = !0;
               });
-          }
+          },
         ])
         .directive("tabset", function() {
           return {
@@ -6096,7 +5860,7 @@
             link: function(e, t, n) {
               (e.vertical = !!angular.isDefined(n.vertical) && e.$parent.$eval(n.vertical)),
                 (e.justified = !!angular.isDefined(n.justified) && e.$parent.$eval(n.justified));
-            }
+            },
           };
         })
         .directive("tab", [
@@ -6121,9 +5885,7 @@
                       n.disabled = !!e;
                     }),
                   o.disabled &&
-                    (t.warn(
-                      'Use of "disabled" attribute has been deprecated, please use "disable"'
-                    ),
+                    (t.warn('Use of "disabled" attribute has been deprecated, please use "disable"'),
                     n.$parent.$watch(e(o.disabled), function(e) {
                       n.disabled = !!e;
                     })),
@@ -6135,9 +5897,9 @@
                     i.removeTab(n);
                   }),
                   (n.$transcludeFn = r);
-              }
+              },
             };
-          }
+          },
         ])
         .directive("tabHeadingTransclude", function() {
           return {
@@ -6147,7 +5909,7 @@
               e.$watch("headingElement", function(e) {
                 e && (t.html(""), t.append(e));
               });
-            }
+            },
           };
         })
         .directive("tabContentTransclude", function() {
@@ -6173,7 +5935,7 @@
                     : (a.headingElement = e);
                 });
               });
-            }
+            },
           };
         }),
       angular
@@ -6186,7 +5948,7 @@
           readonlyInput: !1,
           mousewheel: !0,
           arrowkeys: !0,
-          showSpinners: !0
+          showSpinners: !0,
         })
         .controller("TimepickerController", [
           "$scope",
@@ -6312,8 +6074,7 @@
                   e.$apply(a(t) ? e.incrementHours() : e.decrementHours()), t.preventDefault();
                 }),
                   n.bind("mousewheel wheel", function(t) {
-                    e.$apply(a(t) ? e.incrementMinutes() : e.decrementMinutes()),
-                      t.preventDefault();
+                    e.$apply(a(t) ? e.incrementMinutes() : e.decrementMinutes()), t.preventDefault();
                   });
               }),
               (this.setupArrowkeyEvents = function(t, n) {
@@ -6329,8 +6090,7 @@
                   });
               }),
               (this.setupInputEvents = function(t, n) {
-                if (e.readonlyInput)
-                  return (e.updateHours = angular.noop), void (e.updateMinutes = angular.noop);
+                if (e.readonlyInput) return (e.updateHours = angular.noop), void (e.updateMinutes = angular.noop);
                 var a = function(t, n) {
                   m.$setViewValue(null),
                     m.$setValidity("time", !1),
@@ -6374,14 +6134,10 @@
                       'Timepicker directive: "ng-model" value must be a Date object, a number of milliseconds since 01.01.1970 or a string representing an RFC2822 or ISO 8601 date.'
                     ))
                   : (t && (f = t),
-                    b > f || f > w
-                      ? (m.$setValidity("time", !1), (e.invalidHours = !0), (e.invalidMinutes = !0))
-                      : d(),
+                    b > f || f > w ? (m.$setValidity("time", !1), (e.invalidHours = !0), (e.invalidMinutes = !0)) : d(),
                     u());
               }),
-              (e.showSpinners = angular.isDefined(t.showSpinners)
-                ? e.$parent.$eval(t.showSpinners)
-                : i.showSpinners),
+              (e.showSpinners = angular.isDefined(t.showSpinners) ? e.$parent.$eval(t.showSpinners) : i.showSpinners),
               (e.incrementHours = function() {
                 e.noIncrementHours() || h(60 * v);
               }),
@@ -6397,7 +6153,7 @@
               (e.toggleMeridian = function() {
                 e.noToggleMeridian() || h(720 * (f.getHours() < 12 ? 1 : -1));
               });
-          }
+          },
         ])
         .directive("timepicker", function() {
           return {
@@ -6414,7 +6170,7 @@
               var o = a[0],
                 i = a[1];
               i && o.init(i, t.find("input"));
-            }
+            },
           };
         }),
       angular
@@ -6462,17 +6218,17 @@
                 WebkitTransition: "webkitTransitionEnd",
                 MozTransition: "transitionend",
                 OTransition: "oTransitionEnd",
-                transition: "transitionend"
+                transition: "transitionend",
               })),
               (r.animationEndEventName = i({
                 WebkitTransition: "webkitAnimationEnd",
                 MozTransition: "animationend",
                 OTransition: "oAnimationEnd",
-                transition: "animationend"
+                transition: "animationend",
               })),
               r
             );
-          }
+          },
         ]),
       angular
         .module("ui.bootstrap.typeahead", ["ui.bootstrap.position"])
@@ -6493,11 +6249,11 @@
                   itemName: a[3],
                   source: e(a[4]),
                   viewMapper: e(a[2] || a[1]),
-                  modelMapper: e(a[1])
+                  modelMapper: e(a[1]),
                 };
-              }
+              },
             };
-          }
+          },
         ])
         .directive("typeahead", [
           "$compile",
@@ -6523,8 +6279,7 @@
                     }, d));
                 }
                 function g() {
-                  (U.position = D ? s.offset(p) : s.position(p)),
-                    (U.position.top += p.prop("offsetHeight"));
+                  (U.position = D ? s.offset(p) : s.position(p)), (U.position.top += p.prop("offsetHeight"));
                 }
                 var v = f[0],
                   b = f[1],
@@ -6536,9 +6291,7 @@
                   T = !1 !== u.$eval(h.typeaheadEditable),
                   C = t(h.typeaheadLoading).assign || angular.noop,
                   P = t(h.typeaheadOnSelect),
-                  A =
-                    !!angular.isDefined(h.typeaheadSelectOnBlur) &&
-                    u.$eval(h.typeaheadSelectOnBlur),
+                  A = !!angular.isDefined(h.typeaheadSelectOnBlur) && u.$eval(h.typeaheadSelectOnBlur),
                   x = t(h.typeaheadNoResults).assign || angular.noop,
                   R = h.typeaheadInputFormatter ? t(h.typeaheadInputFormatter) : void 0,
                   D = !!h.typeaheadAppendToBody && u.$eval(h.typeaheadAppendToBody),
@@ -6562,10 +6315,9 @@
                   select: "select(activeIdx)",
                   "move-in-progress": "moveInProgress",
                   query: "query",
-                  position: "position"
+                  position: "position",
                 }),
-                  angular.isDefined(h.typeaheadTemplateUrl) &&
-                    O.attr("template-url", h.typeaheadTemplateUrl),
+                  angular.isDefined(h.typeaheadTemplateUrl) && O.attr("template-url", h.typeaheadTemplateUrl),
                   angular.isDefined(h.typeaheadPopupTemplateUrl) &&
                     O.attr("popup-template-url", h.typeaheadPopupTemplateUrl);
                 var B = function() {
@@ -6575,9 +6327,7 @@
                     return F + "-option-" + e;
                   };
                 U.$watch("activeIdx", function(e) {
-                  0 > e
-                    ? p.removeAttr("aria-activedescendant")
-                    : p.attr("aria-activedescendant", j(e));
+                  0 > e ? p.removeAttr("aria-activedescendant") : p.attr("aria-activedescendant", j(e));
                 });
                 var N,
                   H = function(e) {
@@ -6595,7 +6345,7 @@
                                   U.matches.push({
                                     id: j(o),
                                     label: z.viewMapper(U, t),
-                                    model: n[o]
+                                    model: n[o],
                                   });
                               (U.query = e),
                                 g(),
@@ -6638,11 +6388,7 @@
                           })(e))
                         : H(e)
                       : (C(u, !1), V(), B()),
-                    T
-                      ? e
-                      : e
-                        ? void v.$setValidity("editable", !1)
-                        : (v.$setValidity("editable", !0), null)
+                    T ? e : e ? void v.$setValidity("editable", !1) : (v.$setValidity("editable", !0), null)
                   );
                 }),
                   v.$formatters.push(function(e) {
@@ -6685,15 +6431,12 @@
                   }),
                   p.bind("keydown", function(e) {
                     if (0 !== U.matches.length && -1 !== c.indexOf(e.which)) {
-                      if (-1 === U.activeIdx && (9 === e.which || 13 === e.which))
-                        return B(), void U.$digest();
+                      if (-1 === U.activeIdx && (9 === e.which || 13 === e.which)) return B(), void U.$digest();
                       e.preventDefault(),
                         40 === e.which
                           ? ((U.activeIdx = (U.activeIdx + 1) % U.matches.length), U.$digest())
                           : 38 === e.which
-                            ? ((U.activeIdx =
-                                (U.activeIdx > 0 ? U.activeIdx : U.matches.length) - 1),
-                              U.$digest())
+                            ? ((U.activeIdx = (U.activeIdx > 0 ? U.activeIdx : U.matches.length) - 1), U.$digest())
                             : 13 === e.which || 9 === e.which
                               ? U.$apply(function() {
                                   U.select(U.activeIdx);
@@ -6714,10 +6457,7 @@
                       (k = !1);
                   });
                 var Y = function(e) {
-                  p[0] !== e.target &&
-                    3 !== e.which &&
-                    0 !== U.matches.length &&
-                    (B(), r.$$phase || U.$digest());
+                  p[0] !== e.target && 3 !== e.which && 0 !== U.matches.length && (B(), r.$$phase || U.$digest());
                 };
                 o.bind("click", Y),
                   u.$on("$destroy", function() {
@@ -6725,9 +6465,9 @@
                   });
                 var q = e(O)(U);
                 D ? o.find("body").append(q) : p.after(q);
-              }
+              },
             };
-          }
+          },
         ])
         .directive("typeaheadPopup", function() {
           return {
@@ -6738,7 +6478,7 @@
               active: "=",
               position: "&",
               moveInProgress: "=",
-              select: "&"
+              select: "&",
             },
             replace: !0,
             templateUrl: function(e, t) {
@@ -6758,7 +6498,7 @@
                 (e.selectMatch = function(t) {
                   e.select({ activeIdx: t });
                 });
-            }
+            },
           };
         })
         .directive("typeaheadMatch", [
@@ -6776,9 +6516,9 @@
                     o.replaceWith(e);
                   });
                 });
-              }
+              },
             };
-          }
+          },
         ])
         .filter("typeaheadHighlight", [
           "$sce",
@@ -6811,7 +6551,7 @@
                 );
               }
             );
-          }
+          },
         ]),
       angular.module("template/accordion/accordion-group.html", []).run([
         "$templateCache",
@@ -6820,16 +6560,13 @@
             "template/accordion/accordion-group.html",
             '<div class="panel {{panelClass || \'panel-default\'}}">\n  <div class="panel-heading" ng-keypress="toggleOpen($event)">\n    <h4 class="panel-title">\n      <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" accordion-transclude="heading"><span ng-class="{\'text-muted\': isDisabled}">{{heading}}</span></a>\n    </h4>\n  </div>\n  <div class="panel-collapse collapse" collapse="!isOpen">\n\t  <div class="panel-body" ng-transclude></div>\n  </div>\n</div>\n'
           );
-        }
+        },
       ]),
       angular.module("template/accordion/accordion.html", []).run([
         "$templateCache",
         function(e) {
-          e.put(
-            "template/accordion/accordion.html",
-            '<div class="panel-group" ng-transclude></div>'
-          );
-        }
+          e.put("template/accordion/accordion.html", '<div class="panel-group" ng-transclude></div>');
+        },
       ]),
       angular.module("template/alert/alert.html", []).run([
         "$templateCache",
@@ -6838,7 +6575,7 @@
             "template/alert/alert.html",
             '<div class="alert" ng-class="[\'alert-\' + (type || \'warning\'), closeable ? \'alert-dismissible\' : null]" role="alert">\n    <button ng-show="closeable" type="button" class="close" ng-click="close($event)">\n        <span aria-hidden="true">&times;</span>\n        <span class="sr-only">Close</span>\n    </button>\n    <div ng-transclude></div>\n</div>\n'
           );
-        }
+        },
       ]),
       angular.module("template/carousel/carousel.html", []).run([
         "$templateCache",
@@ -6847,7 +6584,7 @@
             "template/carousel/carousel.html",
             '<div ng-mouseenter="pause()" ng-mouseleave="play()" class="carousel" ng-swipe-right="prev()" ng-swipe-left="next()">\n    <ol class="carousel-indicators" ng-show="slides.length > 1">\n        <li ng-repeat="slide in slides | orderBy:indexOfSlide track by $index" ng-class="{active: isActive(slide)}" ng-click="select(slide)"></li>\n    </ol>\n    <div class="carousel-inner" ng-transclude></div>\n    <a class="left carousel-control" ng-click="prev()" ng-show="slides.length > 1"><span class="glyphicon glyphicon-chevron-left"></span></a>\n    <a class="right carousel-control" ng-click="next()" ng-show="slides.length > 1"><span class="glyphicon glyphicon-chevron-right"></span></a>\n</div>\n'
           );
-        }
+        },
       ]),
       angular.module("template/carousel/slide.html", []).run([
         "$templateCache",
@@ -6856,7 +6593,7 @@
             "template/carousel/slide.html",
             '<div ng-class="{\n    \'active\': active\n  }" class="item text-center" ng-transclude></div>\n'
           );
-        }
+        },
       ]),
       angular.module("template/datepicker/datepicker.html", []).run([
         "$templateCache",
@@ -6865,7 +6602,7 @@
             "template/datepicker/datepicker.html",
             '<div ng-switch="datepickerMode" role="application" ng-keydown="keydown($event)">\n  <daypicker ng-switch-when="day" tabindex="0"></daypicker>\n  <monthpicker ng-switch-when="month" tabindex="0"></monthpicker>\n  <yearpicker ng-switch-when="year" tabindex="0"></yearpicker>\n</div>'
           );
-        }
+        },
       ]),
       angular.module("template/datepicker/day.html", []).run([
         "$templateCache",
@@ -6874,7 +6611,7 @@
             "template/datepicker/day.html",
             '<table role="grid" aria-labelledby="{{::uniqueId}}-title" aria-activedescendant="{{activeDateId}}">\n  <thead>\n    <tr>\n      <th><button type="button" class="btn btn-default btn-sm pull-left" ng-click="move(-1)" tabindex="-1"><i class="glyphicon glyphicon-chevron-left"></i></button></th>\n      <th colspan="{{::5 + showWeeks}}"><button id="{{::uniqueId}}-title" role="heading" aria-live="assertive" aria-atomic="true" type="button" class="btn btn-default btn-sm" ng-click="toggleMode()" ng-disabled="datepickerMode === maxMode" tabindex="-1" style="width:100%;"><strong>{{title}}</strong></button></th>\n      <th><button type="button" class="btn btn-default btn-sm pull-right" ng-click="move(1)" tabindex="-1"><i class="glyphicon glyphicon-chevron-right"></i></button></th>\n    </tr>\n    <tr>\n      <th ng-if="showWeeks" class="text-center"></th>\n      <th ng-repeat="label in ::labels track by $index" class="text-center"><small aria-label="{{::label.full}}">{{::label.abbr}}</small></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat="row in rows track by $index">\n      <td ng-if="showWeeks" class="text-center h6"><em>{{ weekNumbers[$index] }}</em></td>\n      <td ng-repeat="dt in row track by dt.date" class="text-center" role="gridcell" id="{{::dt.uid}}" ng-class="::dt.customClass">\n        <button type="button" style="min-width:100%;" class="btn btn-default btn-sm" ng-class="{\'btn-info\': dt.selected, active: isActive(dt)}" ng-click="select(dt.date)" ng-disabled="dt.disabled" tabindex="-1"><span ng-class="::{\'text-muted\': dt.secondary, \'text-info\': dt.current}">{{::dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n'
           );
-        }
+        },
       ]),
       angular.module("template/datepicker/month.html", []).run([
         "$templateCache",
@@ -6883,7 +6620,7 @@
             "template/datepicker/month.html",
             '<table role="grid" aria-labelledby="{{::uniqueId}}-title" aria-activedescendant="{{activeDateId}}">\n  <thead>\n    <tr>\n      <th><button type="button" class="btn btn-default btn-sm pull-left" ng-click="move(-1)" tabindex="-1"><i class="glyphicon glyphicon-chevron-left"></i></button></th>\n      <th><button id="{{::uniqueId}}-title" role="heading" aria-live="assertive" aria-atomic="true" type="button" class="btn btn-default btn-sm" ng-click="toggleMode()" ng-disabled="datepickerMode === maxMode" tabindex="-1" style="width:100%;"><strong>{{title}}</strong></button></th>\n      <th><button type="button" class="btn btn-default btn-sm pull-right" ng-click="move(1)" tabindex="-1"><i class="glyphicon glyphicon-chevron-right"></i></button></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat="row in rows track by $index">\n      <td ng-repeat="dt in row track by dt.date" class="text-center" role="gridcell" id="{{::dt.uid}}" ng-class="::dt.customClass">\n        <button type="button" style="min-width:100%;" class="btn btn-default" ng-class="{\'btn-info\': dt.selected, active: isActive(dt)}" ng-click="select(dt.date)" ng-disabled="dt.disabled" tabindex="-1"><span ng-class="::{\'text-info\': dt.current}">{{::dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n'
           );
-        }
+        },
       ]),
       angular.module("template/datepicker/popup.html", []).run([
         "$templateCache",
@@ -6892,7 +6629,7 @@
             "template/datepicker/popup.html",
             '<ul class="dropdown-menu" ng-if="isOpen" style="display: block" ng-style="{top: position.top+\'px\', left: position.left+\'px\'}" ng-keydown="keydown($event)" ng-click="$event.stopPropagation()">\n\t<li ng-transclude></li>\n\t<li ng-if="showButtonBar" style="padding:10px 9px 2px">\n\t\t<span class="btn-group pull-left">\n\t\t\t<button type="button" class="btn btn-sm btn-info" ng-click="select(\'today\')" ng-disabled="isDisabled(\'today\')">{{ getText(\'current\') }}</button>\n\t\t\t<button type="button" class="btn btn-sm btn-danger" ng-click="select(null)">{{ getText(\'clear\') }}</button>\n\t\t</span>\n\t\t<button type="button" class="btn btn-sm btn-success pull-right" ng-click="close()">{{ getText(\'close\') }}</button>\n\t</li>\n</ul>\n'
           );
-        }
+        },
       ]),
       angular.module("template/datepicker/year.html", []).run([
         "$templateCache",
@@ -6901,7 +6638,7 @@
             "template/datepicker/year.html",
             '<table role="grid" aria-labelledby="{{::uniqueId}}-title" aria-activedescendant="{{activeDateId}}">\n  <thead>\n    <tr>\n      <th><button type="button" class="btn btn-default btn-sm pull-left" ng-click="move(-1)" tabindex="-1"><i class="glyphicon glyphicon-chevron-left"></i></button></th>\n      <th colspan="3"><button id="{{::uniqueId}}-title" role="heading" aria-live="assertive" aria-atomic="true" type="button" class="btn btn-default btn-sm" ng-click="toggleMode()" ng-disabled="datepickerMode === maxMode" tabindex="-1" style="width:100%;"><strong>{{title}}</strong></button></th>\n      <th><button type="button" class="btn btn-default btn-sm pull-right" ng-click="move(1)" tabindex="-1"><i class="glyphicon glyphicon-chevron-right"></i></button></th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr ng-repeat="row in rows track by $index">\n      <td ng-repeat="dt in row track by dt.date" class="text-center" role="gridcell" id="{{::dt.uid}}">\n        <button type="button" style="min-width:100%;" class="btn btn-default" ng-class="{\'btn-info\': dt.selected, active: isActive(dt)}" ng-click="select(dt.date)" ng-disabled="dt.disabled" tabindex="-1"><span ng-class="::{\'text-info\': dt.current}">{{::dt.label}}</span></button>\n      </td>\n    </tr>\n  </tbody>\n</table>\n'
           );
-        }
+        },
       ]),
       angular.module("template/modal/backdrop.html", []).run([
         "$templateCache",
@@ -6910,7 +6647,7 @@
             "template/modal/backdrop.html",
             '<div class="modal-backdrop"\n     modal-animation-class="fade"\n     modal-in-class="in"\n     ng-style="{\'z-index\': 1040 + (index && 1 || 0) + index*10}"\n></div>\n'
           );
-        }
+        },
       ]),
       angular.module("template/modal/window.html", []).run([
         "$templateCache",
@@ -6919,7 +6656,7 @@
             "template/modal/window.html",
             '<div modal-render="{{$isRendered}}" tabindex="-1" role="dialog" class="modal"\n    modal-animation-class="fade"\n    modal-in-class="in"\n\tng-style="{\'z-index\': 1050 + index*10, display: \'block\'}" ng-click="close($event)">\n    <div class="modal-dialog" ng-class="size ? \'modal-\' + size : \'\'"><div class="modal-content" modal-transclude></div></div>\n</div>\n'
           );
-        }
+        },
       ]),
       angular.module("template/pagination/pager.html", []).run([
         "$templateCache",
@@ -6928,7 +6665,7 @@
             "template/pagination/pager.html",
             '<ul class="pager">\n  <li ng-class="{disabled: noPrevious()||ngDisabled, previous: align}"><a href ng-click="selectPage(page - 1, $event)">{{::getText(\'previous\')}}</a></li>\n  <li ng-class="{disabled: noNext()||ngDisabled, next: align}"><a href ng-click="selectPage(page + 1, $event)">{{::getText(\'next\')}}</a></li>\n</ul>\n'
           );
-        }
+        },
       ]),
       angular.module("template/pagination/pagination.html", []).run([
         "$templateCache",
@@ -6937,7 +6674,7 @@
             "template/pagination/pagination.html",
             '<ul class="pagination">\n  <li ng-if="::boundaryLinks" ng-class="{disabled: noPrevious()||ngDisabled}" class="pagination-first"><a href ng-click="selectPage(1, $event)">{{::getText(\'first\')}}</a></li>\n  <li ng-if="::directionLinks" ng-class="{disabled: noPrevious()||ngDisabled}" class="pagination-prev"><a href ng-click="selectPage(page - 1, $event)">{{::getText(\'previous\')}}</a></li>\n  <li ng-repeat="page in pages track by $index" ng-class="{active: page.active,disabled: ngDisabled&&!page.active}" class="pagination-page"><a href ng-click="selectPage(page.number, $event)">{{page.text}}</a></li>\n  <li ng-if="::directionLinks" ng-class="{disabled: noNext()||ngDisabled}" class="pagination-next"><a href ng-click="selectPage(page + 1, $event)">{{::getText(\'next\')}}</a></li>\n  <li ng-if="::boundaryLinks" ng-class="{disabled: noNext()||ngDisabled}" class="pagination-last"><a href ng-click="selectPage(totalPages, $event)">{{::getText(\'last\')}}</a></li>\n</ul>\n'
           );
-        }
+        },
       ]),
       angular.module("template/tooltip/tooltip-html-popup.html", []).run([
         "$templateCache",
@@ -6946,7 +6683,7 @@
             "template/tooltip/tooltip-html-popup.html",
             '<div class="tooltip"\n  tooltip-animation-class="fade"\n  tooltip-classes\n  ng-class="{ in: isOpen() }">\n  <div class="tooltip-arrow"></div>\n  <div class="tooltip-inner" ng-bind-html="contentExp()"></div>\n</div>\n'
           );
-        }
+        },
       ]),
       angular.module("template/tooltip/tooltip-html-unsafe-popup.html", []).run([
         "$templateCache",
@@ -6955,7 +6692,7 @@
             "template/tooltip/tooltip-html-unsafe-popup.html",
             '<div class="tooltip"\n  tooltip-animation-class="fade"\n  tooltip-classes\n  ng-class="{ in: isOpen() }">\n  <div class="tooltip-arrow"></div>\n  <div class="tooltip-inner" bind-html-unsafe="content"></div>\n</div>\n'
           );
-        }
+        },
       ]),
       angular.module("template/tooltip/tooltip-popup.html", []).run([
         "$templateCache",
@@ -6964,7 +6701,7 @@
             "template/tooltip/tooltip-popup.html",
             '<div class="tooltip"\n  tooltip-animation-class="fade"\n  tooltip-classes\n  ng-class="{ in: isOpen() }">\n  <div class="tooltip-arrow"></div>\n  <div class="tooltip-inner" ng-bind="content"></div>\n</div>\n'
           );
-        }
+        },
       ]),
       angular.module("template/tooltip/tooltip-template-popup.html", []).run([
         "$templateCache",
@@ -6973,7 +6710,7 @@
             "template/tooltip/tooltip-template-popup.html",
             '<div class="tooltip"\n  tooltip-animation-class="fade"\n  tooltip-classes\n  ng-class="{ in: isOpen() }">\n  <div class="tooltip-arrow"></div>\n  <div class="tooltip-inner"\n    tooltip-template-transclude="contentExp()"\n    tooltip-template-transclude-scope="originScope()"></div>\n</div>\n'
           );
-        }
+        },
       ]),
       angular.module("template/popover/popover-html.html", []).run([
         "$templateCache",
@@ -6982,7 +6719,7 @@
             "template/popover/popover-html.html",
             '<div class="popover"\n  tooltip-animation-class="fade"\n  tooltip-classes\n  ng-class="{ in: isOpen() }">\n  <div class="arrow"></div>\n\n  <div class="popover-inner">\n      <h3 class="popover-title" ng-bind="title" ng-if="title"></h3>\n      <div class="popover-content" ng-bind-html="contentExp()"></div>\n  </div>\n</div>\n'
           );
-        }
+        },
       ]),
       angular.module("template/popover/popover-template.html", []).run([
         "$templateCache",
@@ -6991,7 +6728,7 @@
             "template/popover/popover-template.html",
             '<div class="popover"\n  tooltip-animation-class="fade"\n  tooltip-classes\n  ng-class="{ in: isOpen() }">\n  <div class="arrow"></div>\n\n  <div class="popover-inner">\n      <h3 class="popover-title" ng-bind="title" ng-if="title"></h3>\n      <div class="popover-content"\n        tooltip-template-transclude="contentExp()"\n        tooltip-template-transclude-scope="originScope()"></div>\n  </div>\n</div>\n'
           );
-        }
+        },
       ]),
       angular.module("template/popover/popover.html", []).run([
         "$templateCache",
@@ -7000,7 +6737,7 @@
             "template/popover/popover.html",
             '<div class="popover"\n  tooltip-animation-class="fade"\n  tooltip-classes\n  ng-class="{ in: isOpen() }">\n  <div class="arrow"></div>\n\n  <div class="popover-inner">\n      <h3 class="popover-title" ng-bind="title" ng-if="title"></h3>\n      <div class="popover-content" ng-bind="content"></div>\n  </div>\n</div>\n'
           );
-        }
+        },
       ]),
       angular.module("template/progressbar/bar.html", []).run([
         "$templateCache",
@@ -7009,13 +6746,13 @@
             "template/progressbar/bar.html",
             '<div class="progress-bar" ng-class="type && \'progress-bar-\' + type" role="progressbar" aria-valuenow="{{value}}" aria-valuemin="0" aria-valuemax="{{max}}" ng-style="{width: (percent < 100 ? percent : 100) + \'%\'}" aria-valuetext="{{percent | number:0}}%" style="min-width: 0;" ng-transclude></div>\n'
           );
-        }
+        },
       ]),
       angular.module("template/progressbar/progress.html", []).run([
         "$templateCache",
         function(e) {
           e.put("template/progressbar/progress.html", '<div class="progress" ng-transclude></div>');
-        }
+        },
       ]),
       angular.module("template/progressbar/progressbar.html", []).run([
         "$templateCache",
@@ -7024,7 +6761,7 @@
             "template/progressbar/progressbar.html",
             '<div class="progress">\n  <div class="progress-bar" ng-class="type && \'progress-bar-\' + type" role="progressbar" aria-valuenow="{{value}}" aria-valuemin="0" aria-valuemax="{{max}}" ng-style="{width: (percent < 100 ? percent : 100) + \'%\'}" aria-valuetext="{{percent | number:0}}%" style="min-width: 0;" ng-transclude></div>\n</div>\n'
           );
-        }
+        },
       ]),
       angular.module("template/rating/rating.html", []).run([
         "$templateCache",
@@ -7033,7 +6770,7 @@
             "template/rating/rating.html",
             '<span ng-mouseleave="reset()" ng-keydown="onKeydown($event)" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="{{range.length}}" aria-valuenow="{{value}}">\n    <span ng-repeat-start="r in range track by $index" class="sr-only">({{ $index < value ? \'*\' : \' \' }})</span>\n    <i ng-repeat-end ng-mouseenter="enter($index + 1)" ng-click="rate($index + 1)" class="glyphicon" ng-class="$index < value && (r.stateOn || \'glyphicon-star\') || (r.stateOff || \'glyphicon-star-empty\')" ng-attr-title="{{r.title}}" ></i>\n</span>\n'
           );
-        }
+        },
       ]),
       angular.module("template/tabs/tab.html", []).run([
         "$templateCache",
@@ -7042,7 +6779,7 @@
             "template/tabs/tab.html",
             '<li ng-class="{active: active, disabled: disabled}">\n  <a href ng-click="select()" tab-heading-transclude>{{heading}}</a>\n</li>\n'
           );
-        }
+        },
       ]),
       angular.module("template/tabs/tabset.html", []).run([
         "$templateCache",
@@ -7051,7 +6788,7 @@
             "template/tabs/tabset.html",
             '<div>\n  <ul class="nav nav-{{type || \'tabs\'}}" ng-class="{\'nav-stacked\': vertical, \'nav-justified\': justified}" ng-transclude></ul>\n  <div class="tab-content">\n    <div class="tab-pane" \n         ng-repeat="tab in tabs" \n         ng-class="{active: tab.active}"\n         tab-content-transclude="tab">\n    </div>\n  </div>\n</div>\n'
           );
-        }
+        },
       ]),
       angular.module("template/timepicker/timepicker.html", []).run([
         "$templateCache",
@@ -7060,7 +6797,7 @@
             "template/timepicker/timepicker.html",
             '<table>\n  <tbody>\n    <tr class="text-center" ng-show="::showSpinners">\n      <td><a ng-click="incrementHours()" ng-class="{disabled: noIncrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>\n      <td>&nbsp;</td>\n      <td><a ng-click="incrementMinutes()" ng-class="{disabled: noIncrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-up"></span></a></td>\n      <td ng-show="showMeridian"></td>\n    </tr>\n    <tr>\n      <td class="form-group" ng-class="{\'has-error\': invalidHours}">\n        <input style="width:50px;" type="text" ng-model="hours" ng-change="updateHours()" class="form-control text-center" ng-readonly="::readonlyInput" maxlength="2">\n      </td>\n      <td>:</td>\n      <td class="form-group" ng-class="{\'has-error\': invalidMinutes}">\n        <input style="width:50px;" type="text" ng-model="minutes" ng-change="updateMinutes()" class="form-control text-center" ng-readonly="::readonlyInput" maxlength="2">\n      </td>\n      <td ng-show="showMeridian"><button type="button" ng-class="{disabled: noToggleMeridian()}" class="btn btn-default text-center" ng-click="toggleMeridian()">{{meridian}}</button></td>\n    </tr>\n    <tr class="text-center" ng-show="::showSpinners">\n      <td><a ng-click="decrementHours()" ng-class="{disabled: noDecrementHours()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>\n      <td>&nbsp;</td>\n      <td><a ng-click="decrementMinutes()" ng-class="{disabled: noDecrementMinutes()}" class="btn btn-link"><span class="glyphicon glyphicon-chevron-down"></span></a></td>\n      <td ng-show="showMeridian"></td>\n    </tr>\n  </tbody>\n</table>\n'
           );
-        }
+        },
       ]),
       angular.module("template/typeahead/typeahead-match.html", []).run([
         "$templateCache",
@@ -7069,7 +6806,7 @@
             "template/typeahead/typeahead-match.html",
             '<a href tabindex="-1" ng-bind-html="match.label | typeaheadHighlight:query"></a>\n'
           );
-        }
+        },
       ]),
       angular.module("template/typeahead/typeahead-popup.html", []).run([
         "$templateCache",
@@ -7078,7 +6815,7 @@
             "template/typeahead/typeahead-popup.html",
             '<ul class="dropdown-menu" ng-show="isOpen() && !moveInProgress" ng-style="{top: position().top+\'px\', left: position().left+\'px\'}" style="display: block;" role="listbox" aria-hidden="{{!isOpen()}}">\n    <li ng-repeat="match in matches track by $index" ng-class="{active: isActive($index) }" ng-mouseenter="selectActive($index)" ng-click="selectMatch($index)" role="option" id="{{::match.id}}">\n        <div typeahead-match index="$index" match="match" query="query" template-url="templateUrl"></div>\n    </li>\n</ul>\n'
           );
-        }
+        },
       ]),
       !angular.$$csp() &&
         angular
@@ -7103,8 +6840,7 @@
               this.$elementFilestyle.find(".badge").remove();
           },
           destroy: function() {
-            this.$element.removeAttr("style").removeData("filestyle"),
-              this.$elementFilestyle.remove();
+            this.$element.removeAttr("style").removeData("filestyle"), this.$elementFilestyle.remove();
           },
           disabled: function(e) {
             if (!0 === e)
@@ -7124,26 +6860,22 @@
             if (!0 === e)
               this.options.buttonBefore ||
                 ((this.options.buttonBefore = !0),
-                this.options.input &&
-                  (this.$elementFilestyle.remove(), this.constructor(), this.pushNameFiles()));
+                this.options.input && (this.$elementFilestyle.remove(), this.constructor(), this.pushNameFiles()));
             else {
               if (!1 !== e) return this.options.buttonBefore;
               this.options.buttonBefore &&
                 ((this.options.buttonBefore = !1),
-                this.options.input &&
-                  (this.$elementFilestyle.remove(), this.constructor(), this.pushNameFiles()));
+                this.options.input && (this.$elementFilestyle.remove(), this.constructor(), this.pushNameFiles()));
             }
           },
           icon: function(e) {
             if (!0 === e)
               this.options.icon ||
-                ((this.options.icon = !0),
-                this.$elementFilestyle.find("label").prepend(this.htmlIcon()));
+                ((this.options.icon = !0), this.$elementFilestyle.find("label").prepend(this.htmlIcon()));
             else {
               if (!1 !== e) return this.options.icon;
               this.options.icon &&
-                ((this.options.icon = !1),
-                this.$elementFilestyle.find(".icon-span-filestyle").remove());
+                ((this.options.icon = !1), this.$elementFilestyle.find(".icon-span-filestyle").remove());
             }
           },
           input: function(e) {
@@ -7163,12 +6895,8 @@
                 var t = this.pushNameFiles();
                 t.length > 0 &&
                   this.options.badge &&
-                  this.$elementFilestyle
-                    .find("label")
-                    .append(' <span class="badge">' + t.length + "</span>"),
-                  this.$elementFilestyle
-                    .find(".group-span-filestyle")
-                    .removeClass("input-group-btn");
+                  this.$elementFilestyle.find("label").append(' <span class="badge">' + t.length + "</span>"),
+                  this.$elementFilestyle.find(".group-span-filestyle").removeClass("input-group-btn");
               }
             }
           },
@@ -7182,8 +6910,7 @@
           },
           placeholder: function(e) {
             if (void 0 === e) return this.options.placeholder;
-            (this.options.placeholder = e),
-              this.$elementFilestyle.find("input").attr("placeholder", e);
+            (this.options.placeholder = e), this.$elementFilestyle.find("input").attr("placeholder", e);
           },
           buttonText: function(e) {
             if (void 0 === e) return this.options.buttonText;
@@ -7193,9 +6920,7 @@
           buttonName: function(e) {
             if (void 0 === e) return this.options.buttonName;
             (this.options.buttonName = e),
-              this.$elementFilestyle
-                .find("label")
-                .attr({ class: "btn " + this.options.buttonName });
+              this.$elementFilestyle.find("label").attr({ class: "btn " + this.options.buttonName });
           },
           iconName: function(e) {
             if (void 0 === e) return this.options.iconName;
@@ -7204,9 +6929,7 @@
               .attr({ class: "icon-span-filestyle " + this.options.iconName });
           },
           htmlIcon: function() {
-            return this.options.icon
-              ? '<span class="icon-span-filestyle ' + this.options.iconName + '"></span> '
-              : "";
+            return this.options.icon ? '<span class="icon-span-filestyle ' + this.options.iconName + '"></span> ' : "";
           },
           htmlInput: function() {
             return this.options.input
@@ -7238,10 +6961,7 @@
               i = "",
               r = o.$element.attr("id");
             ("" !== r && r) || ((r = "filestyle-" + t), o.$element.attr({ id: r }), t++),
-              (i =
-                '<div class="group-span-filestyle ' +
-                (o.options.input ? "input-group-btn" : "btn-group") +
-                '">'),
+              (i = '<div class="group-span-filestyle ' + (o.options.input ? "input-group-btn" : "btn-group") + '">'),
               (n =
                 '<label for="' +
                 r +
@@ -7263,15 +6983,12 @@
               (i = o.options.buttonBefore
                 ? i + n + a + "</div>" + o.htmlInput()
                 : o.htmlInput() + i + a + n + "</div>"),
-              (o.$elementFilestyle = e(
-                '<div class="bootstrap-filestyle input-group">' + i + "</div>"
-              )),
+              (o.$elementFilestyle = e('<div class="bootstrap-filestyle input-group">' + i + "</div>")),
               o.$elementFilestyle
                 .find(".group-span-filestyle")
                 .attr("tabindex", "0")
                 .keypress(function(e) {
-                  if (13 === e.keyCode || 32 === e.charCode)
-                    return o.$elementFilestyle.find("label").click(), !1;
+                  if (13 === e.keyCode || 32 === e.charCode) return o.$elementFilestyle.find("label").click(), !1;
                 }),
               o.$elementFilestyle.find("#" + r + "-clear").click(function(e) {
                 o.clear();
@@ -7280,15 +6997,12 @@
                 .css({ position: "absolute", clip: "rect(0px 0px 0px 0px)" })
                 .attr("tabindex", "-1")
                 .after(o.$elementFilestyle),
-              (o.options.disabled || o.$element.attr("disabled")) &&
-                o.$element.attr("disabled", "true"),
+              (o.options.disabled || o.$element.attr("disabled")) && o.$element.attr("disabled", "true"),
               o.$element.change(function() {
                 var e = o.pushNameFiles();
                 0 == o.options.input && o.options.badge
                   ? 0 == o.$elementFilestyle.find(".badge").length
-                    ? o.$elementFilestyle
-                        .find("label")
-                        .append(' <span class="badge">' + e.length + "</span>")
+                    ? o.$elementFilestyle.find("label").append(' <span class="badge">' + e.length + "</span>")
                     : 0 == e.length
                       ? o.$elementFilestyle.find(".badge").remove()
                       : o.$elementFilestyle.find(".badge").html(e.length)
@@ -7298,7 +7012,7 @@
                 o.$elementFilestyle.find("label").click(function() {
                   return o.$element.click(), !1;
                 });
-          }
+          },
         };
         var a = e.fn.filestyle;
         (e.fn.filestyle = function(t, a) {
@@ -7324,7 +7038,7 @@
             icon: !0,
             buttonBefore: !1,
             disabled: !1,
-            placeholder: ""
+            placeholder: "",
           }),
           (e.fn.filestyle.noConflict = function() {
             return (e.fn.filestyle = a), this;
@@ -7342,7 +7056,7 @@
                   buttonName: t.attr("data-buttonName"),
                   iconName: t.attr("data-iconName"),
                   badge: "false" !== t.attr("data-badge"),
-                  placeholder: t.attr("data-placeholder")
+                  placeholder: t.attr("data-placeholder"),
                 };
               t.filestyle(n);
             });
@@ -7410,12 +7124,7 @@
                 n
               ))
             )
-              return o(
-                parseInt(a[1], 10),
-                parseInt(a[2], 10),
-                parseInt(a[3], 10),
-                parseFloat(a[4])
-              );
+              return o(parseInt(a[1], 10), parseInt(a[2], 10), parseInt(a[3], 10), parseFloat(a[4]));
             if (
               (a = /rgb\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*\)/.exec(
                 n
@@ -7427,24 +7136,13 @@
                 n
               ))
             )
-              return o(
-                2.55 * parseFloat(a[1]),
-                2.55 * parseFloat(a[2]),
-                2.55 * parseFloat(a[3]),
-                parseFloat(a[4])
-              );
+              return o(2.55 * parseFloat(a[1]), 2.55 * parseFloat(a[2]), 2.55 * parseFloat(a[3]), parseFloat(a[4]));
             if ((a = /#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/.exec(n)))
               return o(parseInt(a[1], 16), parseInt(a[2], 16), parseInt(a[3], 16));
             if ((a = /#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/.exec(n)))
-              return o(
-                parseInt(a[1] + a[1], 16),
-                parseInt(a[2] + a[2], 16),
-                parseInt(a[3] + a[3], 16)
-              );
+              return o(parseInt(a[1] + a[1], 16), parseInt(a[2] + a[2], 16), parseInt(a[3] + a[3], 16));
             var i = e.trim(n).toLowerCase();
-            return "transparent" == i
-              ? o(255, 255, 255, 0)
-              : o((a = t[i] || [0, 0, 0])[0], a[1], a[2]);
+            return "transparent" == i ? o(255, 255, 255, 0) : o((a = t[i] || [0, 0, 0])[0], a[1], a[2]);
           });
         var t = {
           aqua: [0, 255, 255],
@@ -7489,7 +7187,7 @@
           red: [255, 0, 0],
           silver: [192, 192, 192],
           white: [255, 255, 255],
-          yellow: [255, 255, 0]
+          yellow: [255, 255, 0],
         };
       })(e),
         (function(e) {
@@ -7540,7 +7238,7 @@
                   margin: 5,
                   backgroundColor: null,
                   backgroundOpacity: 0.85,
-                  sorted: null
+                  sorted: null,
                 },
                 xaxis: {
                   show: null,
@@ -7563,7 +7261,7 @@
                   alignTicksWithAxis: null,
                   tickDecimals: null,
                   tickSize: null,
-                  minTickSize: null
+                  minTickSize: null,
                 },
                 yaxis: { autoscaleMargin: 0.02, position: "left" },
                 xaxes: [],
@@ -7575,7 +7273,7 @@
                     lineWidth: 2,
                     fill: !0,
                     fillColor: "#ffffff",
-                    symbol: "circle"
+                    symbol: "circle",
                   },
                   lines: { lineWidth: 2, fill: !1, fillColor: null, steps: !1 },
                   bars: {
@@ -7586,10 +7284,10 @@
                     fillColor: null,
                     align: "left",
                     horizontal: !1,
-                    zero: !0
+                    zero: !0,
                   },
                   shadowSize: 3,
-                  highlightColor: null
+                  highlightColor: null,
                 },
                 grid: {
                   show: !0,
@@ -7609,10 +7307,10 @@
                   clickable: !1,
                   hoverable: !1,
                   autoHighlight: !0,
-                  mouseActiveRadius: 10
+                  mouseActiveRadius: 10,
                 },
                 interaction: { redrawOverlayInterval: 1e3 / 60 },
-                hooks: {}
+                hooks: {},
               },
               l = null,
               c = null,
@@ -7634,7 +7332,7 @@
                 draw: [],
                 bindEvents: [],
                 drawOverlay: [],
-                shutdown: []
+                shutdown: [],
               },
               w = this;
             function y(e, t) {
@@ -7646,10 +7344,7 @@
                 for (var n = [], a = 0; a < t.length; ++a) {
                   var o = e.extend(!0, {}, s.series);
                   null != t[a].data
-                    ? ((o.data = t[a].data),
-                      delete t[a].data,
-                      e.extend(!0, o, t[a]),
-                      (t[a].data = o.data))
+                    ? ((o.data = t[a].data), delete t[a].data, e.extend(!0, o, t[a]), (t[a].data = o.data))
                     : (o.data = t[a]),
                     n.push(o);
                 }
@@ -7713,8 +7408,7 @@
                     m = Number.NEGATIVE_INFINITY,
                     g = Number.MAX_VALUE;
                   function v(e, t, n) {
-                    t < e.datamin && t != -g && (e.datamin = t),
-                      n > e.datamax && n != g && (e.datamax = n);
+                    t < e.datamin && t != -g && (e.datamin = t), n > e.datamax && n != g && (e.datamax = n);
                   }
                   for (
                     e.each(T(), function(e, t) {
@@ -7724,8 +7418,7 @@
                     t < r.length;
                     ++t
                   )
-                    ((i = r[t]).datapoints = { points: [] }),
-                      y(b.processRawData, [i, i.data, i.datapoints]);
+                    ((i = r[t]).datapoints = { points: [] }), y(b.processRawData, [i, i.data, i.datapoints]);
                   for (t = 0; t < r.length; ++t) {
                     if (((i = r[t]), (p = i.data), !(h = i.datapoints.format))) {
                       if (
@@ -7740,9 +7433,7 @@
                       i.datapoints.format = h;
                     }
                     if (null == i.datapoints.pointsize) {
-                      (i.datapoints.pointsize = h.length),
-                        (l = i.datapoints.pointsize),
-                        (s = i.datapoints.points);
+                      (i.datapoints.pointsize = h.length), (l = i.datapoints.pointsize), (s = i.datapoints.points);
                       var k = i.lines.show && i.lines.steps;
                       for (i.xaxis.used = i.yaxis.used = !0, n = a = 0; n < p.length; ++n, a += l) {
                         var S = null == (u = p[n]);
@@ -7752,15 +7443,8 @@
                               (d = h[o]) &&
                                 (d.number &&
                                   null != c &&
-                                  ((c = +c),
-                                  isNaN(c)
-                                    ? (c = null)
-                                    : c == 1 / 0
-                                      ? (c = g)
-                                      : c == -1 / 0 && (c = -g)),
-                                null == c &&
-                                  (d.required && (S = !0),
-                                  null != d.defaultValue && (c = d.defaultValue))),
+                                  ((c = +c), isNaN(c) ? (c = null) : c == 1 / 0 ? (c = g) : c == -1 / 0 && (c = -g)),
+                                null == c && (d.required && (S = !0), null != d.defaultValue && (c = d.defaultValue))),
                               (s[a + o] = c);
                         if (S)
                           for (o = 0; o < l; ++o)
@@ -7768,26 +7452,16 @@
                               !1 !== (d = h[o]).autoscale &&
                               (d.x && v(i.xaxis, c, c), d.y && v(i.yaxis, c, c)),
                               (s[a + o] = null);
-                        else if (
-                          k &&
-                          a > 0 &&
-                          null != s[a - l] &&
-                          s[a - l] != s[a] &&
-                          s[a - l + 1] != s[a + 1]
-                        ) {
+                        else if (k && a > 0 && null != s[a - l] && s[a - l] != s[a] && s[a - l + 1] != s[a + 1]) {
                           for (o = 0; o < l; ++o) s[a + l + o] = s[a + o];
                           (s[a + 1] = s[a - l + 1]), (a += l);
                         }
                       }
                     }
                   }
-                  for (t = 0; t < r.length; ++t)
-                    (i = r[t]), y(b.processDatapoints, [i, i.datapoints]);
+                  for (t = 0; t < r.length; ++t) (i = r[t]), y(b.processDatapoints, [i, i.datapoints]);
                   for (t = 0; t < r.length; ++t) {
-                    (i = r[t]),
-                      (s = i.datapoints.points),
-                      (l = i.datapoints.pointsize),
-                      (h = i.datapoints.format);
+                    (i = r[t]), (s = i.datapoints.points), (l = i.datapoints.pointsize), (h = i.datapoints.format);
                     var C = f,
                       P = f,
                       A = m,
@@ -7848,7 +7522,7 @@
                   (t[n - 1] = {
                     n: n,
                     direction: t == h ? "x" : "y",
-                    options: e.extend(!0, {}, t == h ? s.xaxis : s.yaxis)
+                    options: e.extend(!0, {}, t == h ? s.xaxis : s.yaxis),
                   }),
                 t[n - 1]
               );
@@ -7875,8 +7549,7 @@
               e.each(i ? h : f, function(e, n) {
                 n &&
                   (n.show || n.reserveSpace) &&
-                  (n === t ? (v = !0) : n.options.position === o && (v ? (p = !1) : (u = !1)),
-                  v || (g = !1));
+                  (n === t ? (v = !0) : n.options.position === o && (v ? (p = !1) : (u = !1)), v || (g = !1));
               }),
                 p && (c = 0),
                 null == r && (r = g ? "full" : 5),
@@ -7923,16 +7596,8 @@
                       } else {
                         var r = t.autoscaleMargin;
                         null != r &&
-                          (null == t.min &&
-                            (n -= o * r) < 0 &&
-                            null != e.datamin &&
-                            e.datamin >= 0 &&
-                            (n = 0),
-                          null == t.max &&
-                            (a += o * r) > 0 &&
-                            null != e.datamax &&
-                            e.datamax <= 0 &&
-                            (a = 0));
+                          (null == t.min && (n -= o * r) < 0 && null != e.datamin && e.datamin >= 0 && (n = 0),
+                          null == t.max && (a += o * r) > 0 && null != e.datamax && e.datamax <= 0 && (a = 0));
                       }
                       (e.min = n), (e.max = a);
                     })(t);
@@ -7991,8 +7656,7 @@
                           if (null != t.tickDecimals) {
                             var o = a.indexOf("."),
                               i = -1 == o ? 0 : a.length - o - 1;
-                            if (i < t.tickDecimals)
-                              return (i ? a : a + ".") + ("" + n).substr(1, t.tickDecimals - i);
+                            if (i < t.tickDecimals) return (i ? a : a + ".") + ("" + n).substr(1, t.tickDecimals - i);
                           }
                           return a;
                         }));
@@ -8007,9 +7671,7 @@
                           if (
                             (p.length > 0 &&
                               (null == a.min && (t.min = Math.min(t.min, p[0])),
-                              null == a.max &&
-                                p.length > 1 &&
-                                (t.max = Math.max(t.max, p[p.length - 1]))),
+                              null == a.max && p.length > 1 && (t.max = Math.max(t.max, p[p.length - 1]))),
                             (t.tickGenerator = function(e) {
                               var t,
                                 n,
@@ -8024,8 +7686,7 @@
                           ) {
                             var m = Math.max(0, 1 - Math.floor(Math.log(t.delta) / Math.LN10)),
                               g = t.tickGenerator(t);
-                            (g.length > 1 && /\..*0$/.test((g[1] - g[0]).toFixed(m))) ||
-                              (t.tickDecimals = m);
+                            (g.length > 1 && /\..*0$/.test((g[1] - g[0]).toFixed(m))) || (t.tickDecimals = m);
                           }
                         }
                       }
@@ -8041,9 +7702,7 @@
                         for (t.ticks = [], n = 0; n < i.length; ++n) {
                           var r = null,
                             s = i[n];
-                          "object" == typeof s
-                            ? ((a = +s[0]), s.length > 1 && (r = s[1]))
-                            : (a = +s),
+                          "object" == typeof s ? ((a = +s[0]), s.length > 1 && (r = s[1])) : (a = +s),
                             null == r && (r = t.tickFormatter(a, t)),
                             isNaN(a) || t.ticks.push({ v: a, label: r });
                         }
@@ -8052,9 +7711,7 @@
                         e.options.autoscaleMargin &&
                           t.length > 0 &&
                           (null == e.options.min && (e.min = Math.min(e.min, t[0].v)),
-                          null == e.options.max &&
-                            t.length > 1 &&
-                            (e.max = Math.max(e.max, t[t.length - 1].v)));
+                          null == e.options.max && t.length > 1 && (e.max = Math.max(e.max, t[t.length - 1].v)));
                       })(n, n.ticks),
                       (function(e) {
                         for (
@@ -8062,18 +7719,9 @@
                             n = e.ticks || [],
                             a = t.labelWidth || 0,
                             o = t.labelHeight || 0,
-                            i =
-                              a ||
-                              ("x" == e.direction ? Math.floor(l.width / (n.length || 1)) : null),
+                            i = a || ("x" == e.direction ? Math.floor(l.width / (n.length || 1)) : null),
                             r = e.direction + "Axis " + e.direction + e.n + "Axis",
-                            s =
-                              "flot-" +
-                              e.direction +
-                              "-axis flot-" +
-                              e.direction +
-                              e.n +
-                              "-axis " +
-                              r,
+                            s = "flot-" + e.direction + "-axis flot-" + e.direction + e.n + "-axis " + r,
                             c = t.font || "flot-tick-label tickLabel",
                             d = 0;
                           d < n.length;
@@ -8137,10 +7785,8 @@
                       o = e.options.transform || t,
                       i = e.options.inverseTransform;
                     "x" == e.direction
-                      ? ((n = e.scale = g / Math.abs(o(e.max) - o(e.min))),
-                        (a = Math.min(o(e.max), o(e.min))))
-                      : ((n = -(n = e.scale = v / Math.abs(o(e.max) - o(e.min)))),
-                        (a = Math.max(o(e.max), o(e.min)))),
+                      ? ((n = e.scale = g / Math.abs(o(e.max) - o(e.min))), (a = Math.min(o(e.max), o(e.min))))
+                      : ((n = -(n = e.scale = v / Math.abs(o(e.max) - o(e.min)))), (a = Math.max(o(e.max), o(e.min)))),
                       (e.p2c =
                         o == t
                           ? function(e) {
@@ -8188,18 +7834,10 @@
                           l.addText(d, a, o, n.label, u, null, null, i, r));
                   }),
                 (function() {
-                  null != s.legend.container
-                    ? e(s.legend.container).html("")
-                    : t.find(".legend").remove();
+                  null != s.legend.container ? e(s.legend.container).html("") : t.find(".legend").remove();
                   if (!s.legend.show) return;
-                  for (
-                    var n, a, o = [], i = [], l = !1, c = s.legend.labelFormatter, d = 0;
-                    d < r.length;
-                    ++d
-                  )
-                    (n = r[d]).label &&
-                      (a = c ? c(n.label, n) : n.label) &&
-                      i.push({ label: a, color: n.color });
+                  for (var n, a, o = [], i = [], l = !1, c = s.legend.labelFormatter, d = 0; d < r.length; ++d)
+                    (n = r[d]).label && (a = c ? c(n.label, n) : n.label) && i.push({ label: a, color: n.color });
                   if (s.legend.sorted)
                     if (e.isFunction(s.legend.sorted)) i.sort(s.legend.sorted);
                     else if ("reverse" == s.legend.sorted) i.reverse();
@@ -8224,12 +7862,7 @@
                   }
                   l && o.push("</tr>");
                   if (0 == o.length) return;
-                  var h =
-                    '<table style="font-size:smaller;color:' +
-                    s.grid.color +
-                    '">' +
-                    o.join("") +
-                    "</table>";
+                  var h = '<table style="font-size:smaller;color:' + s.grid.color + '">' + o.join("") + "</table>";
                   if (null != s.legend.container) e(s.legend.container).html(h);
                   else {
                     var f = "",
@@ -8243,9 +7876,7 @@
                         ? (f += "right:" + (v[0] + m.right) + "px;")
                         : "w" == g.charAt(1) && (f += "left:" + (v[0] + m.left) + "px;");
                     var b = e(
-                      '<div class="legend">' +
-                        h.replace('style="', 'style="position:absolute;' + f + ";") +
-                        "</div>"
+                      '<div class="legend">' + h.replace('style="', 'style="position:absolute;' + f + ";") + "</div>"
                     ).appendTo(t);
                     if (0 != s.legend.backgroundOpacity) {
                       var w = s.legend.backgroundColor;
@@ -8289,10 +7920,7 @@
             }
             function $(e, t) {
               for (var n, a, o, i, r = T(), s = 0; s < r.length; ++s)
-                if (
-                  (n = r[s]).direction == t &&
-                  (e[(i = t + n.n + "axis")] || 1 != n.n || (i = t + "axis"), e[i])
-                ) {
+                if ((n = r[s]).direction == t && (e[(i = t + n.n + "axis")] || 1 != n.n || (i = t + "axis"), e[i])) {
                   (a = e[i].from), (o = e[i].to);
                   break;
                 }
@@ -8329,12 +7957,7 @@
                     null == l.to && (l.to = l.axis.max),
                     null == c.from && (c.from = c.axis.min),
                     null == c.to && (c.to = c.axis.max),
-                    !(
-                      l.to < l.axis.min ||
-                      l.from > l.axis.max ||
-                      c.to < c.axis.min ||
-                      c.from > c.axis.max
-                    ))
+                    !(l.to < l.axis.min || l.from > l.axis.max || c.to < c.axis.min || c.from > c.axis.max))
                   ) {
                     (l.from = Math.max(l.from, l.axis.min)),
                       (l.to = Math.min(l.to, l.axis.max)),
@@ -8397,9 +8020,7 @@
                         (S = C = 0),
                         "x" == P.direction ? (S = g + 1) : (C = v + 1),
                         1 == u.lineWidth &&
-                          ("x" == P.direction
-                            ? (k = Math.floor(k) + 0.5)
-                            : (y = Math.floor(y) + 0.5)),
+                          ("x" == P.direction ? (k = Math.floor(k) + 0.5) : (y = Math.floor(y) + 0.5)),
                         u.moveTo(y, k),
                         u.lineTo(y + S, k + C),
                         u.stroke()),
@@ -8418,16 +8039,10 @@
                           (("object" == typeof a && a[P.position] > 0) || a > 0) &&
                           (R == P.min || R == P.max)) ||
                         ("x" == P.direction
-                          ? ((y = P.p2c(R)),
-                            (C = "full" == x ? -v : x),
-                            "top" == P.position && (C = -C))
-                          : ((k = P.p2c(R)),
-                            (S = "full" == x ? -g : x),
-                            "left" == P.position && (S = -S)),
+                          ? ((y = P.p2c(R)), (C = "full" == x ? -v : x), "top" == P.position && (C = -C))
+                          : ((k = P.p2c(R)), (S = "full" == x ? -g : x), "left" == P.position && (S = -S)),
                         1 == u.lineWidth &&
-                          ("x" == P.direction
-                            ? (y = Math.floor(y) + 0.5)
-                            : (k = Math.floor(k) + 0.5)),
+                          ("x" == P.direction ? (y = Math.floor(y) + 0.5) : (k = Math.floor(k) + 0.5)),
                         u.moveTo(y, k),
                         u.lineTo(y + S, k + C));
                   }
@@ -8529,21 +8144,9 @@
                   if (n > 0 && a > 0) {
                     (u.lineWidth = a), (u.strokeStyle = "rgba(0,0,0,0.1)");
                     var o = Math.PI / 18;
-                    t(
-                      e.datapoints,
-                      Math.sin(o) * (n / 2 + a / 2),
-                      Math.cos(o) * (n / 2 + a / 2),
-                      e.xaxis,
-                      e.yaxis
-                    ),
+                    t(e.datapoints, Math.sin(o) * (n / 2 + a / 2), Math.cos(o) * (n / 2 + a / 2), e.xaxis, e.yaxis),
                       (u.lineWidth = a / 2),
-                      t(
-                        e.datapoints,
-                        Math.sin(o) * (n / 2 + a / 4),
-                        Math.cos(o) * (n / 2 + a / 4),
-                        e.xaxis,
-                        e.yaxis
-                      );
+                      t(e.datapoints, Math.sin(o) * (n / 2 + a / 4), Math.cos(o) * (n / 2 + a / 4), e.xaxis, e.yaxis);
                   }
                   (u.lineWidth = n), (u.strokeStyle = e.color);
                   var i = z(e.lines, e.color, 0, v);
@@ -8588,10 +8191,7 @@
                             if (p > t.max) continue;
                             (m = ((t.max - p) / (f - p)) * (m - h) + h), (f = t.max);
                           }
-                          if (
-                            (s || (u.beginPath(), u.moveTo(t.p2c(p), n.p2c(i)), (s = !0)),
-                            h >= n.max && m >= n.max)
-                          )
+                          if ((s || (u.beginPath(), u.moveTo(t.p2c(p), n.p2c(i)), (s = !0)), h >= n.max && m >= n.max))
                             u.lineTo(t.p2c(p), n.p2c(n.max)), u.lineTo(t.p2c(f), n.p2c(n.max));
                           else if (h <= n.min && m <= n.min)
                             u.lineTo(t.p2c(p), n.p2c(n.min)), u.lineTo(t.p2c(f), n.p2c(n.min));
@@ -8613,8 +8213,7 @@
                               p != g && u.lineTo(t.p2c(g), n.p2c(h)),
                               u.lineTo(t.p2c(p), n.p2c(h)),
                               u.lineTo(t.p2c(f), n.p2c(m)),
-                              f != v &&
-                                (u.lineTo(t.p2c(f), n.p2c(m)), u.lineTo(t.p2c(v), n.p2c(m)));
+                              f != v && (u.lineTo(t.p2c(f), n.p2c(m)), u.lineTo(t.p2c(v), n.p2c(m)));
                           }
                         }
                       }
@@ -8649,19 +8248,7 @@
                     (function(t, n, a, o, i, r) {
                       for (var s = t.points, l = t.pointsize, c = 0; c < s.length; c += l)
                         null != s[c] &&
-                          E(
-                            s[c],
-                            s[c + 1],
-                            s[c + 2],
-                            n,
-                            a,
-                            o,
-                            i,
-                            r,
-                            u,
-                            e.bars.horizontal,
-                            e.bars.lineWidth
-                          );
+                          E(s[c], s[c + 1], s[c + 2], n, a, o, i, r, u, e.bars.horizontal, e.bars.lineWidth);
                     })(e.datapoints, t, t + e.bars.barWidth, n, e.xaxis, e.yaxis),
                       u.restore();
                   })(e),
@@ -8679,9 +8266,7 @@
                           (u.beginPath(),
                           (p = i.p2c(p)),
                           (h = r.p2c(h) + a),
-                          "circle" == s
-                            ? u.arc(p, h, t, 0, o ? Math.PI : 2 * Math.PI, !1)
-                            : s(u, p, h, t, o),
+                          "circle" == s ? u.arc(p, h, t, 0, o ? Math.PI : 2 * Math.PI, !1) : s(u, p, h, t, o),
                           u.closePath(),
                           n && ((u.fillStyle = n), u.fill()),
                           u.stroke());
@@ -8797,20 +8382,12 @@
                   a,
                   o = {};
                 for (t = 0; t < h.length; ++t)
-                  if (
-                    (n = h[t]) &&
-                    n.used &&
-                    ((a = "x" + n.n), null == e[a] && 1 == n.n && (a = "x"), null != e[a])
-                  ) {
+                  if ((n = h[t]) && n.used && ((a = "x" + n.n), null == e[a] && 1 == n.n && (a = "x"), null != e[a])) {
                     o.left = n.p2c(e[a]);
                     break;
                   }
                 for (t = 0; t < f.length; ++t)
-                  if (
-                    (n = f[t]) &&
-                    n.used &&
-                    ((a = "y" + n.n), null == e[a] && 1 == n.n && (a = "y"), null != e[a])
-                  ) {
+                  if ((n = f[t]) && n.used && ((a = "y" + n.n), null == e[a] && 1 == n.n && (a = "y"), null != e[a])) {
                     o.top = n.p2c(e[a]);
                     break;
                   }
@@ -8825,7 +8402,7 @@
               (w.pointOffset = function(e) {
                 return {
                   left: parseInt(h[S(e, "x") - 1].p2c(+e.x) + m.left, 10),
-                  top: parseInt(f[S(e, "y") - 1].p2c(+e.y) + m.top, 10)
+                  top: parseInt(f[S(e, "y") - 1].p2c(+e.y) + m.top, 10),
                 };
               }),
               (w.shutdown = A),
@@ -8869,10 +8446,8 @@
                     .parse(s.grid.color)
                     .scale("a", 0.22)
                     .toString());
-                null == s.xaxis.tickColor &&
-                  (s.xaxis.tickColor = s.grid.tickColor || s.xaxis.color);
-                null == s.yaxis.tickColor &&
-                  (s.yaxis.tickColor = s.grid.tickColor || s.yaxis.color);
+                null == s.xaxis.tickColor && (s.xaxis.tickColor = s.grid.tickColor || s.xaxis.color);
+                null == s.yaxis.tickColor && (s.yaxis.tickColor = s.grid.tickColor || s.yaxis.color);
                 null == s.grid.borderColor && (s.grid.borderColor = s.grid.color);
                 null == s.grid.tickColor &&
                   (s.grid.tickColor = e.color
@@ -8889,7 +8464,7 @@
                     size: Math.round(0.8 * l),
                     variant: t.css("font-variant"),
                     weight: t.css("font-weight"),
-                    family: t.css("font-family")
+                    family: t.css("font-family"),
                   };
                 for (i = s.xaxes.length || 1, a = 0; a < i; ++a)
                   (o = s.xaxes[a]) && !o.tickColor && (o.tickColor = o.color),
@@ -8928,8 +8503,7 @@
                 null != s.highlightColor && (s.series.highlightColor = s.highlightColor);
                 for (a = 0; a < s.xaxes.length; ++a) P(h, a + 1).options = s.xaxes[a];
                 for (a = 0; a < s.yaxes.length; ++a) P(f, a + 1).options = s.yaxes[a];
-                for (var d in b)
-                  s.hooks[d] && s.hooks[d].length && (b[d] = b[d].concat(s.hooks[d]));
+                for (var d in b) s.hooks[d] && s.hooks[d].length && (b[d] = b[d].concat(s.hooks[d]));
                 y(b.processOptions, [s]);
               })(o),
               (function() {
@@ -9034,10 +8608,7 @@
                         null != w &&
                           (r[a].bars.horizontal
                             ? m <= Math.max(A, w) && m >= Math.min(A, w) && g >= y + C && g <= y + P
-                            : m >= w + C &&
-                              m <= w + P &&
-                              g >= Math.min(A, y) &&
-                              g <= Math.max(A, y)) &&
+                            : m >= w + C && m <= w + P && g >= Math.min(A, y) && g <= Math.max(A, y)) &&
                           (d = [a, o / i]);
                       }
                     }
@@ -9050,7 +8621,7 @@
                       datapoint: r[a].datapoints.points.slice(o * i, (o + 1) * i),
                       dataIndex: o,
                       series: r[a],
-                      seriesIndex: a
+                      seriesIndex: a,
                     })
                   : null;
               })(i, l, a);
@@ -9063,10 +8634,7 @@
                 for (var p = 0; p < U.length; ++p) {
                   var h = U[p];
                   h.auto != e ||
-                    (u &&
-                      h.series == u.series &&
-                      h.point[0] == u.datapoint[0] &&
-                      h.point[1] == u.datapoint[1]) ||
+                    (u && h.series == u.series && h.point[0] == u.datapoint[0] && h.point[1] == u.datapoint[1]) ||
                     V(h.series, h.point);
                 }
                 u && W(u.series, u.datapoint, e);
@@ -9079,11 +8647,7 @@
             }
             function H() {
               var e, t;
-              for (
-                L = null, p.save(), c.clear(), p.translate(m.left, m.top), e = 0;
-                e < U.length;
-                ++e
-              )
+              for (L = null, p.save(), c.clear(), p.translate(m.left, m.top), e = 0; e < U.length; ++e)
                 (t = U[e]).series.bars.show ? _(t.series, t.point) : q(t.series, t.point);
               p.restore(), y(b.drawOverlay, [p]);
             }
@@ -9130,9 +8694,7 @@
                 (a = i.p2c(a)),
                   (o = r.p2c(o)),
                   p.beginPath(),
-                  "circle" == t.points.symbol
-                    ? p.arc(a, o, c, 0, 2 * Math.PI, !1)
-                    : t.points.symbol(p, a, o, c, !1),
+                  "circle" == t.points.symbol ? p.arc(a, o, c, 0, 2 * Math.PI, !1) : t.points.symbol(p, a, o, c, !1),
                   p.closePath(),
                   p.stroke();
               }
@@ -9177,11 +8739,7 @@
             }
             function G(t, n, a, o) {
               if ("string" == typeof t) return t;
-              for (
-                var i = u.createLinearGradient(0, a, 0, n), r = 0, s = t.colors.length;
-                r < s;
-                ++r
-              ) {
+              for (var i = u.createLinearGradient(0, a, 0, n), r = 0, s = t.colors.length; r < s; ++r) {
                 var l = t.colors[r];
                 if ("string" != typeof l) {
                   var c = e.color.parse(o);
@@ -9201,14 +8759,12 @@
               });
             }),
             (n.prototype.resize = function(e, t) {
-              if (e <= 0 || t <= 0)
-                throw new Error("Invalid dimensions for plot, width = " + e + ", height = " + t);
+              if (e <= 0 || t <= 0) throw new Error("Invalid dimensions for plot, width = " + e + ", height = " + t);
               var n = this.element,
                 a = this.context,
                 o = this.pixelRatio;
               this.width != e && ((n.width = e * o), (n.style.width = e + "px"), (this.width = e)),
-                this.height != t &&
-                  ((n.height = t * o), (n.style.height = t + "px"), (this.height = t)),
+                this.height != t && ((n.height = t * o), (n.style.height = t + "px"), (this.height = t)),
                 a.restore(),
                 a.save(),
                 a.scale(o, o);
@@ -9250,7 +8806,7 @@
                         bottom: 0,
                         right: 0,
                         "font-size": "smaller",
-                        color: "#545454"
+                        color: "#545454",
                       })
                       .insertAfter(this.element)),
                   (n = this.text[t] = e("<div></div>")
@@ -9286,14 +8842,12 @@
                   .html(n)
                   .css({ position: "absolute", "max-width": i, top: -9999 })
                   .appendTo(this.getTextLayer(t));
-                "object" == typeof a
-                  ? d.css({ font: r, color: a.color })
-                  : "string" == typeof a && d.addClass(a),
+                "object" == typeof a ? d.css({ font: r, color: a.color }) : "string" == typeof a && d.addClass(a),
                   (c = l[n] = {
                     width: d.outerWidth(!0),
                     height: d.outerHeight(!0),
                     element: d,
-                    positions: []
+                    positions: [],
                   }),
                   d.detach();
               }
@@ -9304,14 +8858,13 @@
                 d = c.positions;
               "center" == s ? (t -= c.width / 2) : "right" == s && (t -= c.width),
                 "middle" == l ? (n -= c.height / 2) : "bottom" == l && (n -= c.height);
-              for (var u, p = 0; (u = d[p]); p++)
-                if (u.x == t && u.y == n) return void (u.active = !0);
+              for (var u, p = 0; (u = d[p]); p++) if (u.x == t && u.y == n) return void (u.active = !0);
               (u = {
                 active: !0,
                 rendered: !1,
                 element: d.length ? c.element.clone() : c.element,
                 x: t,
-                y: n
+                y: n,
               }),
                 d.push(u),
                 u.element.css({ top: Math.round(n), left: Math.round(t), "text-align": s });
@@ -9324,8 +8877,7 @@
                     if (t.call(s, l)) {
                       var c = s[l];
                       for (var d in c)
-                        if (t.call(c, d))
-                          for (var u = c[d].positions, p = 0; (h = u[p]); p++) h.active = !1;
+                        if (t.call(c, d)) for (var u = c[d].positions, p = 0; (h = u[p]); p++) h.active = !1;
                     }
               } else {
                 var h;
@@ -9362,21 +8914,7 @@
             s = !1,
             l = e.getHours(),
             c = l < 12;
-          null == n &&
-            (n = [
-              "Jan",
-              "Feb",
-              "Mar",
-              "Apr",
-              "May",
-              "Jun",
-              "Jul",
-              "Aug",
-              "Sep",
-              "Oct",
-              "Nov",
-              "Dec"
-            ]),
+          null == n && (n = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]),
             null == a && (a = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]),
             (o = l > 12 ? l - 12 : 0 == l ? 12 : l);
           for (var d = 0; d < t.length; ++d) {
@@ -9448,17 +8986,7 @@
             t(n, "getTime", e, "getTime"),
             t(n, "setTime", e, "setTime");
           for (
-            var a = [
-                "Date",
-                "Day",
-                "FullYear",
-                "Hours",
-                "Milliseconds",
-                "Minutes",
-                "Month",
-                "Seconds"
-              ],
-              o = 0;
+            var a = ["Date", "Day", "FullYear", "Hours", "Milliseconds", "Minutes", "Month", "Seconds"], o = 0;
             o < a.length;
             o++
           )
@@ -9483,7 +9011,7 @@
             day: 864e5,
             month: 2592e6,
             quarter: 7776e6,
-            year: 525949.2 * 60 * 1e3
+            year: 525949.2 * 60 * 1e3,
           },
           r = [
             [1, "second"],
@@ -9507,7 +9035,7 @@
             [0.25, "month"],
             [0.5, "month"],
             [1, "month"],
-            [2, "month"]
+            [2, "month"],
           ],
           s = r.concat([[3, "month"], [6, "month"], [1, "year"]]),
           l = r.concat([[1, "quarter"], [2, "quarter"], [1, "year"]]);
@@ -9522,29 +9050,23 @@
                       a = o(e.min, r),
                       c = 0,
                       d =
-                        (r.tickSize && "quarter" === r.tickSize[1]) ||
-                        (r.minTickSize && "quarter" === r.minTickSize[1])
+                        (r.tickSize && "quarter" === r.tickSize[1]) || (r.minTickSize && "quarter" === r.minTickSize[1])
                           ? l
                           : s;
                     null != r.minTickSize &&
-                      (c =
-                        "number" == typeof r.tickSize
-                          ? r.tickSize
-                          : r.minTickSize[0] * i[r.minTickSize[1]]);
+                      (c = "number" == typeof r.tickSize ? r.tickSize : r.minTickSize[0] * i[r.minTickSize[1]]);
                     for (
                       var u = 0;
                       u < d.length - 1 &&
                       !(
-                        e.delta < (d[u][0] * i[d[u][1]] + d[u + 1][0] * i[d[u + 1][1]]) / 2 &&
-                        d[u][0] * i[d[u][1]] >= c
+                        e.delta < (d[u][0] * i[d[u][1]] + d[u + 1][0] * i[d[u + 1][1]]) / 2 && d[u][0] * i[d[u][1]] >= c
                       );
                       ++u
                     );
                     var p = d[u][0],
                       h = d[u][1];
                     if ("year" == h) {
-                      if (null != r.minTickSize && "year" == r.minTickSize[1])
-                        p = Math.floor(r.minTickSize[0]);
+                      if (null != r.minTickSize && "year" == r.minTickSize[1]) p = Math.floor(r.minTickSize[0]);
                       else {
                         var f = Math.pow(10, Math.floor(Math.log(e.delta / i.year) / Math.LN10)),
                           m = e.delta / i.year / f;
@@ -9585,9 +9107,7 @@
                           var k = a.getTime();
                           a.setMonth(a.getMonth() + ("quarter" == h ? 3 : 1));
                           var S = a.getTime();
-                          a.setTime(y + w * i.hour + (S - k) * g),
-                            (w = a.getHours()),
-                            a.setHours(0);
+                          a.setTime(y + w * i.hour + (S - k) * g), (w = a.getHours()), a.setHours(0);
                         } else a.setMonth(a.getMonth() + g * ("quarter" == h ? 3 : 1));
                       else "year" == h ? a.setFullYear(a.getFullYear() + g) : a.setTime(y + v);
                     } while (y < e.max && y != b);
@@ -9630,10 +9150,10 @@
             });
           },
           options: {
-            xaxis: { timezone: null, timeformat: null, twelveHourClock: !1, monthNames: null }
+            xaxis: { timezone: null, timeformat: null, twelveHourClock: !1, monthNames: null },
           },
           name: "time",
-          version: "1.0"
+          version: "1.0",
         }),
           (e.plot.formatDate = n),
           (e.plot.dateGenerator = o);
@@ -9682,8 +9202,7 @@
         "Reset filters": "Filters terugzetten",
         "Quick Access Settings": "Snelle-toegang instellingen",
         "Save settings": "Instellingen opslaan",
-        "Currently no download in line to display, use the":
-          "Momenteel geen downloads weer te geven, gebruik de ",
+        "Currently no download in line to display, use the": "Momenteel geen downloads weer te geven, gebruik de ",
         "download button to start downloading files!": "knop om bestanden te gaan downloaden!",
         Peers: "Peers",
         "More Info": "Meer informatie",
@@ -9695,8 +9214,7 @@
           "- Je kunt meerdere downloads (bestanden) tezelfdertijd toevoegen door de URIs voor elk bestand op een aparte regel te zetten.",
         "- You can also add multiple URIs (mirrors) for the *same* file. To do this, separate the URIs by a space.":
           "- Je kunt ook meerdere URIs (mirrors) voor *hetzelfde* bestand toevoegen. Scheidt hiervoor de URIs met een spatie.",
-        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.":
-          "- Een URI kan HTTP(S)/FTP/BitTorrent-Magnet zijn.",
+        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.": "- Een URI kan HTTP(S)/FTP/BitTorrent-Magnet zijn.",
         "Download settings": "Download instellingen",
         "Advanced settings": "Geavanceerde instellingen",
         Cancel: "Annuleren",
@@ -9719,8 +9237,7 @@
         "- You can select multiple Metalinks to start multiple downloads.":
           "- Selecter meerdere Metalinks om meerdere downloads te starten.",
         "Select a Metalink": "Selecteer een Metalink",
-        "Choose files to start download for":
-          "Bestanden kiezen waarvoor het downloaden beginnen moet",
+        "Choose files to start download for": "Bestanden kiezen waarvoor het downloaden beginnen moet",
         "Select to download": "Selecteer om te downloaden",
         "Aria2 RPC host and port": "Aria2 RPC server en poort",
         "Enter the host": "Server invoeren",
@@ -9758,7 +9275,7 @@
           "Om de nieuwste versie van het project te downloaden, problemen te rapporteren of bij te dragen, ga naar",
         "Or you can open the latest version in the browser through":
           "Of je kunt hier de nieuwste versie in je browser openen",
-        Close: "Afsluiten"
+        Close: "Afsluiten",
       });
   },
   function(e, t) {
@@ -9802,10 +9319,8 @@
         "Quick Access Settings": "Quick Access Settings",
         Save: "Save",
         "Save settings": "Save settings",
-        "Currently no download in line to display, use the":
-          "Currently no download in line to display, use the",
-        "download button to start downloading files!":
-          "download button to start downloading files!",
+        "Currently no download in line to display, use the": "Currently no download in line to display, use the",
+        "download button to start downloading files!": "download button to start downloading files!",
         Peers: "Peers",
         "More Info": "More Info",
         Remove: "Remove",
@@ -9816,8 +9331,7 @@
           "- You can add multiple downloads (files) at the same time by putting URIs for each file on a separate line.",
         "- You can also add multiple URIs (mirrors) for the *same* file. To do this, separate the URIs by a space.":
           "- You can also add multiple URIs (mirrors) for the *same* file. To do this, separate the URIs by a space.",
-        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.":
-          "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.",
+        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.": "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.",
         "Download settings": "Download settings",
         "Advanced settings": "Advanced settings",
         Cancel: "Cancel",
@@ -9867,8 +9381,7 @@
         "Direct Download": "Direct Download",
         "If supplied, links will be created to enable direct download from the Aria2 server.":
           "If supplied, links will be created to enable direct download from the Aria2 server.",
-        "(Requires appropriate webserver to be configured.)":
-          "(Requires appropriate webserver to be configured.)",
+        "(Requires appropriate webserver to be configured.)": "(Requires appropriate webserver to be configured.)",
         "Save Connection configuration": "Save Connection configuration",
         Filter: "Filter",
         "Aria2 server info": "Aria2 server info",
@@ -9905,7 +9418,7 @@
           "Successfully connected to Aria2 through remote RPC, however the connection is still insecure. For complete security try adding an authorization secret token while starting Aria2 (through the flag --rpc-secret)",
         "Trying to connect to aria2 using the new connection configuration":
           "Trying to connect to aria2 using the new connection configuration",
-        "Remove {{name}} and associated meta-data?": "Remove {{name}} and associated meta-data?"
+        "Remove {{name}} and associated meta-data?": "Remove {{name}} and associated meta-data?",
       });
   },
   function(e, t) {
@@ -9946,8 +9459,7 @@
         "Reset filters": "รีเซตตัวกรอง",
         "Quick Access Settings": "ตั้งค่าอย่างรวดเร็ว",
         "Save settings": "บันทึกการตั้งค่า",
-        "Currently no download in line to display, use the":
-          "ตอนนี้ไม่มีการดาวน์โหลดที่แสดงได้ ก็ใช้ปุ่ม",
+        "Currently no download in line to display, use the": "ตอนนี้ไม่มีการดาวน์โหลดที่แสดงได้ ก็ใช้ปุ่ม",
         "download button to start downloading files!": "ให้เริ่มดาวน์โหลดไฟล์",
         Peers: "พีร์ส",
         "More Info": "ข้อมูลเพิ่ม",
@@ -9957,8 +9469,7 @@
         "Add Downloads By URIs": "เพิ่มดาวน์โหลดด้วยยูอาร์ไอ",
         "- You can add multiple downloads (files) at the same time by putting URIs for each file on a separate line.":
           "",
-        "- You can also add multiple URIs (mirrors) for the *same* file. To do this, separate the URIs by a space.":
-          "",
+        "- You can also add multiple URIs (mirrors) for the *same* file. To do this, separate the URIs by a space.": "",
         "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.": "",
         "Download settings": "ตั้งค่าการดาวน์โหลด",
         "Advanced settings": "ตั้งค่าขั้นสูง",
@@ -9981,8 +9492,7 @@
         "Select to download": "เลือกให้ดาวน์โหลด",
         "Aria2 RPC host and port": "โฮสต์และพอร์ตของ Aria2 RPC",
         "Enter the host": "ป้อนโฮสต์",
-        "Enter the IP or DNS name of the server on which the RPC for Aria2 is running (default: localhost)":
-          "",
+        "Enter the IP or DNS name of the server on which the RPC for Aria2 is running (default: localhost)": "",
         "Enter the port": "ป้อนพอร์ต",
         "Enter the port of the server on which the RPC for Aria2 is running (default: 6800)": "",
         "Enter the RPC path": "ป้อนเส้นทาง RPC",
@@ -10006,9 +9516,8 @@
         "Features Enabled": "คุณสมบัติที่เปิดใช้งาน",
         "To download the latest version of the project, add issues or to contribute back, head on to":
           "ให้ดาวน์โหลดรุ่นสุดท้ายของโครงการ เพิ่มปัญหา หรือช่วยเหลือมีส่วนร่วม ไปสู่",
-        "Or you can open the latest version in the browser through":
-          "หรือเปิดรุ่นสุดท้ายในเบราว์เซอร์โดยใช้",
-        Close: "ปิด"
+        "Or you can open the latest version in the browser through": "หรือเปิดรุ่นสุดท้ายในเบราว์เซอร์โดยใช้",
+        Close: "ปิด",
       });
   },
   function(e, t) {
@@ -10075,8 +9584,7 @@
         "Add Downloads By Torrents": "使用种子下载",
         "- Select the torrent from the local filesystem to start the download.":
           "- 从本地文件系统选择种子文件开始下载；",
-        "- You can select multiple torrents to start multiple downloads.":
-          "- 你可以同时选择多个种子来启动多个下载；",
+        "- You can select multiple torrents to start multiple downloads.": "- 你可以同时选择多个种子来启动多个下载；",
         "- To add a BitTorrent-Magnet URL, use the Add By URI option and add it there.":
           "- 如果要添加磁力链接，请使用添加链接的方式。",
         "Select Torrents": "选择种子文件",
@@ -10098,8 +9606,7 @@
         "Enter the port of the server on which the RPC for Aria2 is running (default: 6800)":
           "输入 Aria2 RPC 端口号（默认：6800）",
         "Enter the RPC path": "RPC 路径",
-        "Enter the path for the Aria2 RPC endpoint (default: /jsonrpc)":
-          "输入 Aria2 RPC 路径（默认：/jsonrpc）",
+        "Enter the path for the Aria2 RPC endpoint (default: /jsonrpc)": "输入 Aria2 RPC 路径（默认：/jsonrpc）",
         "SSL/TLS encryption": "SSL/TLS 加密",
         "Enable SSL/TLS encryption": "启用 SSL/TLS 加密",
         "Enter the secret token (optional)": "密码令牌（可选）",
@@ -10123,8 +9630,7 @@
         "Features Enabled": "已启用功能",
         "To download the latest version of the project, add issues or to contribute back, head on to":
           "下载最新版本、提交问题或捐助，请访问",
-        "Or you can open the latest version in the browser through":
-          "直接在浏览器中使用最新版本，请访问",
+        "Or you can open the latest version in the browser through": "直接在浏览器中使用最新版本，请访问",
         Close: "关闭",
         "Download status": "当前下载状态",
         "Download Speed": "当前下载速度",
@@ -10150,7 +9656,7 @@
           "通过 RPC 连接到 Aria2 成功，但是连接并不安全。要想使用安全连接，尝试在启动 Aria2 时添加一个授权密码令牌（通过 --rpc-secret 参数）",
         "Trying to connect to aria2 using the new connection configuration":
           "正在尝试使用新的连接配置来连接到 Aria2 ……",
-        "Remove {{name}} and associated meta-data?": "是否删除 {{name}} 和关联的元数据？"
+        "Remove {{name}} and associated meta-data?": "是否删除 {{name}} 和关联的元数据？",
       });
   },
   function(e, t) {
@@ -10217,8 +9723,7 @@
         "Add Downloads By Torrents": "使用種子下載",
         "- Select the torrent from the local filesystem to start the download.":
           "- 從本地檔案系統選擇種子檔案開始下載；",
-        "- You can select multiple torrents to start multiple downloads.":
-          "- 你可以同時選擇多個種子來啟動多個下載；",
+        "- You can select multiple torrents to start multiple downloads.": "- 你可以同時選擇多個種子來啟動多個下載；",
         "- To add a BitTorrent-Magnet URL, use the Add By URI option and add it there.":
           "- 如果要新增磁力連結，請使用新增連結的方式。",
         "Select Torrents": "選擇種子檔案",
@@ -10240,8 +9745,7 @@
         "Enter the port of the server on which the RPC for Aria2 is running (default: 6800)":
           "輸入 Aria2 RPC 埠號（預設：6800）",
         "Enter the RPC path": "RPC 路徑",
-        "Enter the path for the Aria2 RPC endpoint (default: /jsonrpc)":
-          "輸入 Aria2 RPC 路徑（預設：/jsonrpc）",
+        "Enter the path for the Aria2 RPC endpoint (default: /jsonrpc)": "輸入 Aria2 RPC 路徑（預設：/jsonrpc）",
         "SSL/TLS encryption": "SSL/TLS 加密",
         "Enable SSL/TLS encryption": "啟用 SSL/TLS 加密",
         "Enter the secret token (optional)": "密碼令牌（可選）",
@@ -10265,8 +9769,7 @@
         "Features Enabled": "已啟用功能",
         "To download the latest version of the project, add issues or to contribute back, head on to":
           "下載最新版本、提交問題或捐助，請訪問",
-        "Or you can open the latest version in the browser through":
-          "直接在瀏覽器中使用最新版本，請訪問",
+        "Or you can open the latest version in the browser through": "直接在瀏覽器中使用最新版本，請訪問",
         Close: "關閉",
         "Download status": "當前下載狀態",
         "Download Speed": "當前下載速度",
@@ -10292,7 +9795,7 @@
           "通過 RPC 連線到 Aria2 成功，但是連線並不安全。要想使用安全連線，嘗試在啟動 Aria2 時新增一個授權密碼令牌（通過 --rpc-secret 引數）",
         "Trying to connect to aria2 using the new connection configuration":
           "正在嘗試使用新的連線配置來連線到 Aria2 ……",
-        "Remove {{name}} and associated meta-data?": "是否刪除 {{name}} 和關聯的元資料？"
+        "Remove {{name}} and associated meta-data?": "是否刪除 {{name}} 和關聯的元資料？",
       });
   },
   function(e, t) {
@@ -10346,8 +9849,7 @@
           "- Możesz dodać wiele pobrań (plików) w tym samym czasie przez wprowadzenie URI dla każdego w oddzielnej linii.",
         "- You can also add multiple URIs (mirrors) for the *same* file. To do this, separate the URIs by a space.":
           "- Możesz także dodać wiele URI (luster) dla tego *samego* pliku. Zrób to, poprzez oddzielenie URI od siebie spacją.",
-        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.":
-          "- URI może być HTTP(S)/FTP/BitTorrent-Magnet.",
+        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.": "- URI może być HTTP(S)/FTP/BitTorrent-Magnet.",
         "Download settings": "Ustawienia pobierania",
         "Advanced settings": "Zaawansowane ustawienia",
         Cancel: "Anuluj",
@@ -10397,8 +9899,7 @@
         "Direct Download": "Bezpośrednie pobieranie",
         "If supplied, links will be created to enable direct download from the Aria2 server.":
           "Jeżeli zaznaczone, linki mogą być utworzone do włączenia bezpośredniego pobierania z serwera Aria2",
-        "(Requires appropriate webserver to be configured.)":
-          "(Wymaga właściwej konfiguracji serwera WWW)",
+        "(Requires appropriate webserver to be configured.)": "(Wymaga właściwej konfiguracji serwera WWW)",
         "Save Connection configuration": "Zapisz konfigurację połączenia",
         Filter: "Filtr",
         "Aria2 server info": "Info o serwerze Aria2",
@@ -10406,8 +9907,7 @@
         "Features Enabled": "Włączone funkcje",
         "To download the latest version of the project, add issues or to contribute back, head on to":
           "Aby ściągnąć najnowszą wersję projektu, dodać zgłodzenia lub wspomagać projekt, udaj się do",
-        "Or you can open the latest version in the browser through":
-          "Lub otwórz najnowszą wersję przez przeglądarkę",
+        "Or you can open the latest version in the browser through": "Lub otwórz najnowszą wersję przez przeglądarkę",
         Close: "Zamknij",
         "Download status": "Status pobierania",
         "Download Speed": "Szybkość pobierania",
@@ -10427,12 +9927,11 @@
         "Oh Snap!": "O kurczę!",
         "Could not connect to the aria2 RPC server. Will retry in 10 secs. You might want to check the connection settings by going to Settings > Connection Settings":
           "Nie można połączyć się z serwerem aria2 przez RPC. Kolejna próba za 10 sekund. Być może potrzebujesz sprawdzić ustawienie połączenia poprzez Ustawienia > Ustawienia połączenia",
-        "Successfully connected to Aria2 through its remote RPC …":
-          "Pomyślnie połączono się z Aria2 przez RPC ...",
+        "Successfully connected to Aria2 through its remote RPC …": "Pomyślnie połączono się z Aria2 przez RPC ...",
         "Successfully connected to Aria2 through remote RPC, however the connection is still insecure. For complete security try adding an authorization secret token while starting Aria2 (through the flag --rpc-secret)":
           "Pomyślnie połączono się z Aria2 przez RPC, jednakże połączenie nie jest bezpieczne. Aby zabezpieczyć dodaj sekretny token autoryzacji podczas startu Aria2 (przez użycie flagi --rpc-secret)",
         "Trying to connect to aria2 using the new connection configuration":
-          "Próba połączenia się z Aria2 poprzez użycie nowej konfiguracji połączenia"
+          "Próba połączenia się z Aria2 poprzez użycie nowej konfiguracji połączenia",
       });
   },
   function(e, t) {
@@ -10478,8 +9977,7 @@
         "Save settings": "Sauvegarder les paramètres",
         "Currently no download in line to display, use the":
           "Aucun téléchargement dans la file d'attente, utilisez le bouton de téléchargement",
-        "download button to start downloading files!":
-          "pour commencer à télécharger des fichiers !",
+        "download button to start downloading files!": "pour commencer à télécharger des fichiers !",
         Peers: "Pairs",
         "More Info": "Plus d'infos",
         Remove: "Supprimer",
@@ -10490,8 +9988,7 @@
           "Vous pouvez ajouter plusieurs téléchargements (fichiers) en même temps, en mettant une URI pour chaque fichier sur une nouvelle ligne",
         "- You can also add multiple URIs (mirrors) for the *same* file. To do this, separate the URIs by a space.":
           "Vous pouvez aussi ajouter plusieurs URIs (mirroirs) pour le *même* fichier. Pour ce faire, séparez les URIs par un espace.",
-        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.":
-          "Une URI peut être HTTP(S)/FTP/BitTorrent-Magnet.",
+        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.": "Une URI peut être HTTP(S)/FTP/BitTorrent-Magnet.",
         "Download settings": "Paramètres de téléchargement",
         "Advanced settings": "Paramètres avancés",
         Cancel: "Annuler",
@@ -10514,8 +10011,7 @@
         "- You can select multiple Metalinks to start multiple downloads.":
           "Vous pouvez sélectionner plusieurs Métaliens pour commencer plusieurs téléchargements.",
         "Select a Metalink": "Sélectionner un Métalien",
-        "Choose files to start download for":
-          "Sélectionner les fichiers pour lesquels commencer le téléchargement.",
+        "Choose files to start download for": "Sélectionner les fichiers pour lesquels commencer le téléchargement.",
         "Select to download": "Sélectionner pour télécharger",
         "Aria2 RPC host and port": "Hôte et ports Aria2 RPC",
         "Enter the host": "Entrer l'hôte",
@@ -10574,14 +10070,12 @@
           "Impossible de se connecter au serveur RPC d'aria2. Nouvel essai dans 10 secondes. Vous voudrez peut-être vérifier les paramètres de connexion en allant dans Paramètres > Paramètres de connexion",
         "Authentication failed while connecting to Aria2 RPC server. Will retry in 10 secs. You might want to confirm your authentication details by going to Settings > Connection Settings":
           "Erreur d'authentification lors de la connexion au serveur RPC d'aria2. Nouvel essai dans 10 secondes. Vous voudrez peut-être confirmer les renseignements d'authentification en allant dans Paramètres > Paramètres de connexion",
-        "Successfully connected to Aria2 through its remote RPC …":
-          "Connexion réussie à aria2 via son interface RPC …",
+        "Successfully connected to Aria2 through its remote RPC …": "Connexion réussie à aria2 via son interface RPC …",
         "Successfully connected to Aria2 through remote RPC, however the connection is still insecure. For complete security try adding an authorization secret token while starting Aria2 (through the flag --rpc-secret)":
           "Connexion réussie à aria2 via l'interface RPC, cependant la connexion n'est toujours pas sécurisée. Pour une sécurité complète, essayez d'ajouter un token secret d'autorisation en lançant aria2 (à l'aide de l'option --rpc-secret)",
         "Trying to connect to aria2 using the new connection configuration":
           "Tentative de connexion à aria2 avec la nouvelle configuration",
-        "Remove {{name}} and associated meta-data?":
-          "Supprimer {{name}} et les métadonnées associées"
+        "Remove {{name}} and associated meta-data?": "Supprimer {{name}} et les métadonnées associées",
       });
   },
   function(e, t) {
@@ -10622,10 +10116,8 @@
         "Reset filters": "Filter zurücksetzen",
         "Quick Access Settings": "Ausgewählte Einstellungen",
         "Save settings": "Einstellungen speichern",
-        "Currently no download in line to display, use the":
-          "Aktuell sind keine Downloads vorhanden, bitte benutz den",
-        "download button to start downloading files!":
-          "Download Link um den Download von Dateien zu beginnen!",
+        "Currently no download in line to display, use the": "Aktuell sind keine Downloads vorhanden, bitte benutz den",
+        "download button to start downloading files!": "Download Link um den Download von Dateien zu beginnen!",
         Peers: "Peers",
         "More Info": "Mehr Infos",
         Remove: "Entfernen",
@@ -10710,7 +10202,7 @@
         Uploaded: "Hochgeladen",
         "Download GID": "Download GID",
         "Number of Pieces": "Anzahl der Stücken",
-        "Piece Length": "Größe der Stücken"
+        "Piece Length": "Größe der Stücken",
       });
   },
   function(e, t) {
@@ -10768,8 +10260,7 @@
           "Añada varias descargas colocando la URI de cada descarga en una línea separada.",
         "- You can also add multiple URIs (mirrors) for the *same* file. To do this, separate the URIs by a space.":
           "Puede añadir URIs de espejo para *el mismo* archivo. Separe cada URI con un espacio.",
-        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.":
-          "Una URI puede ser HTTP(S), FTP, BitTorrent o Magnet.",
+        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.": "Una URI puede ser HTTP(S), FTP, BitTorrent o Magnet.",
         "Download settings": "Ajustes de Descargas",
         "Advanced settings": "Ajustes Avanzados",
         Cancel: "Cancelar",
@@ -10779,8 +10270,7 @@
         "Add Downloads By Torrents": "Añadir descargas Torrent",
         "- Select the torrent from the local filesystem to start the download.":
           "Seleccione el archivo Torrent de su equipo para iniciar la descarga",
-        "- You can select multiple torrents to start multiple downloads.":
-          "Puede seleccionar varios torrents",
+        "- You can select multiple torrents to start multiple downloads.": "Puede seleccionar varios torrents",
         "- To add a BitTorrent-Magnet URL, use the Add By URI option and add it there.":
           "Para los enlaces Magnet, salga de este cuadro y use la opción Añadir  URI",
         "Select Torrents": "Escoja los Torrents",
@@ -10789,8 +10279,7 @@
         "Select Metalinks": "Seleccione el Metalink",
         "- Select the Metalink from the local filesystem to start the download.":
           "Escoja el archivo Metalink de su equipo para iniciar la descarga",
-        "- You can select multiple Metalinks to start multiple downloads.":
-          "Puede escoger varios archivos Metalink",
+        "- You can select multiple Metalinks to start multiple downloads.": "Puede escoger varios archivos Metalink",
         "Select a Metalink": "Escoja el archivo Metalink",
         "Choose files to start download for": "Escoja los archivos que desea descargar",
         "Select to download": "Escoja que descargar",
@@ -10819,8 +10308,7 @@
         "Direct Download": "Descarga Directa",
         "If supplied, links will be created to enable direct download from the Aria2 server.":
           "Esto permite crear enlaces de descarga de los archivos desde el servidor Aria2",
-        "(Requires appropriate webserver to be configured.)":
-          "(Requiere configuración apropiada del servidor web)",
+        "(Requires appropriate webserver to be configured.)": "(Requiere configuración apropiada del servidor web)",
         "Save Connection configuration": "Guardar Configuración",
         Filter: "Filrar",
         "Aria2 server info": "Información de servidor Aria2",
@@ -10855,7 +10343,7 @@
         "Successfully connected to Aria2 through remote RPC, however the connection is still insecure. For complete security try adding an authorization secret token while starting Aria2 (through the flag --rpc-secret)":
           "Conexión exitosa con el servidor Aria2 mediante la interfaz RPC, sin embargo la conexión no es segura. Para mejorar la seguridad, añada un token de autorización al iniciar Aria2 (con la opción --rpc-secret)",
         "Trying to connect to aria2 using the new connection configuration":
-          "Intentando conectar con el servidor Aria2 usando los nuevos Ajustes de Conexión"
+          "Intentando conectar con el servidor Aria2 usando los nuevos Ajustes de Conexión",
       });
   },
   function(e, t) {
@@ -10909,8 +10397,7 @@
           "- Вы можете добавить несколько загрузок (файлов) одновременно, помещая URL-адреса для каждого файла на отдельной строке.",
         "- You can also add multiple URIs (mirrors) for the *same* file. To do this, separate the URIs by a space.":
           "- Можно также добавить несколько URL-адресов (зеркал) для *одного* файла. Для этого отделите URL-адреса пробелом.",
-        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.":
-          "- URL-адрес может быть HTTP(S)/FTP/BitTorrent-Magnet.",
+        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.": "- URL-адрес может быть HTTP(S)/FTP/BitTorrent-Magnet.",
         "Download settings": "Настройки загрузки",
         "Advanced settings": "Расширенные настройки",
         Cancel: "Отмена",
@@ -10960,8 +10447,7 @@
         "Direct Download": "Прямая загрузка",
         "If supplied, links will be created to enable direct download from the Aria2 server.":
           "Ссылки (при наличии) будут созданы для загрузки непосредственно с сервера Aria2.",
-        "(Requires appropriate webserver to be configured.)":
-          "(Требуется соответствующий веб-сервер для настройки.)",
+        "(Requires appropriate webserver to be configured.)": "(Требуется соответствующий веб-сервер для настройки.)",
         "Save Connection configuration": "Сохранить настройки соединения",
         Filter: "Фильтр",
         "Aria2 server info": "Информация о сервере Aria2",
@@ -10995,7 +10481,7 @@
         "Successfully connected to Aria2 through remote RPC, however the connection is still insecure. For complete security try adding an authorization secret token while starting Aria2 (through the flag --rpc-secret)":
           "Успешное подключение к Aria2 через удаленный RPC, однако соединение все еще небезопасно. Для обеспечения лучшей безопасности добавьте секретный токен авторизации при запуске aria2 (через флаг --rpc-secret)",
         "Trying to connect to aria2 using the new connection configuration":
-          "Попытка подключиться к aria2 с использованием новой конфигурации"
+          "Попытка подключиться к aria2 с использованием новой конфигурации",
       });
   },
   function(e, t) {
@@ -11056,8 +10542,7 @@
         Cancel: "Cancella",
         Start: "Aggiungi",
         Choose: "Scegli",
-        "Quick Access (shown on the main page)":
-          "Accesso rapido (mostrato nella pagina principale)",
+        "Quick Access (shown on the main page)": "Accesso rapido (mostrato nella pagina principale)",
         "Add Downloads By Torrents": "Aggiungi Torrent",
         "- Select the torrent from the local filesystem to start the download.":
           "- Seleziona il file torrent dal tuo computer per iniziare a scaricare.",
@@ -11101,8 +10586,7 @@
         "Direct Download": "Downaload diretto",
         "If supplied, links will be created to enable direct download from the Aria2 server.":
           "Se inserito, verrano creati dei link per scaricare direttamente i file dal server Aria2.",
-        "(Requires appropriate webserver to be configured.)":
-          "(Richiede un webserver correttamente configurato)",
+        "(Requires appropriate webserver to be configured.)": "(Richiede un webserver correttamente configurato)",
         "Save Connection configuration": "Salva la configurazione di connessione",
         Filter: "Filtro",
         "Aria2 server info": "Informazioni sul server Aria2",
@@ -11136,7 +10620,7 @@
         "Successfully connected to Aria2 through remote RPC, however the connection is still insecure. For complete security try adding an authorization secret token while starting Aria2 (through the flag --rpc-secret)":
           "Correttamente connesso al server Aria2 mediante RPC, ma in modo non sicuro. Per una completa sicurezza prova ad aggiungere un token di autorizzazione segreto all'avvio di Aria2 (mediante il flag --rpc-secret)",
         "Trying to connect to aria2 using the new connection configuration":
-          "Provo a connettermi a Aria2 attraverso le nuove impostazioni"
+          "Provo a connettermi a Aria2 attraverso le nuove impostazioni",
       });
   },
   function(e, t) {
@@ -11177,10 +10661,8 @@
         "Reset filters": "Filtreleri sıfırla",
         "Quick Access Settings": "Hızlı Erişim Ayarları",
         "Save settings": "Ayarları kaydet",
-        "Currently no download in line to display, use the":
-          "Şu anda görüntülenebilecek bir indirme yok,",
-        "download button to start downloading files!":
-          "butonu aracılığı ile dosya indirebilirsiniz!",
+        "Currently no download in line to display, use the": "Şu anda görüntülenebilecek bir indirme yok,",
+        "download button to start downloading files!": "butonu aracılığı ile dosya indirebilirsiniz!",
         Peers: "Peers",
         "More Info": "Daha fazla bilgi",
         Remove: "Kaldır",
@@ -11191,8 +10673,7 @@
           "- Ayrı bir satıra her dosya için URI koyarak aynı anda birden fazla dosya indirebilirsiniz.",
         "- You can also add multiple URIs (mirrors) for the *same* file. To do this, separate the URIs by a space.":
           "- Aynı dosyalar için birden fazla URI (ayna) da ekleyebilirsiniz. Bunu yapmak için URIları bir boşlukla ayırın.",
-        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.":
-          "- Bir URI, HTTP(S)/FTP/BitTorrent-Magnet olabilir.",
+        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.": "- Bir URI, HTTP(S)/FTP/BitTorrent-Magnet olabilir.",
         "Download settings": "İndirme ayarları",
         "Advanced settings": "Gelişmiş Ayarlar",
         Cancel: "İptal et",
@@ -11242,8 +10723,7 @@
         "Direct Download": "Direkt indirme",
         "If supplied, links will be created to enable direct download from the Aria2 server.":
           "Verilen, bağlantıları aria2 sunucudan doğrudan indirmeyi etkinleştirmek için oluşturulur.",
-        "(Requires appropriate webserver to be configured.)":
-          "(Uygun web sunucusunun yapılandırılmasını gerektirir.)",
+        "(Requires appropriate webserver to be configured.)": "(Uygun web sunucusunun yapılandırılmasını gerektirir.)",
         "Save Connection configuration": "Bağlantı yapılandırmasını kaydedin",
         Filter: "Filtre",
         "Aria2 server info": "Aria2 sunucu bilgisi",
@@ -11277,7 +10757,7 @@
         "Successfully connected to Aria2 through remote RPC, however the connection is still insecure. For complete security try adding an authorization secret token while starting Aria2 (through the flag --rpc-secret)":
           "Uzak RPC aracılığıyla Aria2'ye başarıyla bağlandı ancak bağlantı hala güvende değil. Tam güvenlik için, Aria2'yi başlatırken (--rpc-secret bayrağını kullanın) ve bir yetkilendirme gizli simgesi eklemeyi deneyin.",
         "Trying to connect to aria2 using the new connection configuration":
-          "Yeni bağlantı yapılandırmasını kullanarak aria2'ye bağlanmaya çalışılıyor"
+          "Yeni bağlantı yapılandırmasını kullanarak aria2'ye bağlanmaya çalışılıyor",
       });
   },
   function(e, t) {
@@ -11334,8 +10814,7 @@
           "- Můžete začít stahovat více souborů v jeden okamžik, tak že na každý řádek dáte jinou URI",
         "- You can also add multiple URIs (mirrors) for the *same* file. To do this, separate the URIs by a space.":
           "- Také můžete přidat více URI (Zrcadel) pro *stejný* soubor, tak že je dáte na jeden řádek oddělené mezerou ",
-        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.":
-          "- URI může být HTTP(S)/FTP/BitTorrent-Magnet.",
+        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.": "- URI může být HTTP(S)/FTP/BitTorrent-Magnet.",
         "Download settings": "Nastavení stahování",
         "Advanced settings": "Pokročilé nastavení",
         Cancel: "Zrušit",
@@ -11385,8 +10864,7 @@
         "Direct Download": "Přímé stažení",
         "If supplied, links will be created to enable direct download from the Aria2 server.":
           "Jestliže je nastaveno, je možné stáhnout soubor přímo z Aria2 serveru.",
-        "(Requires appropriate webserver to be configured.)":
-          "(Je třeba udělat patřičnou konfiguraci webserveru)",
+        "(Requires appropriate webserver to be configured.)": "(Je třeba udělat patřičnou konfiguraci webserveru)",
         "Save Connection configuration": "Uložit nastavení",
         Filter: "Filtr",
         "Aria2 server info": "Informace o Aria2 serveru",
@@ -11394,8 +10872,7 @@
         "Features Enabled": "Zapnuté funkce",
         "To download the latest version of the project, add issues or to contribute back, head on to":
           "Ke stažení aktuální verze, nahlášení problému či přispění, zamiřte na",
-        "Or you can open the latest version in the browser through":
-          "Nebo můžete spustit aktuální verzi pomocí:",
+        "Or you can open the latest version in the browser through": "Nebo můžete spustit aktuální verzi pomocí:",
         Close: "Zavřít",
         "Download status": "Stav stahování",
         "Download Speed": "Rychlost stahování",
@@ -11416,13 +10893,12 @@
           "Nemohu se připojit k Aria2 RPC serveru. Zkusím to znovu za 10 sekund. Možná by se to chtělo podívat do Nastavení > Nastavení připojení",
         "Authentication failed while connecting to Aria2 RPC server. Will retry in 10 secs. You might want to confirm your authentication details by going to Settings > Connection Settings":
           "Během připojování k Aria2 RPC serveru selhala autentifikace. Zkusím to znovu za 10 sekund. Možná by se to chtělo podívat do Nastavení > Nastavení připojení",
-        "Successfully connected to Aria2 through its remote RPC …":
-          "Úspěšně připojeno k Aria2 pomocí RPC...",
+        "Successfully connected to Aria2 through its remote RPC …": "Úspěšně připojeno k Aria2 pomocí RPC...",
         "Successfully connected to Aria2 through remote RPC, however the connection is still insecure. For complete security try adding an authorization secret token while starting Aria2 (through the flag --rpc-secret)":
           "Úspěšně připojeno k Aria2 pomocí RPC, ale připojení není zabezpečené. Pro úplné zabezpečení přidejte bezpečnostní token při spuštění Aria2 (pomocí možnosti --rpc-secret) ",
         "Trying to connect to aria2 using the new connection configuration":
           "Zkouším se připojit k Aria2 za pomocí nového nastavení",
-        "Remove {{name}} and associated meta-data?": "Odstranit {{name}} a příslušná meta-data?"
+        "Remove {{name}} and associated meta-data?": "Odstranit {{name}} a příslušná meta-data?",
       });
   },
   function(e, t) {
@@ -11480,8 +10956,7 @@
           "- شما می توانید چند بار دانلود (فایل ها) را همزمان با قرار دادن URI ها برای هر فایل در یک خط جداگانه اضافه کنید.",
         "- You can also add multiple URIs (mirrors) for the *same* file. To do this, separate the URIs by a space.":
           "- شما همچنین می توانید URI های متعدد (آینه ها) را برای فایل *همان* اضافه کنید. برای انجام این کار، URI ها را با یک فضای جداگانه جدا کنید.",
-        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.":
-          "- یک URI می تواند HTTP (S) / FTP / BitTorrent-Magnet باشد.",
+        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.": "- یک URI می تواند HTTP (S) / FTP / BitTorrent-Magnet باشد.",
         "Download settings": "تنظیمات دانلود",
         "Advanced settings": "تنظیمات پیشرفته",
         Cancel: "لغو",
@@ -11531,8 +11006,7 @@
         "Direct Download": "دانلود مستقیم",
         "If supplied, links will be created to enable direct download from the Aria2 server.":
           "در صورت عرضه، لینک برای ایجاد مستقیم دانلود از سرور Aria2 ایجاد خواهد شد.",
-        "(Requires appropriate webserver to be configured.)":
-          "(نیاز به وب سرور مناسب برای پیکربندی.)",
+        "(Requires appropriate webserver to be configured.)": "(نیاز به وب سرور مناسب برای پیکربندی.)",
         "Save Connection configuration": "ذخیره پیکربندی اتصال",
         Filter: "فیلتر",
         "Aria2 server info": "مشخصات سرور Aria2",
@@ -11568,7 +11042,7 @@
           "با موفقیت به Aria2 از طریق RPC راه دور متصل شد، اما اتصال هنوز ناامن است. برای امنیت کامل سعی کنید مجوز نشانه مجوز را در هنگام شروع Aria2 (از طریق پرچم --rpc-secret)",
         "Trying to connect to aria2 using the new connection configuration":
           "تلاش برای اتصال به aria2 با استفاده از پیکربندی اتصال جدید",
-        "Remove {{name}} and associated meta-data?": "حذف {{name}} و متا داده های مرتبط"
+        "Remove {{name}} and associated meta-data?": "حذف {{name}} و متا داده های مرتبط",
       });
   },
   function(e, t) {
@@ -11613,8 +11087,7 @@
         "Quick Access Settings": "Pengaturan Akses Cepat",
         Save: "Simpan",
         "Save settings": "Simpan pengaturan",
-        "Currently no download in line to display, use the":
-          "Sekarang tak ada unduhan yang ditampilkan, gunakan",
+        "Currently no download in line to display, use the": "Sekarang tak ada unduhan yang ditampilkan, gunakan",
         "download button to start downloading files!": "tombol unduh untuk mulai mengunduh berkas!",
         Peers: "Peer",
         "More Info": "Info Lengkap",
@@ -11626,8 +11099,7 @@
           "- Anda dapat menambah banyak unduhan (berkas) sekali waktu dg menaruh URI setiap berkas dlm baris terpisah.",
         "- You can also add multiple URIs (mirrors) for the *same* file. To do this, separate the URIs by a space.":
           "- Anda juga dapat menambah banyak URI (cermin) untuk berkas yang *sama*. Pisahkan URI dengan spasi.",
-        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.":
-          "- URI dapat berbentuk HTTP(S)/FTP/BitTorrent-Magnet.",
+        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.": "- URI dapat berbentuk HTTP(S)/FTP/BitTorrent-Magnet.",
         "Download settings": "Pengaturan unduhan",
         "Advanced settings": "Pengaturan mahir",
         Cancel: "Batal",
@@ -11677,8 +11149,7 @@
         "Direct Download": "Unduh Langsung",
         "If supplied, links will be created to enable direct download from the Aria2 server.":
           "Jika tersedia, tautan akan dibuat untuk mengaktifkan unduhan langsung dari peladen Aria2.",
-        "(Requires appropriate webserver to be configured.)":
-          "(Mewajibkan webserver yang perlu dikonfigurasi)",
+        "(Requires appropriate webserver to be configured.)": "(Mewajibkan webserver yang perlu dikonfigurasi)",
         "Save Connection configuration": "Simpan konfigurasi Koneksi",
         Filter: "Saring",
         "Aria2 server info": "Info peladen Aria2",
@@ -11708,14 +11179,12 @@
           "Tak dapat terkoneksi ke peladen RPC aria2. Akan diulang dalam 10 detik. Anda mungkin ingin menguji pengaturan koneksi melalui Pengaturan > Pengaturan Koneksi",
         "Authentication failed while connecting to Aria2 RPC server. Will retry in 10 secs. You might want to confirm your authentication details by going to Settings > Connection Settings":
           "Otentifikasi gagal saat membuka koneksi ke peladen RPC Aria2. Akan diulang dalam 10 detik. Anda mungkin ingin mengonfirmasi detail otentifikasi di Pengaturan > Pengaturan Koneksi",
-        "Successfully connected to Aria2 through its remote RPC …":
-          "Sukses terkoneksi ke Aria2 melalui remot RPC …",
+        "Successfully connected to Aria2 through its remote RPC …": "Sukses terkoneksi ke Aria2 melalui remot RPC …",
         "Successfully connected to Aria2 through remote RPC, however the connection is still insecure. For complete security try adding an authorization secret token while starting Aria2 (through the flag --rpc-secret)":
           "Sukses terkoneksi ke Aria2 melalui remot RPC, bagaimanapun koneksi masih tidak aman. Untuk melengkapi keamanan coba tambahkan token rahasia otorisasi saat memulai Aria2 (lewat flag --rpc-secret)",
         "Trying to connect to aria2 using the new connection configuration":
           "Mencoba koneksi ke aria2 menggunakan konfigurasi koneksi baru",
-        "Remove {{name}} and associated meta-data?":
-          "Hapus {{name}} dan meta-data yang berhubungan?"
+        "Remove {{name}} and associated meta-data?": "Hapus {{name}} dan meta-data yang berhubungan?",
       });
   },
   function(e, t) {
@@ -11773,8 +11242,7 @@
           "- Você pode adicionar múltiplos downloads (arquivos) ao mesmo tempo inserindo a URI de cada arquivo em uma linha separada.",
         "- You can also add multiple URIs (mirrors) for the *same* file. To do this, separate the URIs by a space.":
           "- Você também pode adicionar múltiplas URIs (mirrors) para o *mesmo* arquivo. Para fazer isto, separe as URIs por um espaço.",
-        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.":
-          "- Uma URI pode ser HTTP(S)/FTP/BitTorrent-Magnet.",
+        "- A URI can be HTTP(S)/FTP/BitTorrent-Magnet.": "- Uma URI pode ser HTTP(S)/FTP/BitTorrent-Magnet.",
         "Download settings": "Configurações de download",
         "Advanced settings": "Configurações avançadas",
         Cancel: "Cancelar",
@@ -11824,8 +11292,7 @@
         "Direct Download": "Download Direto",
         "If supplied, links will be created to enable direct download from the Aria2 server.":
           "Se fornecido, links serão criados para permitir download direto do servidor Aria2.",
-        "(Requires appropriate webserver to be configured.)":
-          "(Requer servidor web apropriado a ser configurado.)",
+        "(Requires appropriate webserver to be configured.)": "(Requer servidor web apropriado a ser configurado.)",
         "Save Connection configuration": "Salvar Configuração de conexão",
         Filter: "Filtrar",
         "Aria2 server info": "Informações do servidor Aria2",
@@ -11861,7 +11328,7 @@
           "Conectado com sucesso ao Aria2 através de seu RPC remoto, contudo a conexão é insegura. Para uma completa segurança tente adicionar um token secreto de autorização quando iniciar o Aria2 (através da opção --rpc-secret)",
         "Trying to connect to aria2 using the new connection configuration":
           "Tentando conectar-se ao aria2 utilizando a nova configuração de conexão",
-        "Remove {{name}} and associated meta-data?": "Remover {{name}} e os metadados associados?"
+        "Remove {{name}} and associated meta-data?": "Remover {{name}} e os metadados associados?",
       });
-  }
+  },
 ]);

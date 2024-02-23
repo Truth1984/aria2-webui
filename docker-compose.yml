@@ -16,9 +16,12 @@ services:
     container_name: aria2
     extra_hosts:
       - host.docker.internal:host-gateway
+    volumes:
+      - ./conf:/root/.aria2
+      - ./download:/root/download
     environment:
       - TZ=Asia/Shanghai
-    command: aria2c --enable-rpc --rpc-listen-all
+    command: aria2c --enable-rpc --rpc-listen-all --conf-path=/root/.aria2/aria2.conf --dir=/root/download
 
   nginx:
     image: nginx:alpine
