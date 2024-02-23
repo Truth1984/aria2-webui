@@ -42,7 +42,8 @@ docker-compose.yml example:
 version: "3.8"
 services:
   aria2w:
-    container_name: truth1984/aria2w
+    image: truth1984/aria2-webui
+    container_name: aria2w
     restart: unless-stopped
 
   aria2:
